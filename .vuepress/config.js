@@ -1,7 +1,7 @@
 module.exports = {
   "title": "Duktig",
   "description": "个人博客",
-  "dest": "public",
+  "dest": ".vuepress/dist",
   "head": [
     [
       "link",
