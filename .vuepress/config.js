@@ -100,17 +100,29 @@ module.exports = {
         },
         "friendLink": [
             {
-                "title": "午后南杂",
-                "desc": "Enjoy when you can, and endure when you must.",
-                "email": "1156743527@qq.com",
-                "link": "https://www.recoluan.com"
+                "title": "皆非的万事屋",
+                "desc": "Youth is not a period of time, it is a state of mind.",
+                "avatar": "https://file.makeyourchoice.cn/img/typecho/avatar.png",
+                "link": "https://www.makeyourchoice.cn/"
+            },
+            {
+                "title": "Advance",
+                "desc": "须知少时凌云志，曾许人间第一流。",
+                "avatar": "https://gitee.com/jiao_qianjin/zhishiku/raw/master/img/20210524175332.jpg",
+                "link": "https://jiaoqianjin.cn/"
+            },
+            {
+                "title": "Elltor",
+                "desc": "戒骄戒躁，看清目标；持之以恒，厚积薄发。",
+                "avatar": "https://oss.elltor.com/uploads/2020/user_photo_1602810656543.jpg",
+                "link": "https://elltor.com/"
             },
             {
                 "title": "vuepress-theme-reco",
                 "desc": "A simple and beautiful vuepress Blog & Doc theme.",
                 "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
                 "link": "https://vuepress-theme-reco.recoluan.com"
-            }
+            },
         ],
         "logo": "/logo.png",
         "search": true,

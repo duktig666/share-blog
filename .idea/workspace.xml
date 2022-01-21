@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5895322e-258d-4c69-a114-7fa158be354c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.vuepress/public/avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example.md.exa" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vuepress/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/public/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/public/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/public/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/category1/2018/121501.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/category1/2019/092101.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/category2/2016/121501.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/category2/2017/092101.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme-reco/api.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme-reco/api.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
