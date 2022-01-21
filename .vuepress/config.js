@@ -1,101 +1,127 @@
 module.exports = {
-  "title": "Duktig",
-  "description": "个人博客",
-  "dest": ".vuepress/dist",
-  "head": [
-    [
-      "link",
-      {
-        "rel": "icon",
-        "href": "/favicon.ico"
-      }
-    ],
-    [
-      "meta",
-      {
-        "name": "viewport",
-        "content": "width=device-width,initial-scale=1,user-scalable=no"
-      }
-    ]
-  ],
-  "theme": "reco",
-  "themeConfig": {
-    "nav": [
-      {
-        "text": "Home",
-        "link": "/",
-        "icon": "reco-home"
-      },
-      {
-        "text": "TimeLine",
-        "link": "/timeline/",
-        "icon": "reco-date"
-      },
-      {
-        "text": "Docs",
-        "icon": "reco-message",
-        "items": [
-          {
-            "text": "vuepress-reco",
-            "link": "/docs/theme-reco/"
-          }
-        ]
-      },
-      {
-        "text": "Contact",
-        "icon": "reco-message",
-        "items": [
-          {
-            "text": "GitHub",
-            "link": "https://github.com/recoluan",
-            "icon": "reco-github"
-          }
-        ]
-      }
-    ],
-    "sidebar": {
-      "/docs/theme-reco/": [
-        "",
-        "theme",
-        "plugin",
-        "api"
-      ]
+    "title": "Duktig",
+    "description": "个人博客",
+    // 默认语言
+    locales: {
+        '/': {
+            lang: 'zh-CN'
+        }
     },
-    "type": "blog",
-    "blogConfig": {
-      "category": {
-        "location": 2,
-        "text": "Category"
-      },
-      "tag": {
-        "location": 3,
-        "text": "Tag"
-      }
-    },
-    "friendLink": [
-      {
-        "title": "午后南杂",
-        "desc": "Enjoy when you can, and endure when you must.",
-        "email": "1156743527@qq.com",
-        "link": "https://www.recoluan.com"
-      },
-      {
-        "title": "vuepress-theme-reco",
-        "desc": "A simple and beautiful vuepress Blog & Doc theme.",
-        "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
-        "link": "https://vuepress-theme-reco.recoluan.com"
-      }
+    // 永久链接格式
+    // permalink: "/:year/:month/:day/:slug",
+    // 静态资源路径
+    "dest": ".vuepress/dist",
+    "head": [
+        [
+            "link",
+            {
+                "rel": "icon",
+                "href": "/favicon.ico"
+            }
+        ],
+        [
+            "meta",
+            {
+                "name": "viewport",
+                "content": "width=device-width,initial-scale=1,user-scalable=no"
+            }
+        ]
     ],
-    "logo": "/logo.png",
-    "search": true,
-    "searchMaxSuggestions": 10,
-    "lastUpdated": "Last Updated",
-    "author": "RenShiWei",
-    "authorAvatar": "/avatar.png",
-    "record": "xxxx",
-    "startYear": "2017"
-  },
-  "markdown": {
-    "lineNumbers": true
-  }
+    "theme": "reco",
+    "themeConfig": {
+        //在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
+        subSidebar: 'auto',
+        "nav": [
+            {
+                "text": "首页",
+                "link": "/",
+                "icon": "reco-home"
+            },
+            {
+                "text": "时间轴",
+                "link": "/timeline/",
+                "icon": "reco-date"
+            },
+            {
+                "text": "文档",
+                "icon": "reco-message",
+                "items": [
+                    {
+                        "text": "vuepress-reco",
+                        "link": "/docs/theme-reco/"
+                    }
+                ]
+            },
+            {
+                "text": "链接",
+                "icon": "reco-message",
+                "items": [
+                    {
+                        "text": "GitHub",
+                        "link": "https://github.com/duktig666",
+                        "icon": "reco-github"
+                    },
+                    {
+                        "text": "Gitee",
+                        "link": "https://gitee.com/duktig666",
+                        "icon": "reco-mayun"
+                    },
+                    {
+                        "text": "CSDN",
+                        "link": "https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343",
+                        "icon": "reco-csdn"
+                    },
+                    {
+                        "text": "简书",
+                        "link": "https://www.jianshu.com/u/421632ec0dc8",
+                        "icon": "reco-jianshu"
+                    },
+                ]
+            }
+        ],
+        "sidebar": {
+            "/docs/theme-reco/": [
+                "",
+                "theme",
+                "plugin",
+                "api"
+            ]
+        },
+        "type": "blog",
+        "blogConfig": {
+            "category": {
+                "location": 2,
+                "text": "分类"
+            },
+            "tag": {
+                "location": 3,
+                "text": "标签"
+            }
+        },
+        "friendLink": [
+            {
+                "title": "午后南杂",
+                "desc": "Enjoy when you can, and endure when you must.",
+                "email": "1156743527@qq.com",
+                "link": "https://www.recoluan.com"
+            },
+            {
+                "title": "vuepress-theme-reco",
+                "desc": "A simple and beautiful vuepress Blog & Doc theme.",
+                "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+                "link": "https://vuepress-theme-reco.recoluan.com"
+            }
+        ],
+        "logo": "/logo.png",
+        "search": true,
+        "searchMaxSuggestions": 10,
+        "lastUpdated": "Last Updated",
+        "author": "RenShiWei",
+        "authorAvatar": "/avatar.jpg",
+        "record": "豫ICP备2021014891号-1",
+        "startYear": "2018"
+    },
+    "markdown": {
+        "lineNumbers": true
+    }
 }

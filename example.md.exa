@@ -1,0 +1,21 @@
+# 博客例子
+
+---
+title: 烤鸭的做法
+date: 2019-08-08
+author: RenShiWei
+sidebar: 'auto'
+categories:
+ - 烹饪
+ - 爱好
+tags:
+ - 烤
+ - 鸭子
+keys:
+ - '123456'
+publish: false
+---
+
+more 以上部分会显示为摘要
+
+<!-- more -->

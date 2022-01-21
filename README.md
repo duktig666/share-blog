@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: vuepress-theme-reco
-tagline: A simple and beautiful vuepress blog theme.
+heroText: 
+tagline: 优秀还努力。愿你付出甘之如饴，所得归于欢喜。
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',
