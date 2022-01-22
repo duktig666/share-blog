@@ -8,7 +8,7 @@ module.exports = {
         }
     },
     // 永久链接格式
-    // permalink: "/:year/:month/:day/:slug",
+    permalink: "/:year/:month/:day/:slug",
     // 静态资源路径
     "dest": ".vuepress/dist",
     "head": [
@@ -53,7 +53,7 @@ module.exports = {
                 ]
             },
             {
-                "text": "链接",
+                "text": "关注我",
                 "icon": "reco-message",
                 "items": [
                     {

@@ -17,6 +17,7 @@ bgImageStyle: {
 isShowTitleInHome: false
 actionText: Guide
 actionLink: /views/other/guide
+permalink: /
 features:
 - title: Yesterday
   details: 开发一款看着开心、写着顺手的 vuepress 博客主题
