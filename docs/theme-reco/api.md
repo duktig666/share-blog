@@ -1,11 +1,7 @@
 ---
 title: api
 date: 2020-05-29
-categories:
- - java
-tags:
- - java
- - mysql
+publish: false
 ---
 
 This is api.

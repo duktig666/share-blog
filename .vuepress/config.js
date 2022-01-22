@@ -7,8 +7,8 @@ module.exports = {
             lang: 'zh-CN'
         }
     },
-    // 永久链接格式
-    permalink: "/:year/:month/:day/:slug",
+    // 永久链接格式 （1.6.10 配置这个 导致插件vuepress-plugin-permalink-pinyin 中文路由转拼音失效）
+    // permalink: "/:year/:month/:day/:slug",
     // 静态资源路径
     "dest": ".vuepress/dist",
     "head": [
@@ -31,9 +31,13 @@ module.exports = {
     "themeConfig": {
         //在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
         subSidebar: 'auto',
+        // 代码块样式（默认——tomorrow）
+        codeTheme: 'solarizedlight',
+        // 当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新（默认值：true）（性能优化）
+        activeHeaderLinks: false,
         "nav": [
             {
-                "text": "首页",
+                "text": "博客",
                 "link": "/",
                 "icon": "reco-home"
             },
@@ -80,12 +84,12 @@ module.exports = {
             }
         ],
         "sidebar": {
-            "/docs/theme-reco/": [
-                "",
-                "theme",
-                "plugin",
-                "api"
-            ]
+            // "/docs/theme-reco/": [
+            //     "",
+            //     "theme",
+            //     "plugin",
+            //     "api"
+            // ]
         },
         "type": "blog",
         "blogConfig": {
@@ -141,5 +145,16 @@ module.exports = {
     },
     "markdown": {
         "lineNumbers": true
-    }
+    },
+    // 配置插件
+    plugins: [
+        // 支持中文文件名
+        [
+            "permalink-pinyin",
+            {
+                lowercase: true, // Converted into lowercase, default: true
+                separator: "-", // Separator of the slug, default: '-'
+            },
+        ],
+    ]
 }

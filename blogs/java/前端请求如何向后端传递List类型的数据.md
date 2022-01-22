@@ -1,12 +1,12 @@
 ---
 title: 前端请求如何向后端传递List类型的数据
 date: 2020-05-19
+author: RenShiWei
 categories:
-- 后端
+ - java
 tags:
-- java
+ - java
 ---
-
 
 ## 前端请求如何向后端传递List类型的数据
 
@@ -18,11 +18,11 @@ tags:
 
 根据博客类型id集合删除博客集合
 ```java
-    @DeleteMapping("/ids")
-    public ResponseEntity<Void> deleteBlogTypes (@RequestBody List<Long> blogTypeIds ){
-        blogTypeService.deleteBlogTypes(blogTypeIds);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+@DeleteMapping("/ids")
+public ResponseEntity<Void> deleteBlogTypes (@RequestBody List<Long> blogTypeIds ){
+    blogTypeService.deleteBlogTypes(blogTypeIds);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+}
 ```
 
 因为js并没有List数据类型，所以怎样发送请求是一个很头疼的问题
@@ -31,26 +31,26 @@ tags:
 
 1. 思路一当然是采用json将参数序列化，然后进行携带请求参数，一位get请求和delete请求的参数信息并不是放在请求体中，而是放在地址栏中拼接参数，所以这里采用post的请求比较好（地址栏的url有限制，不可过长，批量删除所需要拼接的id集合可能很多）
 ```javascript
-	//声明空的数组
-	let blogTypeIds = [];
-	//在数组添加数据，省略......
-	//发送post请求
-	$.ajax({
-	     method:"post",
-	     url:"/blog-type/ids",
-	     dataType: "json",
-	     data: JSON.stringify(blogTypeIds),  //这里需要将参数，序列化成为json数据
-	     headers:{
-	          'Content-Type':'application/json;charset=UTF-8',
-	     },
-	     success: function (data, status, xhr) {
-	          //请求成功执行操作
-	     },
-	     error: function (error) {
-	     	  //请求失败后的回调方法
-	          console.log(error)
-	     }
-	});
+//声明空的数组
+let blogTypeIds = [];
+//在数组添加数据，省略......
+//发送post请求
+$.ajax({
+    method:"post",
+    url:"/blog-type/ids",
+    dataType: "json",
+    data: JSON.stringify(blogTypeIds),  //这里需要将参数，序列化成为json数据
+    headers:{
+        'Content-Type':'application/json;charset=UTF-8',
+    },
+    success: function (data, status, xhr) {
+        //请求成功执行操作
+    },
+    error: function (error) {
+        //请求失败后的回调方法
+        console.log(error)
+    }
+});
 
 ```
 ps：data中的数据，必须使用`data: JSON.stringify(blogTypeIds)`;如果使用
@@ -58,11 +58,11 @@ ps：data中的数据，必须使用`data: JSON.stringify(blogTypeIds)`;如果�
 
 2. 修改后台接口为post请求
 ```java
-    @PostMapping("/ids")
-    public ResponseEntity<Void> deleteBlogTypes (@RequestBody List<Long> blogTypeIds ){
-        blogTypeService.deleteBlogTypes(blogTypeIds);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+@PostMapping("/ids")
+public ResponseEntity<Void> deleteBlogTypes (@RequestBody List<Long> blogTypeIds ){
+    blogTypeService.deleteBlogTypes(blogTypeIds);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+}
 ```
 
 感觉delete请求也是可以实现的，只是还没有找到好的方法，之后遇到，在进行更新。
@@ -82,28 +82,28 @@ ps：data中的数据，必须使用`data: JSON.stringify(blogTypeIds)`;如果�
 **1.前台传递数组类型的参数，不需要直接解析成json字符串**
 
 ```javascript
-	let data=[];
-	//在数组添加数据，省略......
-	$.ajax({
-		method:"post",
-        url:"/blog-type/ids",
-        data: {
-            blogTypeIds:data
-        },
-        dataType: "json",
-        success: function (data) {
-        }
-    });
+let data=[];
+//在数组添加数据，省略......
+$.ajax({
+    method:"post",
+    url:"/blog-type/ids",
+    data: {
+        blogTypeIds:data
+    },
+    dataType: "json",
+    success: function (data) {
+    }
+});
 ```
 
  **2.后台使用@RequestParam(required = false, value = "list[]")**
 
 ```java
-    @PostMapping("/ids")
-    public ResponseEntity<Void> deleteBlogTypes (@RequestParam(value = "blogTypeIds[]") List<Long> blogTypeIds ){
-        blogTypeService.deleteBlogTypes(blogTypeIds);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+@PostMapping("/ids")
+public ResponseEntity<Void> deleteBlogTypes (@RequestParam(value = "blogTypeIds[]") List<Long> blogTypeIds ){
+    blogTypeService.deleteBlogTypes(blogTypeIds);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+}
 ```
 **注意事项**
 
