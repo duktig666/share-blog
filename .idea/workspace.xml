@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5895322e-258d-4c69-a114-7fa158be354c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.vuepress/enhanceApp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blogs/前端/登录实现图片验证码.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vuepress/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/1.e420085a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/3.d3547d14.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/4.33693174.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/5.888c98d3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/6.a71e0fb7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/7.e28b0848.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/assets/js/8.b3c52e17.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/categories/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/categories/java/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/categories/java/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/tag/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/tag/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/tag/java/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/tag/java/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/tag/mysql/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/tag/mysql/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vuepress/dist/timeline/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/dist/timeline/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/other/guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/other/test.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/java/前端请求如何向后端传递List类型的数据.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme-reco/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme-reco/api.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme-reco/api.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme-reco/plugin.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme-reco/theme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -29,7 +29,15 @@ module.exports = {
     ],
     "theme": "reco",
     "themeConfig": {
-        //在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
+        // 评论系统配置
+        vssueConfig: {
+            platform: 'github',
+            owner: 'duktig666',
+            repo: 'duktig666.github.io',
+            clientId: 'fbab7b9d7d2529d6207c',
+            clientSecret: 'a89a0cf8535c57aba36d5d5eb04fde91d8a2ecfc',
+        },
+        // 在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
         subSidebar: 'auto',
         // 代码块样式（默认——tomorrow）
         codeTheme: 'solarizedlight',
