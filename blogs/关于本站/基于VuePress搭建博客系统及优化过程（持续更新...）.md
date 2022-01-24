@@ -2,6 +2,7 @@
 title: 基于VuePress搭建博客系统及优化过程（持续更新...）
 date: 2022-01-21
 categories:
+
  - 关于本站
 tags:
  - 个人博客
@@ -12,7 +13,7 @@ sticky: 1
 ::: tip
 
 1. 使用 vuepress，基于 vuepress-theme-reco **搭建个人博客系统**
-2. 基于 GitPage 自动部署
+2. 基于 GitHub Pages 自动部署
 3. 基于 vuepress **个人博客的优化历程** 以及 **问题解决方案**
 
 :::
@@ -20,10 +21,6 @@ sticky: 1
 
 
 <!-- more -->
-
-
-
-[[toc]]
 
 ## 优化历程
 

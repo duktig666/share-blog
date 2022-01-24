@@ -14,9 +14,12 @@ keys:
 publish: false
 ---
 
-more 以上部分会显示为摘要
 
+// more 以上部分会显示为摘要
 <!-- more -->
+
+// 目录
+[[toc]]
 
 // 自定义容器
 ::: tip/warning/danger/details
