@@ -46,7 +46,6 @@ selenium-debug.log
 
 # Editor directories and files
 .idea
-*.iml
 .vscode
 *.suo
 *.ntvs*

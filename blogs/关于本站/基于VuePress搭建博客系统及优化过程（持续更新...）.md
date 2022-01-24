@@ -9,7 +9,21 @@ tags:
 sticky: 1
 ---
 
+::: tip
 
+1. 使用 vuepress，基于 vuepress-theme-reco **搭建个人博客系统**
+2. 基于 GitPage 自动部署
+3. 基于 vuepress **个人博客的优化历程** 以及 **问题解决方案**
+
+:::
+
+
+
+<!-- more -->
+
+
+
+[[toc]]
 
 ## 优化历程
 
@@ -333,6 +347,8 @@ npm install -D @vuepress/plugin-pwa
 
 
 ## 好用的MarkDown扩展语法
+
+完整的md扩展，参看：[https://vuepress.vuejs.org/zh/guide/markdown.html](https://vuepress.vuejs.org/zh/guide/markdown.html)
 
 ### GitHub 风格的表格
 
