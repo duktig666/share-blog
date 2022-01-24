@@ -1,5 +1,5 @@
 ---
-title: GitHub自定义美化个人主页.
+title: GitHub自定义美化个人主页
 date: 2021-05-06
 categories:
  - tool

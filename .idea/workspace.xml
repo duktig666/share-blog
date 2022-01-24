@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5895322e-258d-4c69-a114-7fa158be354c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.vuepress/styles/index.styl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vuepress/styles/markdown-container.styl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blogs/关于本站/基于VuePress搭建博客系统及优化过程（持续更新...）.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vuepress/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/.vuepress/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/tool/git/GitHub自定义美化个人主页.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/tool/git/GitHub自定义美化个人主页.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.vuepress/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/blogs/关于本站" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -42,11 +48,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IDE\code\duktig666.github.io\blogs\关于本站" />
+      <recent name="D:\IDE\code\duktig666.github.io\.vuepress\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\IDE\code\duktig666.github.io\blogs\other" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IDE\code\duktig666.github.io\.vuepress\public" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -68,10 +75,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="359" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1642857460788">
+    <state x="359" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1643031804368">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="359" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1642857460788" />
+    <state x="359" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1643031804368" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1642859192487">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

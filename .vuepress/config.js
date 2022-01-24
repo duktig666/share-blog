@@ -33,9 +33,11 @@ module.exports = {
         vssueConfig: {
             platform: 'github',
             owner: 'duktig666',
-            repo: 'duktig666.github.io',
+            repo: 'vssues',
             clientId: 'fbab7b9d7d2529d6207c',
             clientSecret: 'a89a0cf8535c57aba36d5d5eb04fde91d8a2ecfc',
+            // 自动创建issues
+            autoCreateIssue: true,
         },
         // 在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
         subSidebar: 'auto',
@@ -152,6 +154,7 @@ module.exports = {
         "startYear": "2018"
     },
     "markdown": {
+        // 代码块设置行号
         "lineNumbers": true
     },
     // 配置插件
@@ -164,5 +167,47 @@ module.exports = {
                 separator: "-", // Separator of the slug, default: '-'
             },
         ],
+        // pwa 刷新插件
+        ['pwa', {
+            serviceWorker: true,
+            updatePopup: {
+                message: "发现新内容可用",
+                buttonText: "刷新"
+            }
+        }],
+        // 音乐插件
+        ['meting', {
+            //metingApi: "https://meting.sigure.xyz/api/music",
+            meting: {
+                // 网易
+                server: "netease",
+                // 读取歌单
+                type: "playlist",
+                // 歌单id（只用修改这个）
+                mid: "7045548095",
+            },
+            // 不配置该项的话不会出现全局播放器
+            aplayer: {
+                // 吸底模式
+                fixed: true,
+                mini: true,
+                // 自动播放
+                autoplay: false,
+                // 歌曲栏折叠
+                listFolded: true,
+                // 颜色
+                theme: '#f9bcdd',
+                // 播放顺序为随机
+                order: 'random',
+                // 初始音量
+                volume: 0.1,
+                // 关闭歌词显示
+                lrcType: 0
+            },
+            mobile: {
+                // 手机端去掉cover图
+                cover: false,
+            }
+        }],
     ]
 }
