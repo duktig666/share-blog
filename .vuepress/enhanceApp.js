@@ -8,14 +8,14 @@ export default (ctx) => {
                 path: decodeURIComponent(to.path)
             })
         }
-        
+
         //触发百度的pv统计
-        if (typeof _hmt != "undefined") {
-            if (to.path) {
-                _hmt.push(["_trackPageview", to.fullPath]);
-                console.log("上报百度统计", to.fullPath);
-            }
-        }
+        // if (typeof _hmt != "undefined") {
+        //     if (to.path) {
+        //         _hmt.push(["_trackPageview", to.fullPath]);
+        //         console.log("上报百度统计", to.fullPath);
+        //     }
+        // }
 
         // 不特殊处理.html
         next()

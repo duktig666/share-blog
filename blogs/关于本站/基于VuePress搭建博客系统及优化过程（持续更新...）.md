@@ -25,8 +25,10 @@ sticky: 1
 ## 优化历程
 
 ::: tip
+
 | 时间      |      优化内容      |
 | ------------- | ----------- |
+| 2022.01.25 | 配置[百度统计] |
 | 2022.01.24 | 配置[pwa刷新]、[vssues评论]、[meting音乐]、[permalink-pinyin支持中文文件名]插件 |
 | 2022.01.22 |  迁移 CSDN 和 之前基于 typecho 搭建的个人博客的 **优质文章**  |
 | 2022.01.20 | 基于 [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/) 搭建博客 |
@@ -343,8 +345,6 @@ npm install -D @vuepress/plugin-pwa
 
 ### 添加百度统计代码
 
-
-
 参看：[VuePress 添加百度统计代码](https://blog.csdn.net/jarwis/article/details/119171056)
 
 
@@ -552,3 +552,5 @@ module.exports = {
 - [使用 GitHub Actions 自动部署博客](https://vuepress-theme-reco.recoluan.com/views/other/github-actions.html)
 - [从hexo到vuepress](https://www.mhynet.cn/blog-hexo-to-vuepress/#hexo)
 - [vuepress-theme-reco个人向优化](https://vuepress-theme-reco.recoluan.com/views/other/reco-optimization.html)
+- [actions自动化：vuepress构建，github同步gitee，giteepage部署](https://zhuanlan.zhihu.com/p/302530881)
+
