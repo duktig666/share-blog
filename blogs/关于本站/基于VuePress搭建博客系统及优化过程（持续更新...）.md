@@ -341,6 +341,12 @@ npm install -D @vuepress/plugin-pwa
 }]
 ```
 
+### 添加百度统计代码
+
+
+
+参看：[VuePress 添加百度统计代码](https://blog.csdn.net/jarwis/article/details/119171056)
+
 
 
 ## 好用的MarkDown扩展语法
@@ -439,29 +445,57 @@ export default {
 
 ### 1. md文件名有中文不能正常路由跳转？
 
-#### 方法一：添加文件`.vuepress/enhanceApp.js`
+#### 方法一：添加文件`.vuepress/enhanceApp.js`（推荐）
 
 添加文件[.vuepress/enhanceApp.js](https://www.vuepress.cn/guide/basic-config.html#应用级别的配置)，写入以下内容
 
+> ~~以下代码废弃，在vuepress-theme-reco 版本为 1.6.10 使用这种方式依然没有解决问题。~~
+>
+> ```js
+> export default ({
+>     router, // 当前应用的路由实例
+> }) => {
+>     // 解决中文路由无法被正确加载的问题
+>     router.beforeEach((to, from, next) => {
+>         if (decodeURIComponent(to.path) !== to.path) {
+>             return next({
+>                 ...to,
+>                 path: decodeURIComponent(to.path),
+>                 fullPath: decodeURIComponent(to.fullPath)
+>             })
+>         }
+>         next()
+>     })
+> }
+> ```
+>
+
+换成如下代码，可临时解决1.6.10版本中文路由问题：
+
 ```js
-export default ({
-    router, // 当前应用的路由实例
-}) => {
-    // 解决中文路由无法被正确加载的问题
-    router.beforeEach((to, from, next) => {
-        if (decodeURIComponent(to.path) !== to.path) {
+export default (ctx) => {
+    ctx.router.beforeEach((to, from, next) => {
+        // 解决中文标签/分类路由无法被正确加载的问题
+        if (!(/\.html$/.test(to.path)) && decodeURIComponent(to.path) !== to.path) {
             return next({
                 ...to,
-                path: decodeURIComponent(to.path),
-                fullPath: decodeURIComponent(to.fullPath)
+                path: decodeURIComponent(to.path)
             })
         }
+        // 不特殊处理.html
         next()
     })
+
+    // 临时解决，防止内部调用钩子再处理
+    ctx.router.beforeEach = () => {
+        return
+    }
 }
 ```
 
-> vuepress-theme-reco 版本为 1.6.10 使用这种方式依然没有解决问题。
+此问题详情参看：[https://github.com/vuepress-reco/vuepress-theme-reco/issues/395](https://github.com/vuepress-reco/vuepress-theme-reco/issues/395)
+
+
 
 #### 方法二：使用插件 `vuepress-plugin-permalink-pinyin`
 

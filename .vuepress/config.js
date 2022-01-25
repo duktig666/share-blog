@@ -1,6 +1,6 @@
 module.exports = {
     "title": "Duktig",
-    "description": "个人博客",
+    "description": "优秀还努力。愿你付出甘之如饴，所得归于欢喜。",
     // 默认语言
     locales: {
         '/': {
@@ -25,6 +25,18 @@ module.exports = {
                 "name": "viewport",
                 "content": "width=device-width,initial-scale=1,user-scalable=no"
             }
+        ],
+        // 添加百度统计代码
+        ['script', {},
+            `
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+           `
         ]
     ],
     "theme": "reco",
@@ -184,7 +196,7 @@ module.exports = {
                 // 读取歌单
                 type: "playlist",
                 // 歌单id（只用修改这个）
-                mid: "7045548095",
+                mid: "7256568321",
             },
             // 不配置该项的话不会出现全局播放器
             aplayer: {
