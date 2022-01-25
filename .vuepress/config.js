@@ -160,13 +160,13 @@ module.exports = {
     // 配置插件
     plugins: [
         // 支持中文文件名
-        [
-            "permalink-pinyin",
-            {
-                lowercase: true, // Converted into lowercase, default: true
-                separator: "-", // Separator of the slug, default: '-'
-            },
-        ],
+        // [
+        //     "permalink-pinyin",
+        //     {
+        //         lowercase: true, // Converted into lowercase, default: true
+        //         separator: "-", // Separator of the slug, default: '-'
+        //     },
+        // ],
         // pwa 刷新插件
         ['pwa', {
             serviceWorker: true,
