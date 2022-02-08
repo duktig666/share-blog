@@ -439,7 +439,9 @@ export default {
 - 多个单行: 例如 `{4,7,9}`
 - 行数区间与多个单行: 例如 `{4,7-13,16,23-27,40}`
 
+## 衡量网站评分
 
+参看：[https://web.dev/measure/](https://web.dev/measure/)
 
 ## 问题及解决
 
