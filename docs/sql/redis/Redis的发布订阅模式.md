@@ -1,8 +1,10 @@
 ---
-title:  Redis发布订阅模式
-date: 2022-01-21 
-sidebar: auto 
-publish: false
+title: Redis的发布订阅模式
+date: 2021-12-14
+categories:
+- 数据库
+tags:
+- redis
 ---
 
 本文源码参看：[https://github.com/duktig666/learn-example/tree/5586febea31c2fb368e19fbdba11ed08afd463e0/Redis/src/main/java/cn/duktig/pubsub](https://github.com/duktig666/learn-example/tree/5586febea31c2fb368e19fbdba11ed08afd463e0/Redis/src/main/java/cn/duktig/pubsub)

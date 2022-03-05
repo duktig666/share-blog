@@ -10,7 +10,7 @@ module.exports = {
     // 永久链接格式 （1.6.10 配置这个 导致插件vuepress-plugin-permalink-pinyin 中文路由转拼音失效）
     permalink: "/:year/:month/:day/:slug",
     // 静态资源路径
-    "dest": ".vuepress/dist",
+    "dest": "docs/.vuepress/dist",
     "head": [
         [
             "link",
@@ -39,6 +39,7 @@ module.exports = {
            `
         ]
     ],
+    // base: "/",
     "theme": "reco",
     "themeConfig": {
         // 评论系统配置
@@ -57,73 +58,10 @@ module.exports = {
         codeTheme: 'solarizedlight',
         // 当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新（默认值：true）（性能优化）
         activeHeaderLinks: false,
-        "nav": [
-            {
-                "text": "博客",
-                "link": "/",
-                "icon": "reco-home"
-            },
-            {
-                "text": "时间轴",
-                "link": "/timeline/",
-                "icon": "reco-date"
-            },
-            {
-                text: '数据库',
-                items: [
-                    {
-                        text: 'SQL 数据库', items: [
-                            {text: 'MySQL 详解', link: '/docs/sql/mysql/MySQL索引'}
-                        ]
-                    },
-                    {
-                        text: 'NoSQL 数据库', items: [
-                            {text: 'Redis 详解', link: '/docs/sql/redis/Redis底层数据结构'},
-                            {text: 'ElasticSearch 详解', link: '/doc/sql/es/'},
-                        ]
-                    }
-                ]
-            },
-            {
-                "text": "文档",
-                "icon": "reco-message",
-                "items": [
-                    {
-                        "text": "vuepress-reco",
-                        "link": "/docs/theme-reco/"
-                    }
-                ]
-            },
-            {
-                "text": "关注我",
-                "icon": "reco-message",
-                "items": [
-                    {
-                        "text": "GitHub",
-                        "link": "https://github.com/duktig666",
-                        "icon": "reco-github"
-                    },
-                    {
-                        "text": "Gitee",
-                        "link": "https://gitee.com/duktig666",
-                        "icon": "reco-mayun"
-                    },
-                    {
-                        "text": "CSDN",
-                        "link": "https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343",
-                        "icon": "reco-csdn"
-                    },
-                    {
-                        "text": "简书",
-                        "link": "https://www.jianshu.com/u/421632ec0dc8",
-                        "icon": "reco-jianshu"
-                    },
-                ]
-            }
-        ],
+        "nav": getNav(),
         "sidebar": {
             // 数据库
-            '/docs/sql/': getSqlRoute(),
+            '/sql/': getSqlRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -140,19 +78,19 @@ module.exports = {
             {
                 "title": "皆非的万事屋",
                 "desc": "Youth is not a period of time, it is a state of mind.",
-                "avatar": "https://file.makeyourchoice.cn/img/typecho/avatar.png",
+                "logo": "https://file.makeyourchoice.cn/img/typecho/avatar.png",
                 "link": "https://www.makeyourchoice.cn/"
             },
             {
                 "title": "Advance",
                 "desc": "须知少时凌云志，曾许人间第一流。",
-                "avatar": "https://gitee.com/jiao_qianjin/zhishiku/raw/master/img/20210524175332.jpg",
+                "logo": "https://gitee.com/jiao_qianjin/zhishiku/raw/master/img/20210524175332.jpg",
                 "link": "https://jiaoqianjin.cn/"
             },
             {
                 "title": "Elltor",
                 "desc": "戒骄戒躁，看清目标；持之以恒，厚积薄发。",
-                "avatar": "https://oss.elltor.com/uploads/2020/user_photo_1602810656543.jpg",
+                "logo": "https://oss.elltor.com/uploads/2020/user_photo_1602810656543.jpg",
                 "link": "https://elltor.com/"
             },
             {
@@ -164,7 +102,7 @@ module.exports = {
             {
                 "title": "vuepress-theme-reco",
                 "desc": "A simple and beautiful vuepress Blog & Doc theme.",
-                "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+                "logo": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
                 "link": "https://vuepress-theme-reco.recoluan.com"
             },
         ],
@@ -225,14 +163,74 @@ module.exports = {
                 cover: false,
             }
         }],
-        // 百度收录和统计
-        [
-            'vuepress-plugin-baidu-autopush'
-        ],
     ]
 }
 
+/* 导航栏配置 */
+function getNav() {
+    return [
+        {
+            "text": "博客",
+            "link": "/",
+            "icon": "reco-home"
+        },
+        {
+            "text": "时间轴",
+            "link": "/timeline/",
+            "icon": "reco-date"
+        },
+        {
+            text: '数据库',
+            items: [
+                {
+                    text: 'SQL 数据库', items: [
+                        {text: 'MySQL 详解', link: '/sql/mysql/MySQL索引'}
+                    ]
+                },
+                {
+                    text: 'NoSQL 数据库', items: [
+                        {text: 'Redis 详解', link: '/sql/redis/Redis底层数据结构'},
+                        // {text: 'ElasticSearch 详解', link: '/doc/sql/es/'},
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "关于我",
+            "link": "/docs/aboutme",
+            "icon": "reco-account",
+        },
+        {
+            "text": "关注我",
+            "icon": "reco-message",
+            "items": [
+                {
+                    "text": "GitHub",
+                    "link": "https://github.com/duktig666",
+                    "icon": "reco-github"
+                },
+                {
+                    "text": "Gitee",
+                    "link": "https://gitee.com/duktig666",
+                    "icon": "reco-mayun"
+                },
+                {
+                    "text": "CSDN",
+                    "link": "https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343",
+                    "icon": "reco-csdn"
+                },
+                {
+                    "text": "简书",
+                    "link": "https://www.jianshu.com/u/421632ec0dc8",
+                    "icon": "reco-jianshu"
+                },
+            ]
+        }
+    ];
+}
 
+
+/* 侧边栏配置 */
 // 数据库侧边栏
 function getSqlRoute() {
     return [

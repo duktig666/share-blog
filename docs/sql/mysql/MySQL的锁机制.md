@@ -2,7 +2,6 @@
 title: MySQL的锁机制 
 date: 2022-01-21 
 sidebar: auto 
-publish: false
 ---
 
 # MySQL的锁
