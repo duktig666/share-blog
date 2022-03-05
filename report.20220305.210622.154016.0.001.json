@@ -1,0 +1,480 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20220305.210622.154016.0.001.json",
+    "dumpEventTime": "2022-03-05T21:06:22Z",
+    "dumpEventTimeStamp": "1646485582894",
+    "processId": 154016,
+    "cwd": "D:\\IDE\\code\\duktig666.github.io",
+    "commandLine": [
+      "node",
+      "D:\\IDE\\code\\duktig666.github.io\\node_modules\\.bin\\\\..\\vuepress\\cli.js",
+      "dev",
+      "docs/.",
+      "--open",
+      "--host",
+      "localhost"
+    ],
+    "nodejsVersion": "v12.13.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.13.1",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.13.1/node-v12.13.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.13.1/node-v12.13.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.13.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18363",
+    "osVersion": "Windows 10 Home China",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz",
+        "speed": 2496,
+        "user": 7225125,
+        "nice": 0,
+        "sys": 4569531,
+        "idle": 48005765,
+        "irq": 854828
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz",
+        "speed": 2496,
+        "user": 9024515,
+        "nice": 0,
+        "sys": 3852609,
+        "idle": 46922765,
+        "irq": 110500
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz",
+        "speed": 2496,
+        "user": 8344906,
+        "nice": 0,
+        "sys": 3417875,
+        "idle": 48037109,
+        "irq": 53546
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz",
+        "speed": 2496,
+        "user": 8661468,
+        "nice": 0,
+        "sys": 3728718,
+        "idle": 47409687,
+        "irq": 42687
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "vEthernet (Default Switch)",
+        "internal": false,
+        "mac": "00:15:5d:1a:67:42",
+        "address": "fe80::1c9:addb:204b:6db7",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 6
+      },
+      {
+        "name": "vEthernet (Default Switch)",
+        "internal": false,
+        "mac": "00:15:5d:1a:67:42",
+        "address": "192.168.187.177",
+        "netmask": "255.255.255.240",
+        "family": "IPv4"
+      },
+      {
+        "name": "VMware Network Adapter VMnet1",
+        "internal": false,
+        "mac": "00:50:56:c0:00:01",
+        "address": "fe80::7c5d:42dd:f47d:49c0",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 10
+      },
+      {
+        "name": "VMware Network Adapter VMnet1",
+        "internal": false,
+        "mac": "00:50:56:c0:00:01",
+        "address": "192.168.75.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VMware Network Adapter VMnet8",
+        "internal": false,
+        "mac": "00:50:56:c0:00:08",
+        "address": "fe80::10f:737a:a637:a934",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 17
+      },
+      {
+        "name": "VMware Network Adapter VMnet8",
+        "internal": false,
+        "mac": "00:50:56:c0:00:08",
+        "address": "192.168.0.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "WLAN",
+        "internal": false,
+        "mac": "bc:a8:a6:cc:7f:a4",
+        "address": "fe80::c141:42d3:2017:eda5",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 9
+      },
+      {
+        "name": "WLAN",
+        "internal": false,
+        "mac": "bc:a8:a6:cc:7f:a4",
+        "address": "192.168.0.247",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DELL-RSW"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff78dc91729",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff78dc95b4c",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
+    },
+    {
+      "pc": "0x00007ff78dc94b08",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
+    },
+    {
+      "pc": "0x00007ff78dd8369b",
+      "symbol": "v8::base::CPU::has_sse+37723"
+    },
+    {
+      "pc": "0x00007ff78e5882de",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff78e570321",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff78e43dbec",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff78e448f90",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
+    },
+    {
+      "pc": "0x00007ff78e445ac4",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff78e43b353",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff78e439b24",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2356"
+    },
+    {
+      "pc": "0x00007ff78e45adf5",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff78e1c6e19",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+4057"
+    },
+    {
+      "pc": "0x00007ff78e9b404d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
+    },
+    {
+      "pc": "0x00007ff78e9b4f81",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+571841"
+    },
+    {
+      "pc": "0x000003e0888c22dc",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2153279488,
+    "totalCommittedMemory": 2153279488,
+    "usedMemory": 2090398184,
+    "availableMemory": 47154336,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 2097152,
+        "committedMemory": 2097152,
+        "capacity": 1047488,
+        "used": 356432,
+        "available": 691056
+      },
+      "old_space": {
+        "memorySize": 1996337152,
+        "committedMemory": 1996337152,
+        "capacity": 1939911288,
+        "used": 1939260880,
+        "available": 650408
+      },
+      "code_space": {
+        "memorySize": 4620288,
+        "committedMemory": 4620288,
+        "capacity": 3993088,
+        "used": 3993088,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 6033408,
+        "committedMemory": 6033408,
+        "capacity": 3448320,
+        "used": 3448320,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 141033472,
+        "committedMemory": 141033472,
+        "capacity": 140609152,
+        "used": 140609152,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 2895872,
+        "committedMemory": 2895872,
+        "capacity": 2698016,
+        "used": 2698016,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047488,
+        "used": 0,
+        "available": 1047488
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 1817.98,
+    "kernelCpuSeconds": 2245.05,
+    "cpuConsumptionPercent": 168.521,
+    "maxRss": 2675097600,
+    "pageFaults": {
+      "IORequired": 8365763,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 6239,
+      "writes": 191
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\",
+    "=D:": "D:\\IDE\\code\\duktig666.github.io",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\rsw\\AppData\\Roaming",
+    "CATALINA_BASE": "D:\\javaweb\\apache-tomcat-8.5.42",
+    "CATALINA_HOME": "D:\\javaweb\\apache-tomcat-8.5.42",
+    "CLASSPATH": ".;D:\\jdk1.8\\lib;D:\\jdk1.8\\lib\\tools.jar;D:\\javaweb\\jmeter\\apache-jmeter-5.3\\lib\\ext\\ApacheJMeter_core.jar;D:\\javaweb\\jmeter\\apache-jmeter-5.3\\lib\\jorphan.jar;",
+    "COLOR": "1",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DELL-RSW",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "DOCKER_HOST": "tcp://192.168.0.10:2375",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EDITOR": "notepad.exe",
+    "ERLANG_HOME": "D:\\javaweb\\rabbitmq\\erlang\\erl10.1",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "GOPATH": "D:\\IDE\\code",
+    "GOROOT": "D:\\go",
+    "HADOOP_HOME": "D:\\javaweb\\bigdata\\hadoop-3.1.3",
+    "HIVE_CONF_DIR": "D:\\javaweb\\bigdata\\apache-hive-3.1.2-bin\\conf",
+    "HIVE_HOME": "D:\\javaweb\\bigdata\\apache-hive-3.1.2-bin",
+    "HOME": "C:\\Users\\rsw",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\rsw",
+    "IDEA_INITIAL_DIRECTORY": "D:\\IDE\\IntelliJ IDEA 2021.3.1\\jbr\\bin",
+    "INIT_CWD": "D:\\IDE\\code\\duktig666.github.io\\docs",
+    "JAVA_HOME": "D:\\jdk1.8",
+    "JMETER_HOME": "D:\\javaweb\\jmeter\\apache-jmeter-5.3",
+    "LOCALAPPDATA": "C:\\Users\\rsw\\AppData\\Local",
+    "LOGONSERVER": "\\\\DELL-RSW",
+    "MAVEN_HOME": "D:\\maven\\apache-maven-3.5.2",
+    "MOZ_PLUGIN_PATH": "D:\\software\\Gaaiho Reader\\Bin",
+    "NODE": "D:\\javaweb\\node\\node.exe",
+    "NODE_ENV": "development",
+    "NODE_EXE": "D:\\javaweb\\node\\\\node.exe",
+    "NODE_PATH": "D:\\javaweb\\node\\node_global\\node_modules",
+    "NPM_CLI_JS": "D:\\javaweb\\node\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_command": "run-script",
+    "npm_config_cache": "D:\\javaweb\\node\\node_cache",
+    "npm_config_globalconfig": "D:\\javaweb\\node\\node_global\\etc\\npmrc",
+    "npm_config_global_prefix": "D:\\javaweb\\node\\node_global",
+    "npm_config_init_module": "C:\\Users\\rsw\\.npm-init.js",
+    "npm_config_local_prefix": "D:\\IDE\\code\\duktig666.github.io",
+    "npm_config_metrics_registry": "https://registry.npm.taobao.org/",
+    "npm_config_node_gyp": "D:\\javaweb\\node\\node_global\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
+    "npm_config_noproxy": "",
+    "npm_config_prefix": "D:\\javaweb\\node\\node_global",
+    "npm_config_registry": "https://registry.npm.taobao.org/",
+    "npm_config_userconfig": "C:\\Users\\rsw\\.npmrc",
+    "npm_config_user_agent": "npm/8.3.1 node/v12.13.1 win32 x64 workspaces/false",
+    "npm_execpath": "D:\\javaweb\\node\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_lifecycle_event": "dev",
+    "npm_lifecycle_script": "vuepress dev docs/. --open --host \"localhost\"",
+    "npm_node_execpath": "D:\\javaweb\\node\\node.exe",
+    "npm_package_json": "D:\\IDE\\code\\duktig666.github.io\\package.json",
+    "npm_package_name": "Duktig",
+    "npm_package_version": "1.0.0",
+    "NPM_PREFIX_NPM_CLI_JS": "D:\\javaweb\\node\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OneDrive": "C:\\Users\\rsw\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\rsw\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "D:\\IDE\\code\\duktig666.github.io\\node_modules\\.bin;D:\\IDE\\code\\node_modules\\.bin;D:\\IDE\\node_modules\\.bin;D:\\node_modules\\.bin;D:\\javaweb\\node\\node_global\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;D:\\vm\\bin\\;D:\\jdk1.8\\bin;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;D:\\;D:\\javaweb\\Git\\Git\\bin;%M;VEN_HOME%\\bin;D:\\javaweb\\Git\\Git\\cmd;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;D:\\javaweb\\apache-tomcat-8.5.42\\bin;D:\\javaweb\\node\\;D:\\javaweb\\rabbitmq\\erlang\\erl10.1\\bin;D:\\javaweb\\jmeter\\apache-jmeter-5.3\\bin;D:\\javaweb\\bigdata\\hadoop-3.1.3\\bin;D:\\javaweb\\bigdata\\apache-hive-3.1.2-bin\\bin;D:\\javaweb\\bigdata\\apache-hive-3.1.2-bin\\conf;D:\\go\\bin;D:\\IDE\\code;D:\\go\\bin;D:\\software\\protobuf\\bin;C:\\Users\\rsw\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin;D:\\Java\\bin;D:\\javaweb\\node\\node_global;C:\\Users\\rsw\\AppData\\Local\\Pandoc\\;C:\\Users\\rsw\\go\\bin;D:\\IDE\\code\\duktig666.github.io\\node_modules\\.bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 158 Stepping 9, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "9e09",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\rsw\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\rsw\\AppData\\Local\\Temp",
+    "TERMINAL_EMULATOR": "JetBrains-JediTerm",
+    "TERM_SESSION_ID": "dfc0add0-827a-42e3-8b9b-73ecfc1ef841",
+    "TMP": "C:\\Users\\rsw\\AppData\\Local\\Temp",
+    "TOMCAT_HOME": "D:\\javaweb\\apache-tomcat-8.5.42",
+    "USERDOMAIN": "DELL-RSW",
+    "USERDOMAIN_ROAMINGPROFILE": "DELL-RSW",
+    "USERNAME": "rsw",
+    "USERPROFILE": "C:\\Users\\rsw",
+    "VUE_CLI_TRANSPILE_BABEL_RUNTIME": "true",
+    "VUE_ENV": "server",
+    "WEBPACK_DEV_SERVER": "true",
+    "windir": "C:\\WINDOWS",
+    "_INTELLIJ_FORCE_SET_GOPATH": "D:\\IDE\\code",
+    "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\rsw\\AppData\\Local\\JetBrains\\IntelliJIdea2021.3\\terminal\\history\\duktig666.github.io-history"
+  },
+  "sharedObjects": [
+    "D:\\javaweb\\node\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}

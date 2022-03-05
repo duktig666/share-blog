@@ -28,11 +28,12 @@ sticky: 1
 
 | 时间      |      优化内容      |
 | ------------- | ----------- |
-| 2022.02.08 | 解决 永久连接的中文路由问题 |
-| 2022.01.25 | 配置[百度统计] |
-| 2022.01.24 | 配置[pwa刷新]、[vssues评论]、[meting音乐]、[permalink-pinyin支持中文文件名]插件 |
+| 2022.03.05 | 解决 **博客仓库的README** 与 **vuepress的首页README** 不兼容问题 |
+| 2022.02.08 | 解决 **永久连接的中文路由** 问题，**移除插件[permalink-pinyin]** |
+| 2022.01.25 | 配置[**百度统计**] |
+| 2022.01.24 | 配置[**pwa刷新**]、[**vssues评论**]、[**meting音乐**]、[**permalink-pinyin支持中文文件名**]插件 |
 | 2022.01.22 |  迁移 CSDN 和 之前基于 typecho 搭建的个人博客的 **优质文章**  |
-| 2022.01.20 | 基于 [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/) 搭建博客 |
+| 2022.01.20 | 基于 [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/) 搭建博客（启用之前的 typecho博客） |
 
 :::
 
