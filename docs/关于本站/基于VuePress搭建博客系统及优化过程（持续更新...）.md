@@ -350,7 +350,106 @@ npm install -D @vuepress/plugin-pwa
 
 参看：[VuePress 添加百度统计代码](https://blog.csdn.net/jarwis/article/details/119171056)
 
+### 网站底部添加——友盟+ U-Web站点统计
 
+样式如下：
+
+![image-20220305212239859](https://cos.duktig.cn/typora/202203052122578.png)
+
+**步骤1：注册【[友盟+](https://www.umeng.com/)】**
+
+**步骤2：创建对应客户端的应用**
+
+<img src="https://cos.duktig.cn/typora/202203052124886.png" alt="image-20220305212444837" style="zoom: 50%;" />
+
+**步骤3：在【应用】->【站点设置】中获取对应的代码**
+
+![image-20220305212646547](https://cos.duktig.cn/typora/202203052127654.png)
+
+**步骤4：将`id`和`src`进行解码**
+
+可以在浏览器的控制台中直接执行 `unescape(内容省略)`，然后获取`id`和`src`。
+
+**步骤5：新建如下两个文件**
+
+<img src="https://cos.duktig.cn/typora/202203052130451.png" alt="image-20220305212954374" style="zoom:67%;" />
+
+tongji.js中，将id和src的值修改成自己的
+
+```js{5,7}
+export default {
+    init() {
+        const tj = document.querySelector('#cnzz');
+        const span = document.createElement("span");
+        span.id = "cnzz_stat_icon_1280930000";
+        const script = document.createElement("script");
+        script.src =
+            "https://s4.cnzz.com/z_stat.php?id=1280930000&online=1&show=line";
+        script.type = "text/javascript";
+        tj.append(span);
+        tj.append(script);
+        // 只在首页展示
+        const hidden = location.pathname !== "/";
+        if (hidden) {
+            tj.className += ' hidden-tj'
+        } else {
+            tj.className += ' home-tj'
+        }
+    }
+}
+```
+
+tongji.vue
+
+```vue
+<template>
+  <div id="cnzz" class="tj"></div>
+</template>
+<script>
+export default {
+  mounted() {
+    import("./../tongji").then((res) => {
+      res.default.init();
+    });
+  },
+};
+</script>
+<style lang="css">
+#cnzz_stat_icon_1280934766 {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
+}
+.hidden-tj {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.home-tj {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -100px;
+}
+@media (max-width: 719px) {
+  .home-tj {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -200px;
+  }
+}
+</style>
+```
+
+在首页的README.md中因为自定的组件：
+
+<img src="https://cos.duktig.cn/typora/202203052133451.png" alt="image-20220305213336152" style="zoom:67%;" />
+
+配置完成！
 
 ## 好用的MarkDown扩展语法
 
@@ -564,7 +663,9 @@ module.exports = {
 
 在 `vuepress-theme-reco` 中，请摒弃一级标题，使用 `front-matter` 生成标题以及其他文章信息，正文从二级标题开始。
 
+### 3. 博客首页 与 git仓库首页的 README.md 不兼容
 
+参看文章：[vuepress-theme-reco@1.x 解决博客首页 与 仓库README不兼容问题](https://www.duktig.cn/2022/03/05/vuepress-theme-reco-1-x-%E8%A7%A3%E5%86%B3%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5-%E4%B8%8E-%E4%BB%93%E5%BA%93readme%E4%B8%8D%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0)
 
 ## 参看
 
