@@ -69,6 +69,22 @@ module.exports = {
                 "icon": "reco-date"
             },
             {
+                text: '数据库',
+                items: [
+                    {
+                        text: 'SQL 数据库', items: [
+                            {text: 'MySQL 详解', link: '/docs/sql/mysql/MySQL索引'}
+                        ]
+                    },
+                    {
+                        text: 'NoSQL 数据库', items: [
+                            {text: 'Redis 详解', link: '/docs/sql/redis/Redis底层数据结构'},
+                            {text: 'ElasticSearch 详解', link: '/doc/sql/es/'},
+                        ]
+                    }
+                ]
+            },
+            {
                 "text": "文档",
                 "icon": "reco-message",
                 "items": [
@@ -106,12 +122,8 @@ module.exports = {
             }
         ],
         "sidebar": {
-            // "/docs/theme-reco/": [
-            //     "",
-            //     "theme",
-            //     "plugin",
-            //     "api"
-            // ]
+            // 数据库
+            '/docs/sql/': getSqlRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -171,14 +183,6 @@ module.exports = {
     },
     // 配置插件
     plugins: [
-        // 支持中文文件名
-        // [
-        //     "permalink-pinyin",
-        //     {
-        //         lowercase: true, // Converted into lowercase, default: true
-        //         separator: "-", // Separator of the slug, default: '-'
-        //     },
-        // ],
         // pwa 刷新插件
         ['pwa', {
             serviceWorker: true,
@@ -225,5 +229,38 @@ module.exports = {
         [
             'vuepress-plugin-baidu-autopush'
         ],
+    ]
+}
+
+
+// 数据库侧边栏
+function getSqlRoute() {
+    return [
+        {
+            title: 'Mysql',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "mysql/MySQL的存储引擎有哪些？以及它们的对比和使用场景",
+                "mysql/MySQL索引",
+                "mysql/MySQL 数据库要用B+树存储索引？",
+                "mysql/MySQL的事务、隔离级别和MVCC原理",
+                "mysql/MySQL的锁机制",
+                "mysql/MySQL主从复制和分表分库原理",
+                "mysql/MySQL的慢查询和数据库优化",
+                "mysql/sql编程题",
+                "mysql/开窗函数",
+            ]
+        },
+        {
+            title: 'Redis',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "redis/Redis底层数据结构",
+                "redis/Redis的发布订阅模式",
+                "redis/Redis面试题",
+            ]
+        }
     ]
 }
