@@ -72,7 +72,14 @@ module.exports = {
             "tag": {
                 "location": 3,
                 "text": "标签"
-            }
+            },
+            // 信息栏展示社交信息
+            socialLinks: [
+                { icon: 'reco-github', link: 'https://github.com/duktig666' },
+                { icon: 'reco-mayun', link: 'https://gitee.com/duktig666' },
+                { icon: 'reco-csdn', link: 'https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343' },
+                { icon: 'reco-jianshu', link: 'https://www.jianshu.com/u/421632ec0dc8' },
+            ]
         },
         "friendLink": [
             {
