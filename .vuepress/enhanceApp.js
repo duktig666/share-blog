@@ -27,11 +27,11 @@ export default (ctx) => {
         }
 
         //触发百度的pv统计
-        // if (typeof _hmt != "undefined") {
-        //     if (to.path) {
-        //         _hmt.push(["_trackPageview", to.fullPath]);
-        //     }
-        // }
+        if (typeof _hmt != "undefined") {
+            if (to.path) {
+                _hmt.push(["_trackPageview", to.fullPath]);
+            }
+        }
 
         next()
     })

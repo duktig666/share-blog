@@ -26,18 +26,18 @@ module.exports = {
                 "content": "width=device-width,initial-scale=1,user-scalable=no"
             }
         ],
-        // 添加百度统计代码 暂时使用插件：vuepress-plugin-baidu-autopush
-        // ['script', {},
-        //     `
-        //     var _hmt = _hmt || [];
-        //     (function() {
-        //       var hm = document.createElement("script");
-        //       hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
-        //       var s = document.getElementsByTagName("script")[0];
-        //       s.parentNode.insertBefore(hm, s);
-        //     })();
-        //    `
-        // ]
+        // 添加百度统计代码 （也可使用插件：vuepress-plugin-baidu-autopush）
+        ['script', {},
+            `
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+           `
+        ]
     ],
     "theme": "reco",
     "themeConfig": {
