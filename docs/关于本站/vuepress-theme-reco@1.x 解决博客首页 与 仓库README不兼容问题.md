@@ -21,6 +21,8 @@ tags:
 
 基于 vuepress-theme-reco 可以搭建简介优雅的博客，利用github pages进行自动化部署，非常方便，而且无需额外成本。示例网站参考：[https://www.duktig.cn/](https://www.duktig.cn/)。
 
+建站仓库：[https://github.com/duktig666/duktig666.github.io](https://github.com/duktig666/duktig666.github.io)
+
 但是存在一个比较大的问题——vuepress-theme-reco 搭建的博客系统，默认以 `READM.md` 文件作为首页，会使github的仓库默认页变得很丑。如下：
 
 ![image-20220305204002764](https://cos.duktig.cn/typora/202203052040098.png)
