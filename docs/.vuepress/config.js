@@ -60,8 +60,8 @@ module.exports = {
         activeHeaderLinks: false,
         "nav": getNav(),
         "sidebar": {
-            // 数据库
             '/sql/': getSqlRoute(),
+            '/java/': getJavaRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -187,6 +187,25 @@ function getNav() {
             "icon": "reco-date"
         },
         {
+            text: 'Java',
+            items: [
+                {
+                    text: 'Java 基础', items: [
+                        {text: 'Java 基础', link: '/java/basics/面向对象'},
+                        {text: 'Java 集合', link: '/java/collection/HashMap底层原理分析'},
+                        {text: 'Java IO', link: '/java/io/IO基础'},
+                        {text: 'Java 反射', link: '/java/reflect/反射总结'},
+                        {text: 'Java 并发编程', link: '/java/thread/多线程基础笔记'},
+                    ]
+                },
+                {
+                    text: 'JVM', items: [
+                        {text: 'JVM总结', link: '/java/jvm/JVM总结'},
+                    ]
+                }
+            ]
+        },
+        {
             text: '数据库',
             items: [
                 {
@@ -267,5 +286,80 @@ function getSqlRoute() {
                 "redis/Redis面试题",
             ]
         }
+    ]
+}
+
+// Java 侧边栏
+function getJavaRoute(){
+    return [
+        {
+            title: 'Java 基础',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "basics/面向对象",
+                "basics/枚举",
+                "basics/常用类",
+                "basics/异常处理",
+                "basics/网络编程",
+                "basics/Java8新特性",
+                "basics/Java基础常见面试题",
+            ]
+        },
+        {
+            title: 'Java 集合',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "collection/HashMap底层原理分析",
+                "collection/ConcurrentHashMap底层原理分析",
+                "collection/HashSet",
+                "collection/集合常见面试题",
+            ]
+        },
+        {
+            title: 'Java IO',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "io/IO基础.md",
+            ]
+        },
+        {
+            title: 'Java 反射',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "reflect/反射基础",
+                "reflect/反射总结",
+                "reflect/反射常见面试题",
+                "reflect/详解动态代理",
+            ]
+        },
+        {
+            title: 'Java 并发编程',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "thread/多线程基础笔记",
+                "thread/多线程基础常见问题",
+                "thread/Java解决线程安全问题",
+                "thread/synchronized 总结",
+                "thread/volatile总结",
+                "thread/AQS原理和LOCK锁原理分析",
+                "thread/原子操作 与 Atomic原子类总结",
+                "thread/深入解析ThreadLocal",
+                "thread/死锁总结",
+                "thread/线程池总结",
+            ]
+        },
+        {
+            title: 'JVM',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "jvm/JVM总结",
+            ]
+        },
     ]
 }
