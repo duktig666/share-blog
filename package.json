@@ -6,6 +6,7 @@
     "dev": "vuepress dev docs/. --open --host \"localhost\"",
     "build": "vuepress build docs/."
   },
+  "license": "GPL-3.0",
   "devDependencies": {
     "@vuepress/plugin-pwa": "^1.9.7",
     "vuepress": "1.8.2",
