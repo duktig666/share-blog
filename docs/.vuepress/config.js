@@ -62,6 +62,7 @@ module.exports = {
         "sidebar": {
             '/sql/': getSqlRoute(),
             '/java/': getJavaRoute(),
+            '/大数据/': getBigDtaRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -222,6 +223,15 @@ function getNav() {
             ]
         },
         {
+            text: '大数据',
+            items: [
+                {text: 'Hadoop', link: '/大数据/Hadoop/Hadoop概述'},
+                {text: 'Hive', link: '/大数据/Hive/Hive概述'},
+                {text: 'HBase', link: '/大数据/HBase/HBase'},
+                {text: 'Flink', link: '/大数据/Flink/flink'},
+            ]
+        },
+        {
             "text": "关于我",
             "link": "/docs/aboutme",
             "icon": "reco-account",
@@ -372,5 +382,50 @@ function getJavaRoute(){
                 "jvm/JVM调试排错",
             ]
         },
+    ]
+}
+
+// 大数据侧边栏
+function getBigDtaRoute() {
+    return [
+        {
+            title: 'Hadoop',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "Hadoop/Hadoop概述",
+                "Hadoop/HDFS总结",
+                "Hadoop/MapReduce总结",
+                "Hadoop/Yarn总结",
+            ]
+        },
+        {
+            title: 'Hive',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "Hive/Hive概述",
+                "Hive/Hive的DDL和DML语句",
+                "Hive/Hive的分区表和分桶表",
+                "Hive/Hive的常用函数和压缩存储",
+                "Hive/Hive实战",
+            ]
+        },
+        {
+            title: 'HBase',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "HBase/HBase",
+            ]
+        },
+        {
+            title: 'Flink',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "Flink/flink",
+            ]
+        }
     ]
 }
