@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hive实战 | Duktig</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+           </script>
+    <meta name="description" content="优秀还努力。愿你付出甘之如饴，所得归于欢喜。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.c1b56cd4.css" as="style"><link rel="preload" href="/assets/js/app.80c39ce2.js" as="script"><link rel="preload" href="/assets/js/3.a3eae276.js" as="script"><link rel="preload" href="/assets/js/1.672b953a.js" as="script"><link rel="preload" href="/assets/js/115.3c68af5d.js" as="script"><link rel="prefetch" href="/assets/js/10.b81f9b33.js"><link rel="prefetch" href="/assets/js/100.7c107016.js"><link rel="prefetch" href="/assets/js/101.ba3e6227.js"><link rel="prefetch" href="/assets/js/102.d292c4bf.js"><link rel="prefetch" href="/assets/js/103.dc6cdddc.js"><link rel="prefetch" href="/assets/js/104.94efff00.js"><link rel="prefetch" href="/assets/js/105.6924f29d.js"><link rel="prefetch" href="/assets/js/106.618f2145.js"><link rel="prefetch" href="/assets/js/107.8b326b50.js"><link rel="prefetch" href="/assets/js/108.311e71b7.js"><link rel="prefetch" href="/assets/js/109.9490c81f.js"><link rel="prefetch" href="/assets/js/11.67d07dff.js"><link rel="prefetch" href="/assets/js/110.87809f95.js"><link rel="prefetch" href="/assets/js/111.e2905707.js"><link rel="prefetch" href="/assets/js/112.d2d7cc3b.js"><link rel="prefetch" href="/assets/js/113.7171eccb.js"><link rel="prefetch" href="/assets/js/114.eaf88e7f.js"><link rel="prefetch" href="/assets/js/116.6845d308.js"><link rel="prefetch" href="/assets/js/117.bece2675.js"><link rel="prefetch" href="/assets/js/118.f164fc40.js"><link rel="prefetch" href="/assets/js/119.c7e2aef9.js"><link rel="prefetch" href="/assets/js/12.d2ff3aad.js"><link rel="prefetch" href="/assets/js/120.f4780eac.js"><link rel="prefetch" href="/assets/js/121.25c28dc8.js"><link rel="prefetch" href="/assets/js/122.9eb96b0e.js"><link rel="prefetch" href="/assets/js/123.13977bd7.js"><link rel="prefetch" href="/assets/js/124.c8e3c1e1.js"><link rel="prefetch" href="/assets/js/125.629ff222.js"><link rel="prefetch" href="/assets/js/126.37a02657.js"><link rel="prefetch" href="/assets/js/127.4adc6144.js"><link rel="prefetch" href="/assets/js/128.0eb785fd.js"><link rel="prefetch" href="/assets/js/129.4b9e30c1.js"><link rel="prefetch" href="/assets/js/13.a74fe4c6.js"><link rel="prefetch" href="/assets/js/130.d396465d.js"><link rel="prefetch" href="/assets/js/131.a893e880.js"><link rel="prefetch" href="/assets/js/132.d6656b1d.js"><link rel="prefetch" href="/assets/js/133.59b28dab.js"><link rel="prefetch" href="/assets/js/134.ef607c7b.js"><link rel="prefetch" href="/assets/js/135.4105ba54.js"><link rel="prefetch" href="/assets/js/136.21fe2659.js"><link rel="prefetch" href="/assets/js/137.991fec65.js"><link rel="prefetch" href="/assets/js/138.e5837517.js"><link rel="prefetch" href="/assets/js/139.4b177dfe.js"><link rel="prefetch" href="/assets/js/14.6cc5674d.js"><link rel="prefetch" href="/assets/js/140.5dc67869.js"><link rel="prefetch" href="/assets/js/141.8bd0e25a.js"><link rel="prefetch" href="/assets/js/142.fce3530c.js"><link rel="prefetch" href="/assets/js/143.9659baa1.js"><link rel="prefetch" href="/assets/js/144.d9114a59.js"><link rel="prefetch" href="/assets/js/145.3580e4fa.js"><link rel="prefetch" href="/assets/js/146.0b62670f.js"><link rel="prefetch" href="/assets/js/147.552e373b.js"><link rel="prefetch" href="/assets/js/148.fea556e2.js"><link rel="prefetch" href="/assets/js/149.44d0148d.js"><link rel="prefetch" href="/assets/js/15.a44375a5.js"><link rel="prefetch" href="/assets/js/150.9273b27f.js"><link rel="prefetch" href="/assets/js/151.555cbb8e.js"><link rel="prefetch" href="/assets/js/152.859c18fe.js"><link rel="prefetch" href="/assets/js/153.8f700c1a.js"><link rel="prefetch" href="/assets/js/154.be2085e6.js"><link rel="prefetch" href="/assets/js/155.1792bb3f.js"><link rel="prefetch" href="/assets/js/156.582afaec.js"><link rel="prefetch" href="/assets/js/157.70d8c349.js"><link rel="prefetch" href="/assets/js/158.e47988ce.js"><link rel="prefetch" href="/assets/js/16.0c1c15a1.js"><link rel="prefetch" href="/assets/js/17.cdd6ab38.js"><link rel="prefetch" href="/assets/js/18.bf07d954.js"><link rel="prefetch" href="/assets/js/19.261343ef.js"><link rel="prefetch" href="/assets/js/20.e19821cd.js"><link rel="prefetch" href="/assets/js/21.bf186122.js"><link rel="prefetch" href="/assets/js/22.e731e5f3.js"><link rel="prefetch" href="/assets/js/23.2b81657d.js"><link rel="prefetch" href="/assets/js/24.b51804c4.js"><link rel="prefetch" href="/assets/js/25.ddbb3970.js"><link rel="prefetch" href="/assets/js/26.a1143294.js"><link rel="prefetch" href="/assets/js/27.8d8b4030.js"><link rel="prefetch" href="/assets/js/28.36d97ac8.js"><link rel="prefetch" href="/assets/js/29.e917502a.js"><link rel="prefetch" href="/assets/js/30.4e55844f.js"><link rel="prefetch" href="/assets/js/31.45112c1c.js"><link rel="prefetch" href="/assets/js/32.fba3a0d7.js"><link rel="prefetch" href="/assets/js/33.ed69168b.js"><link rel="prefetch" href="/assets/js/34.9e373960.js"><link rel="prefetch" href="/assets/js/35.72553675.js"><link rel="prefetch" href="/assets/js/36.c9a140e8.js"><link rel="prefetch" href="/assets/js/37.828c5b35.js"><link rel="prefetch" href="/assets/js/38.3f16729e.js"><link rel="prefetch" href="/assets/js/39.868f9e8d.js"><link rel="prefetch" href="/assets/js/4.b47f8da7.js"><link rel="prefetch" href="/assets/js/40.bb8f7455.js"><link rel="prefetch" href="/assets/js/41.8b8c0f37.js"><link rel="prefetch" href="/assets/js/42.724f7270.js"><link rel="prefetch" href="/assets/js/43.2c0c4f74.js"><link rel="prefetch" href="/assets/js/44.28986cf1.js"><link rel="prefetch" href="/assets/js/45.445b15a7.js"><link rel="prefetch" href="/assets/js/46.bc08013d.js"><link rel="prefetch" href="/assets/js/47.538cd9c0.js"><link rel="prefetch" href="/assets/js/48.72366405.js"><link rel="prefetch" href="/assets/js/49.110b7987.js"><link rel="prefetch" href="/assets/js/5.5d125886.js"><link rel="prefetch" href="/assets/js/50.af7f5ecd.js"><link rel="prefetch" href="/assets/js/51.b2de0ae7.js"><link rel="prefetch" href="/assets/js/52.867c5b6f.js"><link rel="prefetch" href="/assets/js/53.e250755b.js"><link rel="prefetch" href="/assets/js/54.4a490915.js"><link rel="prefetch" href="/assets/js/55.a9679350.js"><link rel="prefetch" href="/assets/js/56.8caef9af.js"><link rel="prefetch" href="/assets/js/57.55101dc5.js"><link rel="prefetch" href="/assets/js/58.db7b29f5.js"><link rel="prefetch" href="/assets/js/59.18d24217.js"><link rel="prefetch" href="/assets/js/6.d071d03d.js"><link rel="prefetch" href="/assets/js/60.2a9d939d.js"><link rel="prefetch" href="/assets/js/61.0e50487a.js"><link rel="prefetch" href="/assets/js/62.a1931cf1.js"><link rel="prefetch" href="/assets/js/63.da4527d5.js"><link rel="prefetch" href="/assets/js/64.c6c5b919.js"><link rel="prefetch" href="/assets/js/65.171e1dfa.js"><link rel="prefetch" href="/assets/js/66.e9bb3f7c.js"><link rel="prefetch" href="/assets/js/67.2f4b73a6.js"><link rel="prefetch" href="/assets/js/68.2c2509a8.js"><link rel="prefetch" href="/assets/js/69.d1e89da6.js"><link rel="prefetch" href="/assets/js/7.0aa19136.js"><link rel="prefetch" href="/assets/js/70.114ab1ad.js"><link rel="prefetch" href="/assets/js/71.cb21718c.js"><link rel="prefetch" href="/assets/js/72.741bb1b1.js"><link rel="prefetch" href="/assets/js/73.9b59c8ae.js"><link rel="prefetch" href="/assets/js/74.64f8552e.js"><link rel="prefetch" href="/assets/js/75.f6b34097.js"><link rel="prefetch" href="/assets/js/76.0e2d382e.js"><link rel="prefetch" href="/assets/js/77.8e38d535.js"><link rel="prefetch" href="/assets/js/78.86bc2650.js"><link rel="prefetch" href="/assets/js/79.e0bd29d9.js"><link rel="prefetch" href="/assets/js/8.630f10d0.js"><link rel="prefetch" href="/assets/js/80.c83ce9b7.js"><link rel="prefetch" href="/assets/js/81.e1592a2b.js"><link rel="prefetch" href="/assets/js/82.605c6706.js"><link rel="prefetch" href="/assets/js/83.fdb7d99b.js"><link rel="prefetch" href="/assets/js/84.7e246f97.js"><link rel="prefetch" href="/assets/js/85.2c163818.js"><link rel="prefetch" href="/assets/js/86.d976dbf3.js"><link rel="prefetch" href="/assets/js/87.022b3638.js"><link rel="prefetch" href="/assets/js/88.3b2968cd.js"><link rel="prefetch" href="/assets/js/89.0b695a88.js"><link rel="prefetch" href="/assets/js/9.361261a3.js"><link rel="prefetch" href="/assets/js/90.fc3dc280.js"><link rel="prefetch" href="/assets/js/91.1677200f.js"><link rel="prefetch" href="/assets/js/92.3fbc37fa.js"><link rel="prefetch" href="/assets/js/93.8bd15601.js"><link rel="prefetch" href="/assets/js/94.08c9a48a.js"><link rel="prefetch" href="/assets/js/95.d645ddf4.js"><link rel="prefetch" href="/assets/js/96.25b58f53.js"><link rel="prefetch" href="/assets/js/97.a6e3a208.js"><link rel="prefetch" href="/assets/js/98.094cb24b.js"><link rel="prefetch" href="/assets/js/99.43baf0af.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c1b56cd4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-1aefc0b4><div data-v-1aefc0b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-1aefc0b4 data-v-1aefc0b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Duktig</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>优秀还努力。愿你付出甘之如饴，所得归于欢喜。</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>RenShiWei</span>
+            
+          <span data-v-25ba6db2>2018 - </span>
+          2022
+        </a></span></div></div> <div class="hide" data-v-1aefc0b4><header class="navbar" data-v-1aefc0b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="Duktig" class="logo"> <span class="site-name">Duktig</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/java/" class="nav-link"><i class="undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/spring family/" class="nav-link"><i class="undefined"></i>
+  spring family
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/tool/" class="nav-link"><i class="undefined"></i>
+  tool
+</a></li><li class="dropdown-item"><!----> <a href="/categories/关于本站/" class="nav-link"><i class="undefined"></i>
+  关于本站
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/微服务/" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-1aefc0b4></div> <aside class="sidebar" data-v-1aefc0b4><div class="personal-info-wrapper" data-v-39576ba9 data-v-1aefc0b4><img src="/avatar.jpg" alt="author-avatar" class="personal-img" data-v-39576ba9> <h3 class="name" data-v-39576ba9>
+    RenShiWei
+  </h3> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>40</h3> <h6 data-v-39576ba9>文章</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>19</h3> <h6 data-v-39576ba9>标签</h6></div></div> <ul class="social-links" data-v-39576ba9><li class="social-item" data-v-39576ba9><i class="iconfont reco-github" style="color:#f47e60;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-mayun" style="color:#abbd81;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-csdn" style="color:#abbd81;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-jianshu" style="color:#e15b64;" data-v-39576ba9></i></li></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/java/" class="nav-link"><i class="undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/spring family/" class="nav-link"><i class="undefined"></i>
+  spring family
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/tool/" class="nav-link"><i class="undefined"></i>
+  tool
+</a></li><li class="dropdown-item"><!----> <a href="/categories/关于本站/" class="nav-link"><i class="undefined"></i>
+  关于本站
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/微服务/" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Hadoop</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2021/08/01/hadoop%E6%A6%82%E8%BF%B0/" class="sidebar-link">Hadoop概述</a></li><li><a href="/2021/08/01/hdfs%E6%80%BB%E7%BB%93/" class="sidebar-link">HDFS总结</a></li><li><a href="/2021/08/01/mapreduce%E6%80%BB%E7%BB%93/" class="sidebar-link">MapReduce总结</a></li><li><a href="/2021/08/01/yarn%E6%80%BB%E7%BB%93/" class="sidebar-link">Yarn总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Hive</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2021/08/01/hive%E6%A6%82%E8%BF%B0/" class="sidebar-link">Hive概述</a></li><li><a href="/2021/08/01/hive%E7%9A%84ddl%E5%92%8Cdml%E8%AF%AD%E5%8F%A5/" class="sidebar-link">Hive的DDL和DML语句</a></li><li><a href="/2021/08/01/hive%E7%9A%84%E5%88%86%E5%8C%BA%E8%A1%A8%E5%92%8C%E5%88%86%E6%A1%B6%E8%A1%A8/" class="sidebar-link">Hive的分区表和分桶表</a></li><li><a href="/2021/08/01/hive%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8/" class="sidebar-link">Hive的常用函数和压缩存储</a></li><li><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/" aria-current="page" class="active sidebar-link">Hive实战</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>HBase</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2021/08/01/hbase/" class="sidebar-link">HBase总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Flink</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2021/08/01/flink/" class="sidebar-link">Flink总结</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Hive实战</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>RenShiWei</span>
+            
+          <span data-v-25ba6db2>2018 - </span>
+          2022
+        </a></span></div></div> <div data-v-1aefc0b4><main class="page"><section><div class="page-title"><h1 class="title">Hive实战</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>RenShiWei</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>2021/8/1</span></i> <!----> <!----></div></div> <div class="theme-reco-content content__default"><blockquote><p>作者：duktig</p> <p>博客：<a href="https://duktig.cn" target="_blank" rel="noopener noreferrer">https://duktig.cn<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>  （文章首发）</p> <p>优秀还努力。愿你付出甘之如饴，所得归于欢喜。</p> <p>更多文章参看github知识库：<a href="https://github.com/duktig666/knowledge" target="_blank" rel="noopener noreferrer">https://github.com/duktig666/knowledge<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h1 id="背景"><a href="#背景" class="header-anchor">#</a> 背景</h1> <p>学习完Hadoop，有没有感到编写一个MapReduce程序非常复杂，想要进行一次分析和统计需要很大的开发成本。那么不如就来了解了解Hadoop生态圈的另一名成员——Hive。让我们一起来了解，如何使用类SQL语言进行快速查询和分析数据吧。</p> <p>前边文章我们了解了Hive的概述、DDL语句和<strong>DML语句（重点）</strong>、分桶表和分区表、常用函数和压缩存储，这篇文章进行Hive的实战。</p> <p>Hive系列文章如下：</p> <ul><li><a href="https://blog.csdn.net/qq_42937522/article/details/121096763?spm=1001.2014.3001.5501" target="_blank" rel="noopener noreferrer">大数据基础之Hive（一）—— Hive概述<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/qq_42937522/article/details/121096833?spm=1001.2014.3001.5501" target="_blank" rel="noopener noreferrer">大数据基础之Hive（二）—— DDL语句和DML语句<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/qq_42937522/article/details/121096891?spm=1001.2014.3001.5501" target="_blank" rel="noopener noreferrer">大数据基础之Hive（三）—— 分区表和分桶表<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/qq_42937522/article/details/121096983?spm=1001.2014.3001.5501" target="_blank" rel="noopener noreferrer">大数据基础之Hive（四）—— 常用函数和压缩存储<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/qq_42937522/article/details/121097029" target="_blank" rel="noopener noreferrer">大数据基础之Hive（五）——Hive实战（统计电影排名的各种问题）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h1 id="hive实战"><a href="#hive实战" class="header-anchor">#</a> Hive实战</h1> <h2 id="需求描述"><a href="#需求描述" class="header-anchor">#</a> 需求描述</h2> <p>统计硅谷影音视频网站的常规指标，各种 TopN 指标：</p> <ul><li>统计视频观看数 Top10</li> <li>统计视频类别热度 Top10</li> <li>统计出视频观看数最高的 20 个视频的所属类别以及类别包含 Top20 视频的个数</li> <li>统计视频观看数 Top50 所关联视频的所属类别排序</li> <li>统计每个类别中的视频热度 Top10,以Music 为例</li> <li>统计每个类别视频观看数 Top10</li> <li>统计上传视频最多的用户 Top10 以及他们上传的视频观看次数在前20 的视频</li></ul> <h2 id="数据准备"><a href="#数据准备" class="header-anchor">#</a> 数据准备</h2> <h3 id="数据字典"><a href="#数据字典" class="header-anchor">#</a> 数据字典</h3> <p><strong>视频表：</strong></p> <table><thead><tr><th>字段</th> <th>备注</th> <th>详细描述</th></tr></thead> <tbody><tr><td>videoId</td> <td>视频唯一 id（<code>String</code>）</td> <td>11 位字符串</td></tr> <tr><td>uploader</td> <td>视频上传者（<code>String</code>）</td> <td>上传视频的用户名</td></tr> <tr><td>age</td> <td>视频年龄（<code>int</code>）</td> <td>视频在平台上的整数天</td></tr> <tr><td>category</td> <td>视频类别（<code>Array&lt;String&gt;</code>）</td> <td>上传视频指定的视频分类</td></tr> <tr><td>length</td> <td>视频长度（<code>int</code>）</td> <td>整形数字标识的视频长度</td></tr> <tr><td>views</td> <td>观看次数（<code>int</code>）</td> <td>视频被浏览的次数</td></tr> <tr><td>rate</td> <td>视频评分（<code>Double</code>）</td> <td>满分5 分</td></tr> <tr><td>Ratings</td> <td>流量（<code>int</code>）</td> <td>视频的流量，整型数字</td></tr> <tr><td>conments</td> <td>评论数（<code>int</code>）</td> <td>一个视频的整数评论数</td></tr> <tr><td>relatedId</td> <td>相关视频 id（<code>Array&lt;String&gt;</code>）</td> <td>相关视频的 id，最多 20 个</td></tr> <tr><td><strong>用户表：</strong></td> <td></td> <td></td></tr></tbody></table> <table><thead><tr><th>字段</th> <th>字段类型</th> <th>备注</th></tr></thead> <tbody><tr><td>uploader</td> <td><code>string</code></td> <td>上传者用户名</td></tr> <tr><td>videos</td> <td><code>int</code></td> <td>上传视频数</td></tr> <tr><td>friends</td> <td><code>int</code></td> <td>朋友数量</td></tr> <tr><td></td> <td></td> <td></td></tr></tbody></table> <h3 id="创建表"><a href="#创建表" class="header-anchor">#</a> 创建表</h3> <p>创建原始数据表：gulivideo_ori，gulivideo_user_ori，
+创建最终表（orc 存储格式带snappy 压缩的表）：gulivideo_orc，gulivideo_user_orc</p> <p><strong>创建原始数据表——gulivideo_ori</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">table</span> gulivideo_ori<span class="token punctuation">(</span> 
+    videoId string <span class="token keyword">comment</span> <span class="token string">'视频唯一 id'</span><span class="token punctuation">,</span>  
+    uploader string <span class="token keyword">comment</span> <span class="token string">'视频上传者(用户名)'</span><span class="token punctuation">,</span>  
+    age <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'视频年龄（视频在平台上的整数天 ）'</span><span class="token punctuation">,</span>  
+    category array<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token keyword">comment</span> <span class="token string">'视频类别'</span><span class="token punctuation">,</span>  
+    length <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'视频长度'</span><span class="token punctuation">,</span>  
+    views <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'观看次数'</span><span class="token punctuation">,</span>  
+    rate <span class="token keyword">float</span> <span class="token keyword">comment</span> <span class="token string">'视频评分'</span><span class="token punctuation">,</span>  
+    ratings <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'流量'</span><span class="token punctuation">,</span>  
+    comments <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'评论数'</span><span class="token punctuation">,</span> 
+    relatedId array<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token keyword">comment</span> <span class="token string">'相关视频 id（最多 20 个 ）'</span>
+<span class="token punctuation">)</span> 
+<span class="token keyword">row</span> format delimited <span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;\t&quot;</span> 
+collection items <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;&amp;&quot;</span> 
+stored <span class="token keyword">as</span> textfile<span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>创建原始数据表——gulivideo_user_ori</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">table</span> gulivideo_user_ori<span class="token punctuation">(</span> 
+    uploader string <span class="token keyword">comment</span> <span class="token string">'上传者用户名'</span><span class="token punctuation">,</span> 
+    videos <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'上传视频数 '</span><span class="token punctuation">,</span> 
+    friends <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'朋友数量'</span>
+<span class="token punctuation">)</span> 
+<span class="token keyword">row</span> format delimited  
+<span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;\t&quot;</span>  
+stored <span class="token keyword">as</span> textfile<span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>创建最终表——gulivideo_orc</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">table</span> gulivideo_orc<span class="token punctuation">(</span> 
+    videoId string <span class="token keyword">comment</span> <span class="token string">'视频唯一 id'</span><span class="token punctuation">,</span>  
+    uploader string <span class="token keyword">comment</span> <span class="token string">'视频上传者(用户名)'</span><span class="token punctuation">,</span>  
+    age <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'视频年龄（视频在平台上的整数天 ）'</span><span class="token punctuation">,</span>  
+    category array<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token keyword">comment</span> <span class="token string">'视频类别'</span><span class="token punctuation">,</span>  
+    length <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'视频长度'</span><span class="token punctuation">,</span>  
+    views <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'观看次数'</span><span class="token punctuation">,</span>  
+    rate <span class="token keyword">float</span> <span class="token keyword">comment</span> <span class="token string">'视频评分'</span><span class="token punctuation">,</span>  
+    ratings <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'流量'</span><span class="token punctuation">,</span>  
+    comments <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'评论数'</span><span class="token punctuation">,</span> 
+    relatedId array<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token keyword">comment</span> <span class="token string">'相关视频 id（最多 20 个 ）'</span>
+<span class="token punctuation">)</span> 
+<span class="token keyword">row</span> format delimited <span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;\t&quot;</span> 
+collection items <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;&amp;&quot;</span> 
+stored <span class="token keyword">as</span> orc 
+tblproperties<span class="token punctuation">(</span><span class="token string">&quot;orc.compress&quot;</span><span class="token operator">=</span><span class="token string">&quot;SNAPPY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>**创建最终表——gulivideo_user_orc **</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">table</span> gulivideo_user_orc <span class="token punctuation">(</span> 
+    uploader string <span class="token keyword">comment</span> <span class="token string">'上传者用户名'</span><span class="token punctuation">,</span> 
+    videos <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'上传视频数 '</span><span class="token punctuation">,</span> 
+    friends <span class="token keyword">int</span> <span class="token keyword">comment</span> <span class="token string">'朋友数量'</span>
+<span class="token punctuation">)</span> 
+<span class="token keyword">row</span> format delimited  
+<span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">&quot;\t&quot;</span>  
+stored <span class="token keyword">as</span> orc 
+tblproperties<span class="token punctuation">(</span><span class="token string">&quot;orc.compress&quot;</span><span class="token operator">=</span><span class="token string">&quot;SNAPPY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="插入数据"><a href="#插入数据" class="header-anchor">#</a> 插入数据</h3> <p>vedio部分数据：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>LKh7zAJ4nwo	TheReceptionist	653	Entertainment	424	13021	4.34	1305	744	DjdA-5oKYFQ&amp;NxTDlnOuybo&amp;c-8VuICzXtU&amp;DH56yrIO5nI&amp;W1Uo5DQTtzc&amp;E-3zXq_r4w0&amp;1TCeoRPg5dE&amp;yAr26YhuYNY&amp;2ZgXx72XmoE&amp;-7ClGo-YgZ0&amp;vmdPOOd6cxI&amp;KRHfMQqSHpk&amp;pIMpORZthYw&amp;1tUDzOp10pk&amp;heqocRij5P0&amp;_XIuvoH6rUg&amp;LGVU5DsezE0&amp;uO2kj6_D8B4&amp;xiDqywcDQRM&amp;uX81lMev6_o
+7D0Mf4Kn4Xk	periurban	583	Music	201	6508	4.19	687	312	e2k0h6tPvGc&amp;yuO6yjlvXe8&amp;VqpnWBo-R4E&amp;bdDskrr8jRY&amp;y3IDp2n7B48&amp;JngPWhfCb2M&amp;KQaUvH5oiO4&amp;NSzrwv5MCwc&amp;NHB0a0xtLgU&amp;DlRodd4s86s&amp;EzKwOYLh-S0&amp;eUIfRyrqwp8&amp;AK8Wtfwe-1k&amp;Eq4hGkIqBGw&amp;N1lkLaLJHlc&amp;-uIffs-DHkM&amp;zpTorUhCd8Y&amp;AvSK0qPw7EU&amp;WX5KLMqY4bM&amp;VKFqqoeMdjw
+n1cEq1C8oqQ	Pipistrello	525	Comedy	125	1687	4.01	363	141	eprHhmurMHg&amp;i30NkTJOrak&amp;2XtLgZol5wI&amp;3nH5Tccz8EQ&amp;bSPVayE0NhE&amp;sEqCkwPmQ_w&amp;hut3VRL5XRE&amp;bWlPSLUT-6U&amp;dsBTo5LExr0&amp;7PSvpPXppXA&amp;yLup8wjbSIo&amp;lbf4d1pZI9c&amp;uRQYan_-CTQ&amp;gnpvEvuiFoQ&amp;F2_5KOnSsfI&amp;DINu35v3eMU&amp;9uSiyn7t_0o&amp;YfShxdbAJS8&amp;ssdfqTwZXY0&amp;z5wDjq8o60c
+OHkEzL4Unck	ichannel	638	Comedy	299	8043	4.4	518	371	eyUSTmEUQRg&amp;FDIH1GNQXQE&amp;Wtj31off8-I&amp;mDjwzhc8dQ0&amp;N4EYgXReBzM&amp;NyC_0Z6zoUk&amp;4DxyF39Myto&amp;aiYwo5K0VWg&amp;Ml2NaXU6gms&amp;d0VYKbEbXQ8&amp;LQUV_XGzHmA&amp;8OmL_BJRLRw&amp;qeCFW97-fOA&amp;DVNwUKAuB3I&amp;FMuWYExDEJk&amp;rE7TuuXkk4E&amp;bWicrzq2ApQ&amp;jh6EpXnMb18&amp;9JhU2jE02gg&amp;nfBfC8bif1Y
+-boOvAGNKUc	mrpitifulband	639	Music	287	7548	4.48	606	386	fmUwUURgsX0&amp;bR27ACWomug&amp;LlH7WcVptw8&amp;saBmFpuwmKA&amp;lhWk9SXUjWI&amp;aVhSaa6aAOg&amp;W-pvpxlOzZk&amp;0vhVZQEzgcU&amp;dDhCZVQf9po&amp;zIkvMoezI1A&amp;eV2SdBITv8k&amp;cIO6nFDnNs4&amp;Bd7nAtOEA3U&amp;RZo5MisSTWo&amp;geiABCqmQ84&amp;MG1Xv99426g&amp;7wj8-HkZ0XQ&amp;JsdCu9T47iY&amp;OUeN4DhCIFw&amp;sf-Ym_pFP6U
+hFFH8DaOHQg	istothehalfabee	592	Music	286	1759	4.45	539	244	hFFH8DaOHQg&amp;ZIo-7BBDaPo&amp;83SpuBijrBY&amp;7TyH0ipgdtY&amp;ZOdRUn0Q9eI&amp;jqNs_S0n7P8&amp;aWAzYehh0ag&amp;vEtM1q6gm9Q&amp;r89-fFx_tHU&amp;h6Hw5030fKs&amp;4qf7RSNCg40&amp;LUXn57T8H50&amp;ejPUALKGOn8&amp;D6ABDEdhQLA&amp;c8UYucsGdTU&amp;El_Xbktje1k&amp;6PAc6ZaK_WI&amp;GUgJKzEmsYI&amp;_sboDb75X2I&amp;oDIIOV4VKlA
+LzHjIj3fpR8	Xelanderthomas	686	Comedy	168	4545	4.58	273	167	udr9sLkoZ0s&amp;3IU1GyX_zio&amp;0E7Egr8Y1YI&amp;qr8qZcvTLng&amp;4WwVOWIqE80&amp;Qeeq5OoLGJ0&amp;YYDL1SqX-SY&amp;vWGA5iYgAOU&amp;8FeIj2HLN8k&amp;bKlBTr88VTw&amp;Y_59kWK5W3s&amp;QlJSXVglZ3g&amp;K3h_9O6OwW0&amp;4ALe2z---e0&amp;kdZk1Wk7kSw&amp;hUa7f5XEzGE&amp;aOihMldu_pE&amp;PlPynB10vP0&amp;W9DPlAZUH6Q&amp;vta4RfQ2Z-I
+SDNkMu8ZT68	w00dy911	630	People&amp;Blogs	186	10181	3.49	494	257	rjnbgpPJUks
+PkGUU_ggO3k	theresident	704	Entertainment	262	11235	3.85	247	280	PkGUU_ggO3k&amp;EYC5bWF0ss8&amp;EUPHdnE83GY&amp;JO1LTIFOkTw&amp;gVSzbvFnVRY&amp;l9NJ04JiZj4&amp;ay3gcr84YeQ&amp;AfBxANiGnnU&amp;RyWz8hwGbY4&amp;BeJ7tGRgiW4&amp;fbq2-jd5Dto&amp;j8fTx5E5rik&amp;qGkCtXLN1W0&amp;mh_MGyx9tgc&amp;bgn6RYut2lE&amp;HS6Nqxh4uf4&amp;m9Gq44o5pcA&amp;K7unV366Qr4&amp;shU2hfHKmU0&amp;p0lq5-8IDqY
+RX24KLBhwMI	lemonette	697	People&amp;Blogs	512	24149	4.22	315	474	t60tW0WevkE&amp;WZgoejVDZlo&amp;Xa_op4MhSkg&amp;MwynZ8qTwXA&amp;sfG2rtAkAcg&amp;j72VLPwzd_c&amp;24Qfs69Al3U&amp;EGWutOjVx4M&amp;KVkseZR5coU&amp;R6OaRcsfnY4&amp;dGM3k_4cNhE&amp;ai-cSq6APLQ&amp;73M0y-iD9WE&amp;3uKOSjE79YA&amp;9BBu5N0iFBg&amp;7f9zwx52xgA&amp;ncEV0tSC7xM&amp;H-J8Kbx9o68&amp;s8xf4QX1UvA&amp;2cKd9ERh5-8
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>user部分数据：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>barelypolitical	151	5106
+bonk65	89	144
+camelcars	26	674
+cubskickass34	13	126
+boydism08	32	50
+deckthree	6	753
+fiveawesomegirls	182	3
+ericielfenix	6	0
+erricshade	3	49
+blacktreemedia	520	3199
+childfoundationcom	1	2
+davedays	36	32072
+fiveawesomeguys	160	2230
+communitychannel	71	4280
+ashantimusic	12	0
+futvolg0les	9	0
+all4tubekids	137	1333
+ewupawly	65	143
+frankjpmorgan	5	0
+bethany9788	35	6
+dingpolistico	30	1
+cpfreak730	18	26
+cmcgeh	14	0
+chipmunked101	2	0
+barNoNsouthport	21	0
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>插入数据：</p> <p>向ori 表插入数据</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code>load data <span class="token builtin class-name">local</span> inpath <span class="token string">&quot;./video&quot;</span> into table gulivideo_ori<span class="token punctuation">;</span> 
+load data <span class="token builtin class-name">local</span> inpath <span class="token string">&quot;./user&quot;</span> into table gulivideo_user_ori<span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>向orc 表插入数据</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> gulivideo_orc <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> gulivideo_ori<span class="token punctuation">;</span> 
+<span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> gulivideo_user_orc <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span>  gulivideo_user_ori<span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="业务分析"><a href="#业务分析" class="header-anchor">#</a> 业务分析</h2> <h3 id="_1-统计视频观看数-top10"><a href="#_1-统计视频观看数-top10" class="header-anchor">#</a> 1.统计视频观看数 Top10</h3> <p>思路：使用 order by 按照 views 字段做一个全局排序即可，同时我们设置只显示前 10条。</p> <p>最终代码：</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+     videoId<span class="token punctuation">,</span> 
+     views 
+<span class="token keyword">FROM</span>  
+     gulivideo_ori 
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>  
+     views <span class="token keyword">DESC</span> 
+<span class="token keyword">LIMIT</span> <span class="token number">10</span><span class="token punctuation">;</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_2-统计视频类别热度-top10"><a href="#_2-统计视频类别热度-top10" class="header-anchor">#</a> 2.统计视频类别热度 Top10</h3> <p>思路：</p> <ol><li>即统计每个类别有多少个视频，显示出包含视频最多的前 10 个类别。</li> <li>我们需要按照类别 group by 聚合，然后 count 组内的videoId 个数即可。</li> <li>因为当前表结构为：一个视频对应一个或多个类别。所以如果要 group by 类别，需要先将类别进行<strong>列转行</strong>(展开)，然后再进行 count 即可。</li> <li>最后按照热度排序，显示前 10 条。</li></ol> <p>代码实现：</p> <p>写法一：</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+    t1<span class="token punctuation">.</span>category_name <span class="token punctuation">,</span>  
+    <span class="token function">COUNT</span><span class="token punctuation">(</span>t1<span class="token punctuation">.</span>videoId<span class="token punctuation">)</span> hot 
+<span class="token keyword">FROM</span>  
+<span class="token punctuation">(</span> 
+<span class="token keyword">SELECT</span>  
+    videoId<span class="token punctuation">,</span>  
+    category_name  
+<span class="token keyword">FROM</span>  
+    gulivideo_orc  
+lateral <span class="token keyword">VIEW</span> explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> gulivideo_orc_tmp <span class="token keyword">AS</span> category_name 
+<span class="token punctuation">)</span> t1 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span>  
+    t1<span class="token punctuation">.</span>category_name  
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> 
+    hot  
+<span class="token keyword">DESC</span>  
+<span class="token keyword">LIMIT</span> <span class="token number">10</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>写法二：</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+    t1<span class="token punctuation">.</span>category_name <span class="token punctuation">,</span>  
+    <span class="token function">COUNT</span><span class="token punctuation">(</span>t1<span class="token punctuation">.</span>videoId<span class="token punctuation">)</span> hot 
+<span class="token keyword">FROM</span>  
+<span class="token punctuation">(</span> 
+<span class="token keyword">SELECT</span> 
+    explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> category_name
+    <span class="token keyword">FROM</span> gulivideo_orc
+<span class="token punctuation">)</span>t1
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span>  
+    t1<span class="token punctuation">.</span>category_name  
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> 
+    hot  
+<span class="token keyword">DESC</span>  
+<span class="token keyword">LIMIT</span> <span class="token number">10</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="_3-统计出视频观看数最高的-20-个视频的所属类别以及类别包含top20-视频的个数"><a href="#_3-统计出视频观看数最高的-20-个视频的所属类别以及类别包含top20-视频的个数" class="header-anchor">#</a> 3.统计出视频观看数最高的 20 个视频的所属类别以及类别包含Top20 视频的个数</h3> <p>思路：</p> <ol><li><p>先找到观看数最高的 20 个视频所属条目的所有信息，降序排列</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t1</span>
+<span class="token keyword">SELECT</span>  
+    videoId<span class="token punctuation">,</span>  
+    views <span class="token punctuation">,</span> 
+    category  
+<span class="token keyword">FROM</span>  
+    gulivideo_orc 
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>  
+    views  
+<span class="token keyword">DESC</span>  
+<span class="token keyword">LIMIT</span> <span class="token number">20</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div></li> <li><p>把这20 条信息中的category 分裂出来(列转行)</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t2</span>
+<span class="token keyword">SELECT</span> 
+    explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> category_name
+<span class="token keyword">FROM</span> t1<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li><p>最后查询视频分类名称和该分类下有多少个 Top20 的视频</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+	t2<span class="token punctuation">.</span>category_name<span class="token punctuation">,</span> 
+    <span class="token function">COUNT</span><span class="token punctuation">(</span>t2<span class="token punctuation">.</span>videoId<span class="token punctuation">)</span> video_sum 
+<span class="token keyword">FROM</span>  t2
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t2<span class="token punctuation">.</span>category_name<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></li></ol> <p>最终代码：</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+	t2<span class="token punctuation">.</span>category_name<span class="token punctuation">,</span> 
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> video_sum 
+<span class="token keyword">FROM</span>  
+    <span class="token punctuation">(</span> 
+    <span class="token keyword">SELECT</span> 
+        explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> category_name
+    <span class="token keyword">FROM</span>  
+        <span class="token punctuation">(</span> 
+        <span class="token keyword">SELECT</span>  
+            videoId<span class="token punctuation">,</span>  
+            views <span class="token punctuation">,</span> 
+            category  
+        <span class="token keyword">FROM</span>  
+            gulivideo_orc 
+        <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> views <span class="token keyword">DESC</span>  
+        <span class="token keyword">LIMIT</span> <span class="token number">20</span>  
+        <span class="token punctuation">)</span> t1 
+	<span class="token punctuation">)</span> t2 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t2<span class="token punctuation">.</span>category_name 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="_4-统计视频观看数-top50-所关联视频的所属类别排序"><a href="#_4-统计视频观看数-top50-所关联视频的所属类别排序" class="header-anchor">#</a> 4.统计视频观看数 Top50 所关联视频的所属类别排序</h3> <p>思路：</p> <ol><li><p>求出视频观看数Top50的视频所关联的视频(数组)</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t1</span>
+<span class="token keyword">SELECT</span>  
+   relatedId<span class="token punctuation">,</span>  
+   views<span class="token punctuation">,</span> 
+<span class="token keyword">FROM</span>  
+   gulivideo_orc 
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> views <span class="token keyword">DESC</span>  
+<span class="token keyword">LIMIT</span> <span class="token number">50</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div></li> <li><p>将关联视频 列转行</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t2</span>
+<span class="token keyword">SELECT</span> 
+    explode<span class="token punctuation">(</span>relatedId<span class="token punctuation">)</span> related_id
+<span class="token keyword">FROM</span> t1<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li><p>JOIN原表,取出关联视频所属的类别（数组）</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t3</span>
+<span class="token keyword">SELECT</span> 
+    g<span class="token punctuation">.</span>category
+<span class="token keyword">FROM</span> t2
+<span class="token keyword">JOIN</span> gulivideo_orc g
+<span class="token keyword">ON</span> t2<span class="token punctuation">.</span>related_id <span class="token operator">=</span> g<span class="token punctuation">.</span>vedioId<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></li> <li><p>类别字段 列转行</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># t4</span>
+<span class="token keyword">SELECT</span> 
+    explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> category_name
+<span class="token keyword">FROM</span> t3<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li><p>按照类别分组,求dount,并按照count排序</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+    t4<span class="token punctuation">.</span>category_name<span class="token punctuation">,</span>  
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> hot 
+<span class="token keyword">FROM</span> t4
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t1<span class="token punctuation">.</span>category_name  
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> hot <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></li></ol> <p>最终代码：</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span>  
+    t4<span class="token punctuation">.</span>category_name<span class="token punctuation">,</span>  
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> hot 
+<span class="token keyword">FROM</span> 
+	<span class="token punctuation">(</span>
+	<span class="token keyword">SELECT</span> 
+    	explode<span class="token punctuation">(</span>category<span class="token punctuation">)</span> category_name
+	<span class="token keyword">FROM</span>
+        <span class="token punctuation">(</span>
+		<span class="token keyword">SELECT</span> 
+    		g<span class="token punctuation">.</span>category
+		<span class="token keyword">FROM</span> 
+            <span class="token punctuation">(</span>
+			<span class="token keyword">SELECT</span> 
+    			explode<span class="token punctuation">(</span>relatedId<span class="token punctuation">)</span> related_id
+			<span class="token keyword">FROM</span>
+                <span class="token punctuation">(</span>
+               	<span class="token keyword">SELECT</span>  
+   					relatedId<span class="token punctuation">,</span>  
+   					views<span class="token punctuation">,</span> 
+				<span class="token keyword">FROM</span>  
+   					gulivideo_orc 
+				<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> views <span class="token keyword">DESC</span>  
+				<span class="token keyword">LIMIT</span> <span class="token number">50</span>
+                <span class="token punctuation">)</span>t1
+            <span class="token punctuation">)</span>t2
+		<span class="token keyword">JOIN</span> gulivideo_orc g
+		<span class="token keyword">ON</span> t2<span class="token punctuation">.</span>related_id <span class="token operator">=</span> g<span class="token punctuation">.</span>vedioId
+        <span class="token punctuation">)</span>t3
+    <span class="token punctuation">)</span>t4
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t4<span class="token punctuation">.</span>category_name  
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> hot <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>其他内容不一一列举。</p></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2022/3/8 08:39:40</span></div></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-cb1513f6><li class="level-2" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#需求描述" class="sidebar-link reco-side-需求描述" data-v-cb1513f6>需求描述</a></li><li class="level-2" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#数据准备" class="sidebar-link reco-side-数据准备" data-v-cb1513f6>数据准备</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#数据字典" class="sidebar-link reco-side-数据字典" data-v-cb1513f6>数据字典</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#创建表" class="sidebar-link reco-side-创建表" data-v-cb1513f6>创建表</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#插入数据" class="sidebar-link reco-side-插入数据" data-v-cb1513f6>插入数据</a></li><li class="level-2" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#业务分析" class="sidebar-link reco-side-业务分析" data-v-cb1513f6>业务分析</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#_1-统计视频观看数-top10" class="sidebar-link reco-side-_1-统计视频观看数-top10" data-v-cb1513f6>1.统计视频观看数 Top10</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#_2-统计视频类别热度-top10" class="sidebar-link reco-side-_2-统计视频类别热度-top10" data-v-cb1513f6>2.统计视频类别热度 Top10</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#_3-统计出视频观看数最高的-20-个视频的所属类别以及类别包含top20-视频的个数" class="sidebar-link reco-side-_3-统计出视频观看数最高的-20-个视频的所属类别以及类别包含top20-视频的个数" data-v-cb1513f6>3.统计出视频观看数最高的 20 个视频的所属类别以及类别包含Top20 视频的个数</a></li><li class="level-3" data-v-cb1513f6><a href="/2021/08/01/hive%E5%AE%9E%E6%88%98/#_4-统计视频观看数-top50-所关联视频的所属类别排序" class="sidebar-link reco-side-_4-统计视频观看数-top50-所关联视频的所属类别排序" data-v-cb1513f6>4.统计视频观看数 Top50 所关联视频的所属类别排序</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><APlayer audio="" fixed="true" mini="true" theme="#f9bcdd" loop="loop" order="random" preload="auto" volume="0.1" mutex="true" lrc-type="0" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer></div></div>
+    <script src="/assets/js/app.80c39ce2.js" defer></script><script src="/assets/js/3.a3eae276.js" defer></script><script src="/assets/js/1.672b953a.js" defer></script><script src="/assets/js/115.3c68af5d.js" defer></script>
+  </body>
+</html>
