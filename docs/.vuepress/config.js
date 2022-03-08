@@ -58,11 +58,14 @@ module.exports = {
         codeTheme: 'solarizedlight',
         // 当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新（默认值：true）（性能优化）
         activeHeaderLinks: false,
+        // 导航栏配置
         "nav": getNav(),
+        // 侧边栏配置
         "sidebar": {
             '/sql/': getSqlRoute(),
             '/java/': getJavaRoute(),
-            '/大数据/': getBigDtaRoute(),
+            '/大数据/': getBigDataRoute(),
+            '/算法与数据结构/': getAlgorithmRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -204,6 +207,16 @@ function getNav() {
                         {text: 'JVM总结', link: '/java/jvm/JVM总结'},
                     ]
                 }
+            ]
+        },
+        {
+            text: '算法',
+            items: [
+                {text: '数据结构', link: '/算法与数据结构/数据结构/线性表'},
+                {text: '算法技巧', link: '/算法与数据结构/算法技巧/01数组'},
+                {text: 'CodeTop', link: '/算法与数据结构/codetop/codetop(21-40).md'},
+                {text: '剑指offer', link: '/算法与数据结构/《剑指offer》总结'},
+                {text: '真实面试算法题', link: '/算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题'},
             ]
         },
         {
@@ -386,7 +399,7 @@ function getJavaRoute(){
 }
 
 // 大数据侧边栏
-function getBigDtaRoute() {
+function getBigDataRoute() {
     return [
         {
             title: 'Hadoop',
@@ -425,6 +438,61 @@ function getBigDtaRoute() {
             sidebarDepth: 2,
             children: [
                 "Flink/flink",
+            ]
+        }
+    ]
+}
+
+// 算法侧边栏
+function getAlgorithmRoute() {
+    return [
+        {
+            title: '数据结构',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "数据结构/线性表",
+                "数据结构/二分查找法",
+                "数据结构/稀疏数组",
+                "数据结构/位运算总结",
+                "数据结构/栈和队列",
+                "数据结构/两个栈实现队列和两个队列实现栈",
+                "数据结构/树",
+            ]
+        },
+        {
+            title: '算法技巧',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "算法技巧/01数组",
+                "算法技巧/02链表",
+                "算法技巧/03队列和栈",
+                "算法技巧/04字符串",
+                "算法技巧/05二叉树",
+                "算法技巧/06DFS",
+                "算法技巧/07回溯",
+                "算法技巧/08贪心",
+                "算法技巧/09动态规划",
+                "算法技巧/10数据结构设计",
+                "算法技巧/11BFS",
+                "算法技巧/12其他",
+            ]
+        },
+        {
+            title: 'codetop',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "codetop/codetop(21-40)",
+            ]
+        },
+        {
+            title: '《剑指offer》',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "《剑指offer》总结",
             ]
         }
     ]
