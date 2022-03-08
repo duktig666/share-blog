@@ -216,7 +216,7 @@ function getNav() {
                 {
                     text: 'NoSQL 数据库', items: [
                         {text: 'Redis 详解', link: '/sql/redis/Redis底层数据结构'},
-                        // {text: 'ElasticSearch 详解', link: '/doc/sql/es/'},
+                        {text: 'ElasticSearch 详解', link: '/doc/sql/es/ElasticSearch技术方案——使用场景'},
                     ]
                 }
             ]
@@ -284,6 +284,16 @@ function getSqlRoute() {
                 "redis/Redis底层数据结构",
                 "redis/Redis的发布订阅模式",
                 "redis/Redis面试题",
+            ]
+        },
+        {
+            title: 'ElasticSearch',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "es/ElasticSearch技术方案——使用场景",
+                "es/ElasticSearch实现站内搜索",
+                "es/ES重点",
             ]
         }
     ]
