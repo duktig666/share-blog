@@ -369,6 +369,7 @@ function getJavaRoute(){
             sidebarDepth: 2,
             children: [
                 "jvm/JVM总结",
+                "jvm/JVM调试排错",
             ]
         },
     ]
