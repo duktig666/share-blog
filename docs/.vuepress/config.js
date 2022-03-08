@@ -66,6 +66,7 @@ module.exports = {
             '/java/': getJavaRoute(),
             '/大数据/': getBigDataRoute(),
             '/算法与数据结构/': getAlgorithmRoute(),
+            '/架构/': getArchitectureRoute(),
         },
         "type": "blog",
         "blogConfig": {
@@ -233,6 +234,17 @@ function getNav() {
                         {text: 'ElasticSearch 详解', link: '/doc/sql/es/ElasticSearch技术方案——使用场景'},
                     ]
                 }
+            ]
+        },
+        {
+            text: '架构',
+            items: [
+                {text: '微服务', link: '/架构/微服务/微服务架构 总览'},
+                {text: '分布式ID', link: '/架构/分布式ID/分布式ID方案'},
+                {text: '分布式锁', link: '/架构/分布式锁/分布式锁'},
+                {text: '分布式事务', link: '/架构/分布式事务/分布式事务方案'},
+                {text: 'OAuth2.0', link: '/架构/OAuth2.0/理解OAuth2.0'},
+                {text: '云原生', link: '/架构/云原生/云原生架构和K8S'},
             ]
         },
         {
@@ -497,3 +509,69 @@ function getAlgorithmRoute() {
         }
     ]
 }
+
+// 架构侧边栏
+function getArchitectureRoute() {
+    return [
+        {
+            title: '微服务',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "微服务/微服务架构 总览",
+            ]
+        },
+        {
+            title: '分布式ID',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "分布式ID/分布式ID方案",
+                "分布式ID/Redis实现分布式ID",
+                "分布式ID/ZooKeeper实现分布式ID",
+            ]
+        },
+        {
+            title: '分布式锁',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "分布式锁/分布式锁",
+            ]
+        },
+        {
+            title: '分布式事务',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "分布式事务/分布式事务方案",
+            ]
+        },
+        {
+            title: 'OAuth2.0',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "OAuth2.0/理解OAuth2.0",
+            ]
+        },
+        {
+            title: '云原生',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "云原生/云原生架构和K8S",
+            ]
+        },
+        {
+            title: '其他',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "高可用方案",
+                "Gateway实现动态路由和灰度发布",
+            ]
+        },
+    ]
+}
+
