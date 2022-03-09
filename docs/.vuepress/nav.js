@@ -7,11 +7,11 @@ function getNav() {
             "link": "/",
             "icon": "reco-home"
         },
-        {
-            "text": "时间轴",
-            "link": "/timeline/",
-            "icon": "reco-date"
-        },
+        // {
+        //     "text": "时间轴",
+        //     "link": "/timeline/",
+        //     "icon": "reco-date"
+        // },
         {
             text: 'Java',
             items: [
@@ -28,7 +28,26 @@ function getNav() {
                     text: 'JVM', items: [
                         {text: 'JVM总结', link: '/java/jvm/JVM总结'},
                     ]
-                }
+                },
+                {
+                    text: 'Spring', items: [
+                        {text: 'Spring总结', link: '/java相关框架/spring family/Spring/Spring总结'},
+                        {text: 'Spring常见面试题', link: '/java相关框架/spring family/Spring/Spring常见面试题'},
+                        {text: 'SpringMVC', link: '/java相关框架/spring family/SpringMVC/SpringMVC'},
+                        {text: 'SpringBoot自动装配和Starter原理', link: '/java相关框架/spring family/SpringBoot/SpringBoot自动装配和Starter原理'},
+                        {text: 'SpringBoot常见面试题', link: '/java相关框架/spring family/SpringBoot/SpringBoot常见面试题'},
+                    ]
+                },
+                {
+                    text: 'JWT', items: [
+                        {text: 'JWT总结', link: '/java相关框架/JWT相关'},
+                    ]
+                },
+                {
+                    text: 'Netty', items: [
+                        {text: 'Netty总结', link: '/java相关框架/Netty/Netty总结'},
+                    ]
+                },
             ]
         },
         {

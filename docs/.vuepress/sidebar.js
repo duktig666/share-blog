@@ -117,6 +117,61 @@ function getJavaRoute(){
     ]
 }
 
+// Java相关框架 侧边栏
+function getJavaFrameRoute() {
+    return [
+        {
+            title: 'Spring',
+            collapsable: false,
+            sidebarDepth: 2,    // 可选的, 默认值是 1
+            children: [
+                "spring family/Spring/Spring总结.md",
+                "spring family/Spring/Spring常见面试题.md",
+            ]
+        },
+        {
+            title: 'SpringMVC',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "spring family/SpringMVC/SpringMVC.md",
+            ]
+        },
+        {
+            title: 'SpringBoot',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "spring family/SpringBoot/SpringBoot自动装配和Starter原理.md",
+                "spring family/SpringBoot/SpringBoot常见面试题.md",
+                "spring family/SpringBoot/SpringBoot 配置获取request中body的json格式参数.md",
+                "spring family/SpringBoot/修改SpringBoot默认的启动图案.md",
+                "spring family/SpringBoot/SpringBoot 配置获取request中body的json格式参数.md",
+                "spring family/SpringBoot/SpringBoot 配置返回前端时间戳和接收时间戳自动转为LocalDateTime（前后端统一使用时间戳交互）.md",
+            ]
+        },
+        {
+            title: 'JWT',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "JWT相关.md",
+            ]
+        },
+        {
+            title: 'Netty',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "Netty/Netty总结.md",
+                "Netty/《Netty权威指南2》笔记.md",
+                "Netty/Netty面试题.md",
+                "Netty/WebSocket协议.md",
+            ]
+        },
+    ]
+}
+
 // 大数据侧边栏
 function getBigDataRoute() {
     return [
@@ -285,6 +340,7 @@ function getArchitectureRoute() {
 module.exports = {
     getSqlRoute,
     getJavaRoute,
+    getJavaFrameRoute,
     getBigDataRoute,
     getAlgorithmRoute,
     getArchitectureRoute
