@@ -2,12 +2,11 @@
 title: 基于VuePress搭建博客系统及优化过程（持续更新...）
 date: 2022-01-21
 categories:
-
 - 关于本站
-  tags:
+tags:
 - 个人博客
 - 关于本站
-  sticky: 1
+sticky: 1
 ---
 
 ::: tip
@@ -483,7 +482,6 @@ module.exports = {
 ```html
 著作权归 xxxx 所有。
 链接：https://www.pdai.tech/md/about/blog/blog-build-vuepress.html
-  
 ```
 
 更多请参考插件：[vuepress-plugin-sitemap](https://vuepress.github.io/en/plugins/copyright/#installation)
@@ -775,7 +773,7 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
 run: npm install && export NODE_OPTIONS=--max_old_space_size=4096 &&npm run build
 ```
 
-
+windows环境使用命令`set NODE_OPTIONS=--max_old_space_size=4096`，因为`export`是linux的命令。
 
 ## 参看
 
