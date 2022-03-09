@@ -98,7 +98,7 @@ function getNav() {
         },
         {
             "text": "关于我",
-            "link": "/docs/aboutme",
+            "link": "/aboutme",
             "icon": "reco-account",
         },
         {

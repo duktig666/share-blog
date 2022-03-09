@@ -2,6 +2,7 @@
 title: 基于VuePress搭建博客系统及优化过程（持续更新...）
 date: 2022-01-21
 categories:
+
 - 关于本站
 tags:
 - 个人博客
@@ -27,6 +28,8 @@ sticky: 1
 
 | 时间      |      优化内容      |
 | ------------- | ----------- |
+| 2022.03.09 | 新增插件【code-copy】、【copyright】、【sitemap】 |
+| 2022.03.09 | 解决github pages部署时，报错：`JavaScript heap out of memory` |
 | 2022.03.05 | 配置  【[友盟+](https://www.umeng.com/web)】的【网站统计U-Web】，实现网站底部的【站点统计】功能 |
 | 2022.03.05 | 解决 **博客仓库的README** 与 **vuepress的首页README** 不兼容问题 |
 | 2022.02.08 | 解决 **永久连接的中文路由** 问题，**移除插件[permalink-pinyin]** |
@@ -139,9 +142,9 @@ jobs:
            with:
               persist-credentials: false
 
-         # 生成静态文件
+         # 生成静态文件（export NODE_OPTIONS=--max_old_space_size=4096  解决JavaScript heap out of memory问题）
          - name: Build
-           run: npm install && npm run build
+           run: npm install && export NODE_OPTIONS=--max_old_space_size=4096 && npm run build
 
          # 部署到 GitHub Pages
          - name: Deploy
