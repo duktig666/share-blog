@@ -1,4 +1,5 @@
-                          <h1 align="center"> Duktig </h1>
+<h1 align="center"> Duktig </h1>
+
 <p align="center">优秀还努力。愿你付出甘之如饴，所得归于欢喜。</p>
 
 ## :pencil:关于内容
