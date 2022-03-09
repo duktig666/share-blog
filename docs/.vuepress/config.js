@@ -1,13 +1,17 @@
+// 导航栏配置
 const nav = require('./nav');
+// 侧边栏配置
 const sidebar = require('./sidebar');
 
 module.exports = {
     "title": "Duktig",
     "description": "优秀还努力。愿你付出甘之如饴，所得归于欢喜。",
+    repo: 'duktig666/duktig666.github.io',
     // 默认语言
     locales: {
         '/': {
-            lang: 'zh-CN'
+            lang: 'zh-CN',
+            title: "Duktig的个人博客",
         }
     },
     // 永久链接格式 （1.6.10 配置这个 导致插件vuepress-plugin-permalink-pinyin 中文路由转拼音失效）
@@ -15,20 +19,11 @@ module.exports = {
     // 静态资源路径
     "dest": "docs/.vuepress/dist",
     "head": [
-        [
-            "link",
-            {
-                "rel": "icon",
-                "href": "/favicon.ico"
-            }
-        ],
-        [
-            "meta",
-            {
-                "name": "viewport",
-                "content": "width=device-width,initial-scale=1,user-scalable=no"
-            }
-        ],
+        ["link", {"rel": "icon", "href": "/favicon.ico"}],
+        ["meta", {"name": "viewport", "content": "width=device-width,initial-scale=1,user-scalable=no"}],
+        ["meta", {name: "robots", content: "all"}],
+        ["meta", {name: "author", content: "RenShiWei"}],
+        ["meta", {name: "apple-mobile-web-app-capable", content: "yes"}],
         // 添加百度统计代码 （也可使用插件：vuepress-plugin-baidu-autopush）
         ['script', {},
             `
@@ -40,9 +35,9 @@ module.exports = {
               s.parentNode.insertBefore(hm, s);
             })();
            `
-        ]
+        ],
+        ["script", {src: "https://hm.baidu.com/hm.js?xxxxxxxxxxx"}]
     ],
-    // base: "/",
     "theme": "reco",
     "themeConfig": {
         // 评论系统配置
@@ -74,14 +69,14 @@ module.exports = {
         },
         "type": "blog",
         "blogConfig": {
-            "category": {
-                "location": 2,
-                "text": "分类"
-            },
-            "tag": {
-                "location": 3,
-                "text": "标签"
-            },
+            // "category": {
+            //     "location": 2,
+            //     "text": "分类"
+            // },
+            // "tag": {
+            //     "location": 3,
+            //     "text": "标签"
+            // },
             // 信息栏展示社交信息
             socialLinks: [
                 { icon: 'reco-github', link: 'https://github.com/duktig666' },
@@ -133,7 +128,10 @@ module.exports = {
     },
     "markdown": {
         // 代码块设置行号
-        "lineNumbers": true
+        "lineNumbers": true,
+        externalLinks: {
+            target: '_blank', rel: 'noopener noreferrer'
+        }
     },
     // 配置插件
     plugins: [
@@ -179,5 +177,18 @@ module.exports = {
                 cover: false,
             }
         }],
+        // 添加Copy自动加版权信息
+        ['copyright', {
+            noCopy: true, // 选中的文字将无法被复制
+            minLength: 100, // 如果长度超过 100 个字符
+        },
+        ],
+        // 在代码区，添加一个拷贝按钮，用来拷贝代码
+        ['vuepress-plugin-code-copy', true],
+        // 添加Sitemap信息
+        ['sitemap', {
+            hostname: 'https://www.duktig.cn/'
+        }],
+
     ]
 }

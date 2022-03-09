@@ -3,11 +3,11 @@ title: 基于VuePress搭建博客系统及优化过程（持续更新...）
 date: 2022-01-21
 categories:
 
- - 关于本站
-tags:
- - 个人博客
- - 关于本站
-sticky: 1
+- 关于本站
+  tags:
+- 个人博客
+- 关于本站
+  sticky: 1
 ---
 
 ::: tip
@@ -124,33 +124,33 @@ name: Deploy GitHub Pages
 
 # 触发条件：在 push 到 master 分支后
 on:
-  push:
-    branches:
-      - main
+   push:
+      branches:
+         - main
 
 # 任务
 jobs:
-  build-and-deploy:
-    # 服务器环境：最新版 Ubuntu
-    runs-on: ubuntu-latest
-    steps:
-      # 拉取代码
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+   build-and-deploy:
+      # 服务器环境：最新版 Ubuntu
+      runs-on: ubuntu-latest
+      steps:
+         # 拉取代码
+         - name: Checkout
+           uses: actions/checkout@v2
+           with:
+              persist-credentials: false
 
-      # 生成静态文件
-      - name: Build
-        run: npm install && npm run build
+         # 生成静态文件
+         - name: Build
+           run: npm install && npm run build
 
-      # 部署到 GitHub Pages
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: .vuepress/dist # 静态资源目录
+         # 部署到 GitHub Pages
+         - name: Deploy
+           uses: JamesIves/github-pages-deploy-action@releases/v3
+           with:
+              ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+              BRANCH: gh-pages
+              FOLDER: .vuepress/dist # 静态资源目录
 ```
 
 需要了解 workflow 的基本语法可以查看[官方帮助 (opens new window)](https://help.github.com/cn/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions)，也可以参考[阮一峰老师的 GitHub Actions 入门](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
@@ -211,7 +211,7 @@ cd -
 
 ```json
 "scripts": {
-  "deploy": "bash deploy.sh"
+"deploy": "bash deploy.sh"
 }
 ```
 
@@ -237,18 +237,18 @@ npm run deploy
 // .vuepress/config.js
 
 module.exports = {
-  theme: 'reco',
-  themeConfig: {
-    /**
-     * support for
-     * 'default'
-     * 'funky'
-     * 'okaidia'
-     * 'solarizedlight'
-     * 'tomorrow'
-     */
-    codeTheme: 'tomorrow' // default 'tomorrow'
-  }
+   theme: 'reco',
+   themeConfig: {
+      /**
+       * support for
+       * 'default'
+       * 'funky'
+       * 'okaidia'
+       * 'solarizedlight'
+       * 'tomorrow'
+       */
+      codeTheme: 'tomorrow' // default 'tomorrow'
+   }
 }
 ```
 
@@ -262,7 +262,7 @@ module.exports = {
 
 两者对比：
 
-**Valine** 
+**Valine**
 
 1. 支持的功能更多。比如邮件提醒、文章阅读量统计（文章多的时候会影响一定的性能）、自定义表情等。
 
@@ -298,11 +298,11 @@ npm install -D @vuepress/plugin-pwa
 
 ```js
 ['@vuepress/pwa', {
-    serviceWorker: true,
-    updatePopup: {
-        message: "发现新内容可用",
-        buttonText: "刷新"
-    }
+   serviceWorker: true,
+   updatePopup: {
+      message: "发现新内容可用",
+      buttonText: "刷新"
+   }
 }],
 ```
 
@@ -313,36 +313,36 @@ npm install -D @vuepress/plugin-pwa
 ```js
 // 音乐插件
 ['meting', {
-    //metingApi: "https://meting.sigure.xyz/api/music",
-    meting: {
-        // 网易
-        server: "netease",
-        // 读取歌单
-        type: "playlist",
-        mid: "696441716",
-    },          
-    // 不配置该项的话不会出现全局播放器
-    aplayer: {
-        // 吸底模式
-        fixed: true,
-        mini: true,
-        // 自动播放
-        autoplay: true,
-        // 歌曲栏折叠
-        listFolded:true,
-        // 颜色
-        theme: '#f9bcdd',
-        // 播放顺序为随机
-        order: 'random',
-        // 初始音量
-        volume: 0.1,
-        // 关闭歌词显示
-        lrcType: 0
-    },
-    mobile :{
-        // 手机端去掉cover图
-        cover: false,
-    }
+   //metingApi: "https://meting.sigure.xyz/api/music",
+   meting: {
+      // 网易
+      server: "netease",
+      // 读取歌单
+      type: "playlist",
+      mid: "696441716",
+   },
+   // 不配置该项的话不会出现全局播放器
+   aplayer: {
+      // 吸底模式
+      fixed: true,
+      mini: true,
+      // 自动播放
+      autoplay: true,
+      // 歌曲栏折叠
+      listFolded:true,
+      // 颜色
+      theme: '#f9bcdd',
+      // 播放顺序为随机
+      order: 'random',
+      // 初始音量
+      volume: 0.1,
+      // 关闭歌词显示
+      lrcType: 0
+   },
+   mobile :{
+      // 手机端去掉cover图
+      cover: false,
+   }
 }]
 ```
 
@@ -403,44 +403,44 @@ tongji.vue
 
 ```vue
 <template>
-  <div id="cnzz" class="tj"></div>
+   <div id="cnzz" class="tj"></div>
 </template>
 <script>
 export default {
-  mounted() {
-    import("./../tongji").then((res) => {
-      res.default.init();
-    });
-  },
+   mounted() {
+      import("./../tongji").then((res) => {
+         res.default.init();
+      });
+   },
 };
 </script>
 <style lang="css">
 #cnzz_stat_icon_1280934766 {
-  padding: 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  font-size: 12px;
+   padding: 1rem 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   font-size: 12px;
 }
 .hidden-tj {
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
+   position: absolute;
+   width: 0;
+   height: 0;
+   opacity: 0;
 }
 .home-tj {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -100px;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: -100px;
 }
 @media (max-width: 719px) {
-  .home-tj {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -200px;
-  }
+   .home-tj {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -200px;
+   }
 }
 </style>
 ```
@@ -450,6 +450,92 @@ export default {
 <img src="https://cos.duktig.cn/typora/202203052133451.png" alt="image-20220305213336152" style="zoom:67%;" />
 
 配置完成！
+
+### 添加Copy自动加版权信息插件
+
+> 复制你网站时，禁用复制或者添加版权信息等。
+
+安装
+
+```bash
+npm install vuepress-plugin-copyright  
+```
+
+配置
+
+```js
+// .vuepress/config.js
+module.exports = {
+  plugins: [
+    [
+      'copyright',
+      {
+        noCopy: true, // 选中的文字将无法被复制
+        minLength: 100, // 如果长度超过 100 个字符
+      },
+    ],
+  ],
+}
+```
+
+效果, 拷贝本页面会自动添加：
+
+```html
+著作权归 xxxx 所有。
+链接：https://www.pdai.tech/md/about/blog/blog-build-vuepress.html
+  
+```
+
+更多请参考插件：[vuepress-plugin-sitemap](https://vuepress.github.io/en/plugins/copyright/#installation)
+
+### 添加代码拷贝
+
+> 在代码区，添加一个拷贝按钮，用来拷贝代码。
+
+安装
+
+```bash
+npm install vuepress-plugin-code-copy
+```
+
+配置
+
+```js
+module.exports = {
+    plugins: [['vuepress-plugin-code-copy', true]]
+}  
+```
+
+更多请参考插件：[vuepress-plugin-code-copy](https://github.com/znicholasbrown/vuepress-plugin-code-copy)
+
+### 添加Sitemap信息
+
+著作权归https://pdai.tech所有。 链接：https://www.pdai.tech/md/about/blog/blog-build-vuepress.html
+
+> 主要用于生成站点的Sitemap，有助于SEO。
+
+安装
+
+```bash
+npm install vuepress-plugin-sitemap
+```
+
+配置
+
+```js
+// .vuepress/config.js
+module.exports = {
+  plugins: {
+    'sitemap': {
+      hostname: 'https://www.duktig.cn'
+    },
+  }
+}  
+```
+
+更多请参考插件：[vuepress-plugin-sitemap](https://github.com/ekoeryanto/vuepress-plugin-sitemap)
+
+
 
 ## 好用的MarkDown扩展语法
 
@@ -667,6 +753,30 @@ module.exports = {
 
 参看文章：[vuepress-theme-reco@1.x 解决博客首页 与 仓库README不兼容问题](https://www.duktig.cn/2022/03/05/vuepress-theme-reco-1-x-%E8%A7%A3%E5%86%B3%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5-%E4%B8%8E-%E4%BB%93%E5%BA%93readme%E4%B8%8D%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0)
 
+### 4. github pages 部署时JS内存溢出
+
+详细报错如下：
+
+```sh
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+```
+
+解决：
+
+安装插件：`npm install -g increase-memory-limit`
+
+修改giuhub的部署脚本：
+
+主要修改如下这段代码：
+
+```yaml
+# 生成静态文件
+- name: Build
+run: npm install && export NODE_OPTIONS=--max_old_space_size=4096 &&npm run build
+```
+
+
+
 ## 参看
 
 - [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/)
@@ -676,4 +786,4 @@ module.exports = {
 - [从hexo到vuepress](https://www.mhynet.cn/blog-hexo-to-vuepress/#hexo)
 - [vuepress-theme-reco个人向优化](https://vuepress-theme-reco.recoluan.com/views/other/reco-optimization.html)
 - [actions自动化：vuepress构建，github同步gitee，giteepage部署](https://zhuanlan.zhihu.com/p/302530881)
-
+- [vuepress reco主题优化与修改](https://blog.csdn.net/howareyou2104/article/details/107412555)
