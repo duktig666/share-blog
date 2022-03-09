@@ -55,3 +55,6 @@ selenium-debug.log
 
 package-lock.json
 yarn.lock
+
+# project
+report.*.json
