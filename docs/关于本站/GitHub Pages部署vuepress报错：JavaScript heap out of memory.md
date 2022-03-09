@@ -84,6 +84,49 @@ set NODE_OPTIONS=--max_old_space_size=4096
 
 因为`export`是linux命令。
 
+
+
+## 扩展
+
+修改原来的github部署脚本：
+
+```yaml{23}
+name: Deploy GitHub Pages
+
+# 触发条件：在 push 到 master 分支后
+on:
+  push:
+    branches:
+      - main
+
+# 任务
+jobs:
+  build-and-deploy:
+    # 服务器环境：最新版 Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      # 生成静态文件
+      - name: Build
+        run: npm install && export NODE_OPTIONS=--max_old_space_size=4096 &&npm run build
+
+      # 部署到 GitHub Pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs/.vuepress/dist
+
+```
+
+
+
 ## 参看
 
 - [FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed – JavaScript heap out of memory](http://www.195440.com/3244)
