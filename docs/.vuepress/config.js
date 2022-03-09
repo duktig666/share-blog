@@ -69,14 +69,14 @@ module.exports = {
         },
         "type": "blog",
         "blogConfig": {
-            "category": {
-                "location": 2,
-                "text": "分类"
-            },
-            "tag": {
-                "location": 3,
-                "text": "标签"
-            },
+            // "category": {
+            //     "location": 2,
+            //     "text": "分类"
+            // },
+            // "tag": {
+            //     "location": 3,
+            //     "text": "标签"
+            // },
             // 信息栏展示社交信息
             socialLinks: [
                 { icon: 'reco-github', link: 'https://github.com/duktig666' },
@@ -178,17 +178,17 @@ module.exports = {
             }
         }],
         // 添加Copy自动加版权信息
-        // ['copyright', {
-        //     noCopy: true, // 选中的文字将无法被复制
-        //     minLength: 100, // 如果长度超过 100 个字符
-        // },
-        // ],
+        ['copyright', {
+            noCopy: true, // 选中的文字将无法被复制
+            minLength: 100, // 如果长度超过 100 个字符
+        },
+        ],
         // 在代码区，添加一个拷贝按钮，用来拷贝代码
-        // ['vuepress-plugin-code-copy', true],
+        ['vuepress-plugin-code-copy', true],
         // 添加Sitemap信息
-        // ['sitemap', {
-        //     hostname: 'https://www.duktig.cn/'
-        // }],
+        ['sitemap', {
+            hostname: 'https://www.duktig.cn/'
+        }],
 
     ]
 }
