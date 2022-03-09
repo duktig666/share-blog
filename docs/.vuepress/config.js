@@ -67,6 +67,7 @@ module.exports = {
         "sidebar": {
             '/sql/': sidebar.getSqlRoute(),
             '/java/': sidebar.getJavaRoute(),
+            '/java相关框架/': sidebar.getJavaFrameRoute(),
             '/大数据/': sidebar.getBigDataRoute(),
             '/算法与数据结构/': sidebar.getAlgorithmRoute(),
             '/架构/': sidebar.getArchitectureRoute(),
