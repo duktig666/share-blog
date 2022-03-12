@@ -186,8 +186,9 @@ module.exports = {
         }],
         // 添加Copy自动加版权信息
         ['copyright', {
-            noCopy: true, // 选中的文字将无法被复制
+            noCopy: false, // 选中的文字将无法被复制
             minLength: 100, // 如果长度超过 100 个字符
+            authorName: "https://www.duktig.cn",
         },
         ],
         // 在代码区，添加一个拷贝按钮，用来拷贝代码

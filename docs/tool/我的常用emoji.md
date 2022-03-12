@@ -13,7 +13,7 @@ publish: false
 
 ## 小黄脸
 
-<div style="display:grid;grid-template-columns: repeat(auto-fill, 10%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
+<div style="display:grid;grid-template-columns: repeat(auto-fill, 12.5%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
     <span>🤪<br>滑稽</span>
     <span>😀<br>微笑</span>
     <span>😂<br>笑哭</span>
@@ -26,6 +26,7 @@ publish: false
     <span>😱<br>吓死了</span>
     <span>😠<br>生气</span>
 </div>
+
 
 
 ## 记录
