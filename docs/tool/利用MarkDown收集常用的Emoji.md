@@ -5,6 +5,7 @@ categories:
  - tool
 tags:
  - markdown
+subSidebar: false
 ---
 
 ::: tip
@@ -53,7 +54,7 @@ tags:
 
 ## 我的常用emoji
 
-
+[我的常用Emoji](https://www.duktig.cn/2022/03/09/%E6%88%91%E7%9A%84%E5%B8%B8%E7%94%A8emoji/)
 
 ## 如何收集常用的emoji？
 
