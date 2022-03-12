@@ -98,7 +98,7 @@ function getNav() {
         },
         {
             "text": "工具",
-            "link": "/tool/emoji",
+            "link": "/tool/我的常用emoji",
         },
         {
             "text": "关于我",

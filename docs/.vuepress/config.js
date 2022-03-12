@@ -6,7 +6,6 @@ const sidebar = require('./sidebar');
 module.exports = {
     "title": "Duktig",
     "description": "优秀还努力。愿你付出甘之如饴，所得归于欢喜。",
-    repo: 'duktig666/duktig666.github.io',
     // 默认语言
     locales: {
         '/': {
@@ -40,6 +39,13 @@ module.exports = {
     ],
     "theme": "reco",
     "themeConfig": {
+        repo: 'duktig666/share-blog',
+        // 假如文档不是放在仓库的根目录下
+        docsDir: 'docs',
+        // 假如文档放在一个特定的分支下：
+        docsBranch: 'main',
+        // 默认是 false, 设置为 true 来启用
+        editLinks: true,
         // 评论系统配置
         vssueConfig: {
             platform: 'github',
