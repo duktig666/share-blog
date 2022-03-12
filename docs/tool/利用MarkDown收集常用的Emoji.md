@@ -126,7 +126,7 @@ grid-template-columns: repeat(auto-fill, 10%);
 
 效果图：
 
-![image-20220312110005626](C:\Users\rsw\AppData\Roaming\Typora\typora-user-images\image-20220312110005626.png)
+![image-20220312110005626](https://cos.duktig.cn/typora/202203121112859.png)
 
 
 
