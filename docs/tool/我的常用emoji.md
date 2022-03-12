@@ -13,7 +13,7 @@ publish: false
 
 ## 小黄脸
 
-<div style="display:grid;grid-template-columns: repeat(auto-fill, 12.5%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
+<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;text-align: center;font-size: 30px;line-height:normal;">
     <span>🤪<br>滑稽</span>
     <span>😀<br>微笑</span>
     <span>😂<br>笑哭</span>
@@ -35,3 +35,5 @@ publish: false
     <span>✍️<br>写字</span>
     <span>📚<br>书</span>
 </div>
+
+

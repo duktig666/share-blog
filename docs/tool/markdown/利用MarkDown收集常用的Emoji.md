@@ -100,7 +100,7 @@ subSidebar: false
 话不多说，先亮代码：
 
 ```html
-<div style="display:grid;grid-template-columns: repeat(auto-fill, 10%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
+<div style="display:grid;grid-template-columns: repeat(auto-fill, 12.5%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
     <span>🤪<br>滑稽</span>
     <span>😀<br>微笑</span>
     <span>😂<br>笑哭</span>
@@ -128,6 +128,26 @@ grid-template-columns: repeat(auto-fill, 10%);
 效果图：
 
 ![image-20220312110005626](https://cos.duktig.cn/typora/202203121112859.png)
+
+但还是有缺点，如果10列放不下会出现拥挤情况，尤其在手机端显示不友好。
+
+### 方式三：flex布局
+
+```html
+<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;text-align: center;font-size: 30px;line-height:normal;">
+    <span>🤪<br>滑稽</span>
+    <span>😀<br>微笑</span>
+    <span>😂<br>笑哭</span>
+    <span>😳<br>脸红</span>
+    <span>😵‍💫<br>晕</span>
+    <span>😎<br>墨镜</span>
+    <span>😲<br>震惊</span>
+    <span>🙄<br>翻白眼</span>
+    <span>😏<br>得意</span>
+    <span>😱<br>吓死了</span>
+    <span>😠<br>生气</span>
+</div>
+```
 
 
 
