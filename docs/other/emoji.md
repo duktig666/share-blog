@@ -28,11 +28,9 @@ publish: false
 </div>
 
 
-
 ## 记录
 
 <div style="display:grid;grid-template-columns: repeat(auto-fill, 10%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
     <span>✍️<br>写字</span>
     <span>📚<br>书</span>
 </div>
-
