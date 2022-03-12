@@ -66,6 +66,7 @@ module.exports = {
             '/大数据/': sidebar.getBigDataRoute(),
             '/算法与数据结构/': sidebar.getAlgorithmRoute(),
             '/架构/': sidebar.getArchitectureRoute(),
+            '/tool/': sidebar.getToolRoute(),
         },
         "type": "blog",
         "blogConfig": {

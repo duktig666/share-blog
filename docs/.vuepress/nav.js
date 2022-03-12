@@ -97,6 +97,10 @@ function getNav() {
             ]
         },
         {
+            "text": "工具",
+            "link": "/tool/emoji",
+        },
+        {
             "text": "关于我",
             "link": "/aboutme",
             "icon": "reco-account",

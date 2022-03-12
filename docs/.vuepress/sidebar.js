@@ -337,11 +337,25 @@ function getArchitectureRoute() {
     ]
 }
 
+function getToolRoute() {
+    return [
+        {
+            title: '其他',
+            collapsable: false,
+            sidebarDepth: 2,
+            children: [
+                "我的常用emoji",
+            ]
+        },
+    ]
+}
+
 module.exports = {
     getSqlRoute,
     getJavaRoute,
     getJavaFrameRoute,
     getBigDataRoute,
     getAlgorithmRoute,
-    getArchitectureRoute
+    getArchitectureRoute,
+    getToolRoute
 }
