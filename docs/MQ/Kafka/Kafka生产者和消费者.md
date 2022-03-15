@@ -220,5 +220,427 @@ Kafka 的消息是一个个键值对，ProducerRecord 对象可以只包含目�
 
 ## Kafka消费者
 
+### 消费者相关的一些概念
+
+#### 多消费者
+
+**生产者往主题写入消息的速度超过了应用程序验证数据的速度，这个时候该怎么办？**
+
+我们可以使用多个消费者从同一个主题读取消息，对消息进行分流。
+
+Kafka 消费者从属于消费者群组。一个群组里的消费者订阅的是同－个主题，每个消费者接收主题一部分分区的消息。
+
+假设主题 T1 有 4 个分区，我们创建了消费者 C1 ，它是群组 G1 里唯一的消费者，我们用它订阅主题 T1 。消费者 C1 将收到主题 T1 全部 4 个分区的消息。如图：
+
+![image-20220312151955074](https://cos.duktig.cn/typora/202203121519019.png)
+
+如果在群组 Gl 里新增一个消费者 C2 ，那么每个消费者将分别从两个分区接收消息。
+
+![image-20220312152029457](https://cos.duktig.cn/typora/202203121520857.png)
+
+如果群组 G I 有 4 个消费者，那么每个消费者可以分配到一个分区。
+
+![image-20220312152054560](https://cos.duktig.cn/typora/202203121520858.png)
+
+如果我们往群组里添加更多的消费者，超过主题的分区数量，那么有一部分消费者就会被闲置，不会接收到任何消息。
+
+![image-20220312152123232](https://cos.duktig.cn/typora/202203121521798.png)
+
+**不过要注意，不要让消费者的数量超过主题分区的数量，多余的消费者只会被闲置。**
+
+#### 多消费者组
+
+除了通过增加消费者来横向伸缩单个应用程序外，还**经常出现多个应用程序从同一个主题读取数据的情况**。
+
+如果新增一个只包含一个消费者的群组 G2 ，那么这个消费者将从主题T1 上接收所有的消息，与群组 G1 之间互不影响。群组 G2 可以增加更多的消费者，每个消费者可以悄费若干个分区，就像群组 G1 那样。
+
+![image-20220312152408501](https://cos.duktig.cn/typora/202203121524892.png)
+
+**简而言之，为每一个需要获取一个或多个主题全部消息的应用程序创建一个消费者群组，然后往群组里添加消费者来伸缩读取能力和处理能力，群组里的每个消费者只处理一部分消息。**
+
+#### 分区再均衡
+
+群组里的消费者共同读取主题的分区。一个新的消费者加入群组时，它读取的是原本由其他消费者读取的消息。当一个消费者被关闭或发生崩溃时，它就离开群组，原本由它读取的分区将由群组里的其他消费者来读取。在主题发生变化时 ， 比如管理员添加了新的分区，会发生 **分区重分配**。
+
+**分区的所有权从一个消费者转移到另一个消费者，这样的行为被称为 再均衡**。再均衡非常重要， 它为消费者群组带来了高可用性和伸缩性（我们可以放心地添加或移除梢费者），不过在正常情况下，我们并不希望发生这样的行为：
+
+- 在再均衡期间，消费者无陆读取消息，造成整个群组一小段时间的不可用。
+- 当分区被重新分配给另一个消费者时，消费者当前的读取状态会丢失，它有可能还需要去刷新缓存 ，在它重新恢复状态之前会拖慢应用程序。
+
+**如何进行安全的再均衡，以及如何避免不必要的再均衡？**
+
+**消费者通过向被指派为群组协调器的 broker 发送心跳来维持它们和群组的从属关系以及它们对分区的所有权关系**。具体：
+
+- 只要消费者以正常的时间间隔发送心跳，就被认为是活跃的，说明它还在读取分区里的消息。消费者会在轮询消息（为了获取消息）或提交偏移量时发送心跳。
+- 如果消费者停止发送心跳的时间足够长，会话就会过期，群组协调器认为它已经死亡，就会触发一次再均衡。
+- 如果一个消费者发生崩溃，井停止读取消息，群组协调器会等待几秒钟，确认它死亡了才会触发再均衡。在这几秒钟时间里，死掉的消费者不会读取分区里的消息。在清理消费者时，消费者会通知协调器它将要离开群组，协调器会立即触发一次再均衡，尽量降低处理停顿。
+
+#### 分配分区的过程
+
+1. 当消费者要加入群组时，它会向群组协调器发送一个 Join Group 请求。第一个加入群组的消费者将成为“**群主**”。
+2. 群主从协调器那里获得群组的成员列表（列表中包含了所有最近发送过心跳的消费者，它们被认为是活跃的），并负责给每一个悄费者分配分区。它使用一个实现了 `PartitionAssignor`  接口的类来决定哪些分区应该被分配给哪个消费者。
+3. 分配完毕之后，群主把分配情况列表发送给群组协调器，协调器再把这些信息发送给所有消费者。
+4. 每个消费者只能看到自己的分配信息，只有群主知道群组里所有消费者的分配信息。这个过程会在每次再均衡时重复发生。
+
+### 消费者代码
+
+#### 创建消费者
+
+```java
+Properties props = new Properties();
+props.put( "bootstrap.servers", "broker1:9092,broker2:9092");props.put( "group.id" , "CountryCounter");
+props.put( "key.deserializer" ,
+"org.apache.kafka . common.serialization.StringDeserializer");props.put( "value.deserializer" ,
+"org.apache.kafka.common.serialization.StringDeserializer");
+KafkaConsuner<String,string> consuner = new KafkaConsurer<String,string>(props);
+```
+
+#### 订阅主题
+
+```java
+consumer.subscribe(Collections.singletonList("custonerCountries");
+```
+
+`subscribe()` 方法接受一个主题列表作为参数，我们也可以在调用 `subscribe()`  方法时传入一个正则表达式。
+
+#### 轮询
+
+消息轮询是消费者 API 的核心，通过一个简单的轮询向服务器请求数据。一旦消费者订阅了主题 ，轮询就会处理所有的细节，包括群组协调、分区再均衡、发送心跳和获取数据。
+
+```java
+try {
+    while (true) { 
+        ConsumerRecords<String, String> records = consurer.poll(100); 
+        for (ConsumerRecord<String,String> record : records) {
+            log.debug( "topic = %s，partition = %s，offset = %d ,custoner = %s ,
+                      country = %s\n" ,
+                      record.topic(),record.partition() , record.offset(),record.key(), record.value());
+            int updatedCount = 1;
+            if (custCountryMap.countainsValue(record.value())){
+                updatedCount = custCountryMap.get(record.value()) + 1;
+            }
+            custCountryMap.put( record.value()，updatedCount)
+                JSONObject json = new JSONObject(custCountryMap);
+            Systen.out.println(json.toString(4));
+        }
+    }
+} finally {
+    consumer.close();
+}
+```
+
+传给 `poll()`  方法的参数是一个超时时间，用于控制  `poll()` 方法的阻塞时间。
+
+轮询不只是获取数据那么简单。在第一次调用新消费者的  `poll()` 方挂时，它会负责查找GroupCoordinator ， 然后加入群组，接受分配的分区。 如果发生了再均衡，整个过程也是在轮询期间进行的。当然 ，心跳也是从轮询里发迭出去的。所以，我们要确保在轮询期间所做的任何处理工作都应该尽快完成。
+
+### 消费者配置
+
+#### fetch.min.bytes 
+
+该属性指定了 **消费者 从服务器获取记录的最小字节数**。 
+
+如果小于，它会等到有足够的可用数据时才把它返回给消费者。
+
+这样可以降低消费者和 broker 的工作负载，因为它们在主题不是很活跃的时候（或者一天里的低谷时段）就不需要来来回回地处理消息。
+
+如果没有很多可用数据，但消费者的 CPU 使用率却很高，那么就需要把该属性的值设得比默认值大。如果消费者的数量比较多，把该属性的值设置得大一点可以降低 broker 的工作负载。
+
+#### fetch.max.wait.ms
+
+用于指定 broker 的等待时间，默认是 500ms 。
+
+如果没有足够的数据流入Kafka ，消费者获取最小数据量的要求就得不到满足，最终导致 500ms 的延迟。 
+
+####  max . partition . fetch. bytes 
+
+指定了 **服务器从每个分区里返回给消费者的最大字节数**。它的默认值是 1MB 。
+
+ max . partition . fetch. bytes  的值必须比 broker 能够接收的最大消息的字节数（通过 max.message.size 属性配置 ）大， 否则消费者可能无法读取这些消息，导致消费者一直挂起重试。
+
+另一个需要考虑的因素是消费者处理数据的时间。 消费者需要频繁调用 `poll()` 方陆来避免会话过期和发生分区再均衡，如果单次调用 `poll()` 返回的数据太多，消费者需要更多的时间来处理，可能无怯及时进行下一个轮询来避免会话过期。如果出现这种情况， 可以把  max . partition . fetch. bytes  值改小 ，或者延长会话过期时间。
+
+#### session.timeout.ms 
+
+指定了**消费者在被认为死亡之前可以与服 务器断开连接的时间**，默认是 3s 。
+
+如果消费者没有在 session.timeout.ms  指定的时间内发送心跳给群组协调器，就被认为已经死亡，协调器就会触发再均衡，把它的分区分配给群组里的其他消费者。
+
+该属性与 heartbeat.interval.ms 紧密相关。 heartbeat.interval.ms 指定了 `poll()` 方法向协调 器发送心跳的频率， session.timeout.ms  则指定了消费者可以多久不发送心跳。
+
+所以， 一般需要同时修改这两个属性， heartbeat.interval.ms 必须比 session.timeout.ms  小， 一般是 session.timeout.ms  的 三 分之 一。
+
+把 session.timeout.ms  值设得比默认值小，可以更快地检测和恢复崩溃的节点，不过长时间的轮询或垃圾收集可能导致非预期的再均衡。把该属性的值设置得大一些，可以减少意外的再均衡 ，不过检测节点崩愤－需要更长的时间。
+
+#### auto.offset.reset 
+
+指定了消费者在读取一个没有偏移量的分区或者偏移量无效的情况下（因消费者长时间失效，包含偏移量的记录已经过时井被删除）该作何处理：
+
+- 它的默认值是 latest ， 意思是说，在偏移量无效的情况下，消费者将从最新的记录开始读取数据（在消费者启动之后生成的记录）。
+- 另一个值是 earliest ，意思是说，在偏移量无效的情况下 ，消费者将从起始位置读取分区的记录。
+
+#### enable.auto.commit 
+
+该属性指定了 **消费者是否自动提交偏移量**，默认值是 true 。
+
+ **为了尽量避免出现重复数据和数据丢失，可以把它设为 false ，由自己控制何时提交偏移量**。
+
+如果把它设为 true ，还可以通过配置 auto.commit.interval.ms 属性来控制提交的频率。
+
+####  partition.assignment.strategy 
+
+**`PartitionAssignor`  根据给定的消费者和主题，决定哪些分区应该被分配给哪个消费者**。 
+
+Kafka 有两个默认的分配策略:
+
+- Range ：该策略会把主题的若干个连续的分区分配给消费者。
+- RoundRobin： 该策略把主题的所有分区逐个分配给消费者。
+
+#### client.id
+
+该属性可以是任意字符串 ， broker 用它来标识从客户端发送过来的消息，通常被用在日志、度量指标和配额里。
+
+####  max.poll.records 
+
+该属性用于控制单次调用 `call()` 方法能够返回的记录数量，可以帮你控制在轮询里需要处理的数据量。
+
+#### receive.buffer.butes 和 send.buffer.bytes
+
+socket 在读写数据时用到的 TCP 缓冲区也可以设置大小。如果它们被设为-1 ，就使用操作系统的默认值。如果生产者或消费者与 broker 处于不同的数据中心内，可以适当增大这些值，因为跨数据中心的网络一般都有比较高的延迟和比较低的带宽。
+
+
+
+### 提交和偏移量
+
+每次调用 poll() 方法，它总是返回由生产者写入 Kafka 但还没有被消费者读取过的记录 ，我们因此可以追踪到哪些记录是被群组里的哪个消费者读取的。
+
+**Kafka不会像其他 JMS 队列那样需要得到消费者的确认**，这是 Kafka 的一个独特之处。相反，**消费者可以使用 Kafka 来追踪消息在分区里的位置（偏移量）**。
+
+#### 如何提交偏移量？
+
+**更新分区当前位置的操作叫作 提交** 。
+
+**那么消费者是如何提交偏移量的呢？**
+
+消费者往一个叫作 consumer_offset 的特殊主题发送消息，消息里包含每个分区的偏移量。 
+
+如果消费者一直处于运行状态，那么偏移量就没有什么用处。
+
+不过，如果消费者发生崩溃或者有新的消费者加入群组，就会 **触发再均衡**，完成再均衡之后，每个消费者可能分配到新的分区，而不是之前处理的那个。为了能够继续之前的工作，消费者需要读取每个分区最后一次提交的偏移量，然后从偏移量指定的地方继续处理。
+
+**如果提交的偏移量小于客户端处理的最后一个消息的偏移量 ，那么处于两个偏移量之间的消息就会被重复处理**。
+
+![image-20220312162433155](https://cos.duktig.cn/typora/202203121624841.png)
+
+**如果提交的偏移量大于客户端处理的最后一个消息的偏移量，那么处于两个偏移量之间的消息将会丢失。**
+
+![image-20220312162509281](https://cos.duktig.cn/typora/202203121625614.png)
+
+所以，处理偏移量的方式对客户端会有很大的影响。
+
+#### 自动提交
+
+最简单的提交方式是让悄费者自动提交偏移量。如果 enable.auto.commit  被设为 true ，那么每5s，消费者会自动把从 poll() 方法接收到的最大偏移量提交上去。提交时间间隔由 auto.comit.interval.ms 控制，默认值是 5s 。
+
+假设我们仍然使用默认的 5s 提交时间间隔，在最近一次提交之后的 3s 发生了再均衡，再均衡之后，消费者从最后一次提交的偏移量位置开始读取消息。这个时候偏移量已经落后了 3s ，所以在这 3s 内到达的消息会被重复处理。
+
+**自动提交虽然方便 ， 不过并没有为开发者留有余地来避免重复处理消息**。
+
+#### 提交当前偏移量
+
+大部分开发者通过控制偏移量提交时间来消除丢失消息的可能性，井在发生再均衡时减少重复消息的数量。
+
+把 auto.offset.reset  设为 false ，让应用程序决定何时提交偏移量。使用 `commitSync()` 提交偏移量最简单也最可靠。这个 A PI 会提交由 poll() 方能返回 的 最新偏移量，提交成功后马上返回，如果提交失败就抛出异常。
+
+要记住，  `commitSync()`  将会提交由 poll() 返回的最新偏移量 ， 所以在处理完所有记录后要确保调用了  `commitSync()` ，否则还是会有丢失消息的风险。如果发生了再均衡，从最近一批消息到发生再均衡之间的所有消息都将被重复处理。
+
+```java{9}
+while (true) {
+    ConsunerRecords<String，String> records = consuner.poll(100);
+    for (ConsumerRecord<String,String> record : records){
+        Systen.out.printf( "topic = %s ， partition = %s ,offset =%d , customer = %s, country = %s\n" ,
+                          record.topic(), record.partition(),
+                          record.offset(),record.key(), record.value());
+    }
+    try {
+        consumer.commitSync(O); 
+    }catch (CommitFailedException e) {
+        log.error( "commit failed" , e);
+    }
+}
+```
+
+**只要没有发生不可恢复的错误，  `commitSync()` 方法会一直尝试直至提交成功。如果提交失败 ， 我们也只能把异常记录到错误日志里**。
+
+#### 异步提交
+
+手动提交有一个不足之处，在 bro ker 对提交请求作出回应之前，应用程序会一直阻塞，这样会限制应用程序的吞吐量。
+
+这个时候可以使用 **异步提交 API** 。我们只管发送提交请求，无需等待 broker 的响应。
+
+```java{10}
+while (true) {
+    ConsumerRecords<String, String> records = consumer . poll(100);
+    for (ConsumerRecord<String, String> record : records){
+        System. out . printf("topic = %s, partition = %s,
+                             offset = %d, customer = %s，country = %s\n" ，
+                             record. topic()，record. partition(), record.offset(), 
+                             record.key(), record.value());
+    }
+    consumer.commitAsync( );
+}
+```
+
+在成功提交或碰到无怯恢复的错误之前，  `commitSync()` 会一直重试，但是   `commitAsync()` 不会，这也是   `commitAsync()`  不好的一个地方。
+
+它之所以不进行重试，是因为在它收到服务器 响应的时候，**可能有一个更大的偏移量 已经提交成功**。
+
+假设我们发出 一个请求用于提交偏移量 2000 ，这个时候发生了短暂的通信问题 ，服务器收不到请求，自然也不会作出任何响应。与此同时，我们处理了另外一批消息，并成功提交了偏移量 3000 。如果 `commitAsync()`  重新尝试提交偏移量 2000 ，它有可能在偏移量 3000 之后提交成功。**这个时候如果发生再均衡，就会出现重复消息**。
+
+**之所以提到这个问题的复杂性和提交顺序的重要性，是因为 commitAsync()也支持因调，在 broker 作出响应时会执行回调。回调经常被用于记录提交错误或生成度量指标， 不过如果你要用它来进行重试， 一定要注意提交的顺序。**
+
+```java{9~15}
+while (true) {
+    ConsumerRecords<String, String> records = consumer . poll(100);
+    for (ConsumerRecord<String, String> record : records) {
+        System. out. printf("topic = %s, partition = %s,
+                            offset = %d，customer = %s，country = %s\n",
+                            record. topic()，record. partition(), record. offset(),
+                            record.key(), record. value());
+    }
+    consumer。commi tAsync( new offsetCommitCallback() {
+        public void onComplete(Map<TopicPartition,
+                               0ffse tAndMetadata> offsets， Exception e) {
+            if (e ! null)
+                log. error("Commit failed for offsets {]}", offsets, e);
+        }
+    });
+}
+```
+
+#### 重试异步提交
+
+我们可以 **使用一个单调递增的序列号来维护异步提交的顺序**。
+
+**在每次提交偏移量之后或在回调里提交偏移量时递增序列号**。
+
+在进行重试前，先检查回调的序列号和即将提交的偏移量是否相等，如果相等，说明没有新的提交，那么可以安全地进行重试。**如果序列号比较大，说明有一个新的提交已经发送出去了，应该停止重试**。
+
+#### 同步和异步组合提交
+
+→般情况下，针对偶尔出现的提交失败，不进行重试不会有太大问题，因为如果提交失败是因为 **临时问题** 导致的，那么后续的提交总会有成功的。**但如果这是发生在关闭消费者或再均衡前的最后一次提交，就要确保能够提交成功**。
+
+因 此，在消费者关闭前一般会组合使用 `commitAsync()` 和  `commitSync()` 。
+
+```java
+try {
+    while (true) {
+        ConsumerRecords<String，String> records = consumer . poll(100); 
+        for (ConsumerRecord<String, String> record : records) {
+            System. out . println("topic = %s, partition = %s，offset = %d,
+                                  customer = %s, country = %s\n",
+                                  record. topic(), record. partition(),
+                                  record.offset()，record.key(), record. value());
+        }
+        consumer . commitAsync();
+    }
+} catch (Exception e) {
+    log . error("Unexpected error", e);
+} finally {
+    try {
+        consumer .commitSync();
+    } finally {
+        consumer .close();
+    }
+}
+```
+
+如果一切正常，我们使用 `commitAsync()` 方陆来提交。这样速度更快，而且即使这次提交失败，下一次提交很可能会成功。
+
+如果直接关闭消费者，就没有所谓的“下一次提交”了。使用  `commitSync()`方也会一直重i式，直到提交成功或发生无陆恢复的错误。
+
+#### 提交特定的偏移量
+
+**提交偏移量的频率与处理消息批次的频率是一样的。但如果想要更频繁地提交出怎么办？**
+
+如果 `poll()`  方告返回一大批数据，为了避免因再均衡引起的重复处理整批消息，想要在批次中间提交偏移韭该怎么办？这种情况无法通过调用  `commitAsync()` 和  `commitSync()` 来实现，因为它们只会提交最后一个偏移量，而此时该批次里的消息还没有处理完。
+
+消费者 API 允许在调用 `commitAsync()` 和  `commitSync()` 时传进去希望提交的分区和偏移量的 map 。假设你处理了半个批次的消息 ， 最后一个来自主题“customers ”分区 3 的消息的偏移量是 5000 ， 你可以调用   `commitSync()`  方法来提交它。不过，因为消
+费者可能不只读取一个分区， 你需要跟踪所有分区的偏移量，所以在这个层面上控制偏移量的提交会让代码变复杂。
+
+我们决定每处理 1000 条记录就提交一次偏移量：
+
+```java
+private Map<TopicPartition, OffsetAndMetadata> currentoffsets =
+    new HashMap<>(); 
+int count = 0;
+
+while (true) {
+    ConsumerRecords<String, String> records = consumer . poll(100);
+    for (ConsunerRecord<String, String> record : records)
+    {
+        Systen. out.printf("topic = %s，partition = %s，offset = %d,
+                           customer = %S，country = %s\n",
+                           record. topic(), record. partition()，record. offset(),
+                           record. key()，record.value()); 
+        currentOffsets. put(new TopicPartition(record. topic(),
+                                               record. partition()), new
+                            OffsetAndMetadata(record. offset()+1, "no metadata")); 
+        if(count%1000=0)
+            consumer . commi tAsync(current0ffsets ,null);
+        count++;
+    }
+}
+```
+
+
+
+### 再均衡监昕器
+
+消费者在退出和进行分区再均衡之前，会做一些清理工作。
+
+**你会在消费者失去对一个分区的所有权之前提交最后一个已处理记录的偏移量。如果消费者准备了一个缓冲区用于处理偶发的事件，那么在失去分区所有权之前， 需要处理在缓冲区累积下来的记录。你可能还需要关闭文件句柄、数据库连接等。**
+
+在为消 费者分配新分区或移除旧分区 时，可以通过消 费者 API 执行 一 些应用程序代码，在调用 `subscribe()` 方法时传进去 一 个 ConsumerRebalanceListener 实例就可以了，ConsumerRebalanceListener 有两个需要实现的方法：
+
+- `onPartitionsRevoked`：**会在再均衡开始之前和消费者停止读取消息之后被调用**。如果在这里提交偏移量，下一个接管分区的消费者就知道该从哪里开始读取了。
+- `onPartitionsAssigned`：**会在重新分配分区之后和消费者开始读取消息之前被调用**。
+
+### 从特定偏移量处开始处理记录
+
+如果你想从分区的起始位置开始读取消息，或者直接跳到分区的末尾开始读取消息， 可以使用  `seekToBeginning` 和 `seekToEnd` 
+这两个方法。
+
+Kafka 也为我们提供了用于查找特定偏移量的 API 。 它有很多用途，比如向后回退几个消息或者向前跳过几个消息（对时间比较敏感的应用程序在处理滞后的情况下希望能够向前跳过若干个消息）。
+
+### 如何退出
+
+如果确定要退出循环，需要通过另 一个线程调用 `consulmer.wakeup()` 方法。如果循环运行在主线程里，可以在 `ShutdownHook` 里调用该方法。
+
+记住，  `consulmer.wakeup()` 方法是消费者唯一一个可以从其他线程里安全调用 的方法。
+
+调用 `consulmer.wakeup()` 方法 可以退出 `poll()` ,并抛出 `WakeupException` 异常，或者如果调用`consulmer.wakeup()`  时线程没有等待轮询， 那么异常将在下一轮调用  `poll()` 时抛出。我们不需要处理  `WakeupException`  ，因为它只是用于跳出循环的一种方式。
+
+不过 ， 在退出线程之前调用`consulmer.close()` 是很有必要的， 它会提交任何还没有提交的东西 ， 并向群组协调器发送消息，告知自己要离开群组，接下来就会触发再均衡 ，而不需要等待会话超时。
+
+#### 独立消费者——为什么以及怎样使用没有群组的消费者
+
+有时候你需要一些更简单的东西。 比如 ，你可能只需要一个消费者从一个主题的所有分区或者某个特定的分区读取数据。这个时候就不需要消费者群组和再均衡了， 只需要把主题或者分区分配给消费者，然后开始读取消息井提交偏移量。
+
+如果是这样的话，就不需要订阅主题， 取而代之的是为自己分配分区。 **一个消费者可以订阅主题（井加入消费者群组），或者为自己分配分区 ， 但不能同时做这两件事情**。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

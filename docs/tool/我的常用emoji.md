@@ -13,27 +13,30 @@ publish: false
 
 ## 小黄脸
 
-<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;text-align: center;font-size: 30px;line-height:normal;">
-    <span>🤪<br>滑稽</span>
-    <span>😀<br>微笑</span>
-    <span>😂<br>笑哭</span>
-    <span>😳<br>脸红</span>
-    <span>😵‍💫<br>晕</span>
-    <span>😎<br>墨镜</span>
-    <span>😲<br>震惊</span>
-    <span>🙄<br>翻白眼</span>
-    <span>😏<br>得意</span>
-    <span>😱<br>吓死了</span>
-    <span>😠<br>生气</span>
+<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;text-align: center;font-size: 30px;line-height:normal;">
+    <span style="flex-basis: 10%;">🤪<br>滑稽</span>
+    <span style="flex-basis: 10%;">😀<br>微笑</span>
+    <span style="flex-basis: 10%;">😂<br>笑哭</span>
+    <span style="flex-basis: 10%;">😳<br>脸红</span>
+    <span style="flex-basis: 10%;">😵‍💫<br>晕</span>
+    <span style="flex-basis: 10%;">😎<br>墨镜</span>
+    <span style="flex-basis: 10%;">😲<br>震惊</span>
+    <span style="flex-basis: 10%;">🙄<br>翻白眼</span>
+    <span style="flex-basis: 10%;">😏<br>得意</span>
+    <span style="flex-basis: 10%;">😱<br>吓死了</span>
+    <span style="flex-basis: 10%;">😠<br>生气</span>
 </div>
 
 
 
 ## 记录
 
-<div style="display:grid;grid-template-columns: repeat(auto-fill, 10%);font-size:30px;justify-items:center;align-items:center;line-height:normal;text-align:center">
-    <span>✍️<br>写字</span>
-    <span>📚<br>书</span>
+<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;text-align: center;font-size: 30px;line-height:normal;">
+    <span style="flex-basis: 10%;">✍️<br>写字</span>
+    <span style="flex-basis: 10%;">📚<br>书</span>
 </div>
+
+
+
 
 
