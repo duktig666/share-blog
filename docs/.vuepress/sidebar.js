@@ -344,7 +344,7 @@ function getToolRoute() {
             collapsable: false,
             sidebarDepth: 2,
             children: [
-                "我的常用emoji",
+                "emoji/我的常用emoji",
             ]
         },
     ]
