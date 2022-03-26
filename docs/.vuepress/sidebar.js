@@ -337,18 +337,18 @@ function getArchitectureRoute() {
     ]
 }
 
-function getToolRoute() {
-    return [
-        {
-            title: '其他',
-            collapsable: false,
-            sidebarDepth: 2,
-            children: [
-                "emoji/我的常用emoji",
-            ]
-        },
-    ]
-}
+// function getToolRoute() {
+//     return [
+//         {
+//             title: '其他',
+//             collapsable: false,
+//             sidebarDepth: 2,
+//             children: [
+//                 "emoji/我的常用emoji",
+//             ]
+//         },
+//     ]
+// }
 
 module.exports = {
     getSqlRoute,
@@ -357,5 +357,5 @@ module.exports = {
     getBigDataRoute,
     getAlgorithmRoute,
     getArchitectureRoute,
-    getToolRoute
+    // getToolRoute
 }
