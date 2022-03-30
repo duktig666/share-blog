@@ -10,7 +10,7 @@ module.exports = {
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: "Duktig的个人博客",
+            title: "个人博客",
         }
     },
     // 永久链接格式 （1.6.10 配置这个 导致插件vuepress-plugin-permalink-pinyin 中文路由转拼音失效）
@@ -72,7 +72,7 @@ module.exports = {
             '/大数据/': sidebar.getBigDataRoute(),
             '/算法与数据结构/': sidebar.getAlgorithmRoute(),
             '/架构/': sidebar.getArchitectureRoute(),
-            '/tool/': sidebar.getToolRoute(),
+            // '/tool/': sidebar.getToolRoute(),
         },
         "type": "blog",
         "blogConfig": {
