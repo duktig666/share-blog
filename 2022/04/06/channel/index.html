@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Go的Channel | 个人博客</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+           </script>
+    <script src="https://hm.baidu.com/hm.js?xxxxxxxxxxx"></script>
+    <meta name="description" content="优秀还努力。愿你付出甘之如饴，所得归于欢喜。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="robots" content="all">
+    <meta name="author" content="RenShiWei">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.a3f86de3.css" as="style"><link rel="preload" href="/assets/js/app.7d68fb71.js" as="script"><link rel="preload" href="/assets/js/3.d672708f.js" as="script"><link rel="preload" href="/assets/js/1.dac55fe7.js" as="script"><link rel="preload" href="/assets/js/27.427a02b7.js" as="script"><link rel="preload" href="/assets/js/10.64c0f5ca.js" as="script"><link rel="prefetch" href="/assets/js/100.ec5e1075.js"><link rel="prefetch" href="/assets/js/101.36dccde8.js"><link rel="prefetch" href="/assets/js/102.54b013f2.js"><link rel="prefetch" href="/assets/js/103.639c6945.js"><link rel="prefetch" href="/assets/js/104.87a0c71e.js"><link rel="prefetch" href="/assets/js/105.d1b294d6.js"><link rel="prefetch" href="/assets/js/106.23dafcf4.js"><link rel="prefetch" href="/assets/js/107.decc9982.js"><link rel="prefetch" href="/assets/js/108.5c296c8c.js"><link rel="prefetch" href="/assets/js/109.afd0298f.js"><link rel="prefetch" href="/assets/js/11.2b786687.js"><link rel="prefetch" href="/assets/js/110.1044d174.js"><link rel="prefetch" href="/assets/js/111.62966dbf.js"><link rel="prefetch" href="/assets/js/112.ce00bfa4.js"><link rel="prefetch" href="/assets/js/113.4e43999c.js"><link rel="prefetch" href="/assets/js/114.7d9aad43.js"><link rel="prefetch" href="/assets/js/115.6f4da91b.js"><link rel="prefetch" href="/assets/js/116.29a4fed8.js"><link rel="prefetch" href="/assets/js/117.9f0231e4.js"><link rel="prefetch" href="/assets/js/118.f4f90f6d.js"><link rel="prefetch" href="/assets/js/119.7ab4662f.js"><link rel="prefetch" href="/assets/js/12.4773e190.js"><link rel="prefetch" href="/assets/js/120.40007ea8.js"><link rel="prefetch" href="/assets/js/121.b8e63a3c.js"><link rel="prefetch" href="/assets/js/122.0d4e7fc9.js"><link rel="prefetch" href="/assets/js/123.d12c0484.js"><link rel="prefetch" href="/assets/js/124.8e5dd991.js"><link rel="prefetch" href="/assets/js/125.ef7d5308.js"><link rel="prefetch" href="/assets/js/126.6bf58d6c.js"><link rel="prefetch" href="/assets/js/127.cb134181.js"><link rel="prefetch" href="/assets/js/128.8c42388b.js"><link rel="prefetch" href="/assets/js/129.5b31eca4.js"><link rel="prefetch" href="/assets/js/13.6fea1f41.js"><link rel="prefetch" href="/assets/js/130.74f003ce.js"><link rel="prefetch" href="/assets/js/131.f02c5d8b.js"><link rel="prefetch" href="/assets/js/132.70a320d3.js"><link rel="prefetch" href="/assets/js/133.f4aabadf.js"><link rel="prefetch" href="/assets/js/134.85d1e724.js"><link rel="prefetch" href="/assets/js/135.a78f9c99.js"><link rel="prefetch" href="/assets/js/136.aae6cd86.js"><link rel="prefetch" href="/assets/js/137.944fc509.js"><link rel="prefetch" href="/assets/js/138.3a65f11e.js"><link rel="prefetch" href="/assets/js/139.a1b67ef8.js"><link rel="prefetch" href="/assets/js/14.383ce128.js"><link rel="prefetch" href="/assets/js/140.1869563c.js"><link rel="prefetch" href="/assets/js/141.a2e2b984.js"><link rel="prefetch" href="/assets/js/142.89f6fe28.js"><link rel="prefetch" href="/assets/js/143.0f6dd35c.js"><link rel="prefetch" href="/assets/js/144.49f0fddf.js"><link rel="prefetch" href="/assets/js/145.fe00036a.js"><link rel="prefetch" href="/assets/js/146.7451d97e.js"><link rel="prefetch" href="/assets/js/147.de0abac6.js"><link rel="prefetch" href="/assets/js/148.e2b768b5.js"><link rel="prefetch" href="/assets/js/149.9f1a5103.js"><link rel="prefetch" href="/assets/js/15.8109f13b.js"><link rel="prefetch" href="/assets/js/150.88eca89b.js"><link rel="prefetch" href="/assets/js/151.2ff85196.js"><link rel="prefetch" href="/assets/js/152.0124581f.js"><link rel="prefetch" href="/assets/js/153.6de91393.js"><link rel="prefetch" href="/assets/js/154.000a886e.js"><link rel="prefetch" href="/assets/js/155.889089c9.js"><link rel="prefetch" href="/assets/js/156.95b73d33.js"><link rel="prefetch" href="/assets/js/157.920070e7.js"><link rel="prefetch" href="/assets/js/158.5deeda0c.js"><link rel="prefetch" href="/assets/js/159.f78cf17b.js"><link rel="prefetch" href="/assets/js/16.fea1578a.js"><link rel="prefetch" href="/assets/js/160.31597bee.js"><link rel="prefetch" href="/assets/js/161.1d316c33.js"><link rel="prefetch" href="/assets/js/162.8a36c82c.js"><link rel="prefetch" href="/assets/js/163.1080b111.js"><link rel="prefetch" href="/assets/js/164.33e25807.js"><link rel="prefetch" href="/assets/js/165.2c351afd.js"><link rel="prefetch" href="/assets/js/166.ab11a056.js"><link rel="prefetch" href="/assets/js/167.50cc4bf9.js"><link rel="prefetch" href="/assets/js/168.31569b74.js"><link rel="prefetch" href="/assets/js/169.64546d74.js"><link rel="prefetch" href="/assets/js/17.dc7d3bff.js"><link rel="prefetch" href="/assets/js/170.8857371c.js"><link rel="prefetch" href="/assets/js/171.fee62b0f.js"><link rel="prefetch" href="/assets/js/172.f4bd3868.js"><link rel="prefetch" href="/assets/js/173.95d89340.js"><link rel="prefetch" href="/assets/js/174.5b8dd5a4.js"><link rel="prefetch" href="/assets/js/175.791a11be.js"><link rel="prefetch" href="/assets/js/176.1bba8796.js"><link rel="prefetch" href="/assets/js/177.7339c274.js"><link rel="prefetch" href="/assets/js/178.1eef9846.js"><link rel="prefetch" href="/assets/js/179.31fd1de3.js"><link rel="prefetch" href="/assets/js/18.834dde81.js"><link rel="prefetch" href="/assets/js/180.35cb4cea.js"><link rel="prefetch" href="/assets/js/181.bca66028.js"><link rel="prefetch" href="/assets/js/19.313cd169.js"><link rel="prefetch" href="/assets/js/20.497a0663.js"><link rel="prefetch" href="/assets/js/21.33ca174d.js"><link rel="prefetch" href="/assets/js/22.5032c9e2.js"><link rel="prefetch" href="/assets/js/23.1b7089ab.js"><link rel="prefetch" href="/assets/js/24.12fc54d1.js"><link rel="prefetch" href="/assets/js/25.072d14bb.js"><link rel="prefetch" href="/assets/js/26.2c9445cb.js"><link rel="prefetch" href="/assets/js/28.6fc30625.js"><link rel="prefetch" href="/assets/js/29.ecbc5a05.js"><link rel="prefetch" href="/assets/js/30.3f6b95d6.js"><link rel="prefetch" href="/assets/js/31.84f2105e.js"><link rel="prefetch" href="/assets/js/32.26971669.js"><link rel="prefetch" href="/assets/js/33.3f6b51ad.js"><link rel="prefetch" href="/assets/js/34.52bf386d.js"><link rel="prefetch" href="/assets/js/35.c8e985cb.js"><link rel="prefetch" href="/assets/js/36.cd0a21af.js"><link rel="prefetch" href="/assets/js/37.a6b05154.js"><link rel="prefetch" href="/assets/js/38.5ff3ac31.js"><link rel="prefetch" href="/assets/js/39.24021396.js"><link rel="prefetch" href="/assets/js/4.99c7da12.js"><link rel="prefetch" href="/assets/js/40.fbf1e9e4.js"><link rel="prefetch" href="/assets/js/41.81fb8428.js"><link rel="prefetch" href="/assets/js/42.d0b03002.js"><link rel="prefetch" href="/assets/js/43.f9215b2b.js"><link rel="prefetch" href="/assets/js/44.cc9cb9a9.js"><link rel="prefetch" href="/assets/js/45.c1905428.js"><link rel="prefetch" href="/assets/js/46.002d36fd.js"><link rel="prefetch" href="/assets/js/47.5239b825.js"><link rel="prefetch" href="/assets/js/48.bc1c59c3.js"><link rel="prefetch" href="/assets/js/49.84ab1040.js"><link rel="prefetch" href="/assets/js/5.ceb27032.js"><link rel="prefetch" href="/assets/js/50.e4d5bd3a.js"><link rel="prefetch" href="/assets/js/51.476a0e20.js"><link rel="prefetch" href="/assets/js/52.2721aaff.js"><link rel="prefetch" href="/assets/js/53.b2fc4c7a.js"><link rel="prefetch" href="/assets/js/54.6b22fa56.js"><link rel="prefetch" href="/assets/js/55.e6534d25.js"><link rel="prefetch" href="/assets/js/56.6c100f45.js"><link rel="prefetch" href="/assets/js/57.b5925b0e.js"><link rel="prefetch" href="/assets/js/58.b074cf7f.js"><link rel="prefetch" href="/assets/js/59.0cb05c8e.js"><link rel="prefetch" href="/assets/js/6.be1da93b.js"><link rel="prefetch" href="/assets/js/60.62b333a0.js"><link rel="prefetch" href="/assets/js/61.224c8764.js"><link rel="prefetch" href="/assets/js/62.87d94d70.js"><link rel="prefetch" href="/assets/js/63.ac93829d.js"><link rel="prefetch" href="/assets/js/64.a74e2c51.js"><link rel="prefetch" href="/assets/js/65.59f64de5.js"><link rel="prefetch" href="/assets/js/66.f52d3257.js"><link rel="prefetch" href="/assets/js/67.9d298e41.js"><link rel="prefetch" href="/assets/js/68.d2267e2d.js"><link rel="prefetch" href="/assets/js/69.a340ad64.js"><link rel="prefetch" href="/assets/js/7.9bd8ef35.js"><link rel="prefetch" href="/assets/js/70.62de2b0d.js"><link rel="prefetch" href="/assets/js/71.671a8b24.js"><link rel="prefetch" href="/assets/js/72.6ee57b8b.js"><link rel="prefetch" href="/assets/js/73.22be6933.js"><link rel="prefetch" href="/assets/js/74.9c6e3970.js"><link rel="prefetch" href="/assets/js/75.8f1472f1.js"><link rel="prefetch" href="/assets/js/76.235984c9.js"><link rel="prefetch" href="/assets/js/77.e19c75a9.js"><link rel="prefetch" href="/assets/js/78.b6ecd35b.js"><link rel="prefetch" href="/assets/js/79.82181881.js"><link rel="prefetch" href="/assets/js/8.e71b4cb3.js"><link rel="prefetch" href="/assets/js/80.d2abbe57.js"><link rel="prefetch" href="/assets/js/81.a3b12690.js"><link rel="prefetch" href="/assets/js/82.16cb0bbe.js"><link rel="prefetch" href="/assets/js/83.1dd82418.js"><link rel="prefetch" href="/assets/js/84.e80a304e.js"><link rel="prefetch" href="/assets/js/85.eda844a1.js"><link rel="prefetch" href="/assets/js/86.e1afd222.js"><link rel="prefetch" href="/assets/js/87.2bbb2b68.js"><link rel="prefetch" href="/assets/js/88.61fa0024.js"><link rel="prefetch" href="/assets/js/89.f2e0fff6.js"><link rel="prefetch" href="/assets/js/9.129e9cf5.js"><link rel="prefetch" href="/assets/js/90.9a914721.js"><link rel="prefetch" href="/assets/js/91.a712ad54.js"><link rel="prefetch" href="/assets/js/92.2c64a6f3.js"><link rel="prefetch" href="/assets/js/93.38302270.js"><link rel="prefetch" href="/assets/js/94.3c201570.js"><link rel="prefetch" href="/assets/js/95.ae4865ac.js"><link rel="prefetch" href="/assets/js/96.816840db.js"><link rel="prefetch" href="/assets/js/97.edf4b66b.js"><link rel="prefetch" href="/assets/js/98.2f96709e.js"><link rel="prefetch" href="/assets/js/99.5e4715ca.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a3f86de3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-1aefc0b4><div data-v-1aefc0b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-1aefc0b4 data-v-1aefc0b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Duktig</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>优秀还努力。愿你付出甘之如饴，所得归于欢喜。</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>RenShiWei</span>
+            
+          <span data-v-25ba6db2>2018 - </span>
+          2022
+        </a></span></div></div> <div class="hide" data-v-1aefc0b4><header class="navbar" data-v-1aefc0b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="个人博客" class="logo"> <span class="site-name">个人博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li><li class="dropdown-item"><h4>Spring</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/spring family/Spring/Spring总结.html" class="nav-link"><i class="undefined"></i>
+  Spring总结
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/Spring/Spring常见面试题.html" class="nav-link"><i class="undefined"></i>
+  Spring常见面试题
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringMVC/SpringMVC.html" class="nav-link"><i class="undefined"></i>
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringBoot/SpringBoot自动装配和Starter原理.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot自动装配和Starter原理
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringBoot/SpringBoot常见面试题.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot常见面试题
+</a></li></ul></li><li class="dropdown-item"><h4>JWT</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/JWT相关.html" class="nav-link"><i class="undefined"></i>
+  JWT总结
+</a></li></ul></li><li class="dropdown-item"><h4>Netty</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/Netty/Netty总结.html" class="nav-link"><i class="undefined"></i>
+  Netty总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/tool/emoji/我的常用emoji.html" class="nav-link"><i class="undefined"></i>
+  工具
+</a></div><div class="nav-item"><a href="/aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <a href="https://github.com/duktig666/share-blog" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask" data-v-1aefc0b4></div> <aside class="sidebar" data-v-1aefc0b4><div class="personal-info-wrapper" data-v-39576ba9 data-v-1aefc0b4><img src="/avatar.jpg" alt="author-avatar" class="personal-img" data-v-39576ba9> <h3 class="name" data-v-39576ba9>
+    RenShiWei
+  </h3> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>43</h3> <h6 data-v-39576ba9>文章</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>22</h3> <h6 data-v-39576ba9>标签</h6></div></div> <ul class="social-links" data-v-39576ba9><li class="social-item" data-v-39576ba9><i class="iconfont reco-github" style="color:#f8b26a;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-mayun" style="color:#e15b64;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-csdn" style="color:#849b87;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-jianshu" style="color:#849b87;" data-v-39576ba9></i></li></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li><li class="dropdown-item"><h4>Spring</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/spring family/Spring/Spring总结.html" class="nav-link"><i class="undefined"></i>
+  Spring总结
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/Spring/Spring常见面试题.html" class="nav-link"><i class="undefined"></i>
+  Spring常见面试题
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringMVC/SpringMVC.html" class="nav-link"><i class="undefined"></i>
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringBoot/SpringBoot自动装配和Starter原理.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot自动装配和Starter原理
+</a></li><li class="dropdown-subitem"><a href="/java相关框架/spring family/SpringBoot/SpringBoot常见面试题.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot常见面试题
+</a></li></ul></li><li class="dropdown-item"><h4>JWT</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/JWT相关.html" class="nav-link"><i class="undefined"></i>
+  JWT总结
+</a></li></ul></li><li class="dropdown-item"><h4>Netty</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java相关框架/Netty/Netty总结.html" class="nav-link"><i class="undefined"></i>
+  Netty总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/tool/emoji/我的常用emoji.html" class="nav-link"><i class="undefined"></i>
+  工具
+</a></div><div class="nav-item"><a href="/aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <a href="https://github.com/duktig666/share-blog" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Go的Channel</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>RenShiWei</span>
+            
+          <span data-v-25ba6db2>2018 - </span>
+          2022
+        </a></span></div></div> <div data-v-1aefc0b4><main class="page"><section><div class="page-title"><h1 class="title">Go的Channel</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>RenShiWei</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>2022/4/6</span></i> <!----> <!----></div></div> <div class="theme-reco-content content__default"><h2 id="设计原理"><a href="#设计原理" class="header-anchor">#</a> 设计原理</h2> <p>Go 语言中最常见的、也是经常被人提及的设计模式就是：<strong>不要通过共享内存的方式进行通信，而是应该通过通信的方式共享内存。</strong></p> <p>在很多主流的编程语言中，多个线程传递数据的方式一般都是共享内存，为了解决线程竞争，我们需要限制同一时间能够读写这些变量的线程数量，然而这与 Go 语言鼓励的设计并不相同。</p> <p><img src="https://img.draveness.me/2020-01-28-15802171487042-shared-memory.png" alt="shared-memory"></p> <p>虽然我们在 Go 语言中也能使用共享内存加互斥锁进行通信，但是 Go 语言提供了一种不同的并发模型，即通信顺序进程（Communicating sequential processes，CSP）<a href="https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-channel/#fn:1" target="_blank" rel="noopener noreferrer">1<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。Goroutine 和 Channel 分别对应 CSP 中的实体和传递信息的媒介，Goroutine 之间会通过 Channel 传递数据。</p> <p><img src="https://img.draveness.me/2020-01-28-15802171487080-channel-and-goroutines.png" alt="channel-and-goroutines"></p> <p>上图中的两个 Goroutine，一个会向 Channel 中发送数据，另一个会从 Channel 中接收数据，它们两者能够独立运行并不存在直接关联，但是能通过 Channel 间接完成通信。</p></div></section> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/duktig666/share-blog/edit/main/docs/Go/并发编程/Channel.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2022/4/6 12:57:13</span></div></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-cb1513f6><li class="level-2" data-v-cb1513f6><a href="/2022/04/06/channel/#设计原理" class="sidebar-link reco-side-设计原理" data-v-cb1513f6>设计原理</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><!----><APlayer audio="" fixed="true" mini="true" theme="#f9bcdd" loop="loop" order="random" preload="auto" volume="0.1" mutex="true" lrc-type="0" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer></div></div>
+    <script src="/assets/js/app.7d68fb71.js" defer></script><script src="/assets/js/3.d672708f.js" defer></script><script src="/assets/js/1.dac55fe7.js" defer></script><script src="/assets/js/27.427a02b7.js" defer></script><script src="/assets/js/10.64c0f5ca.js" defer></script>
+  </body>
+</html>
