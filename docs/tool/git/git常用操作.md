@@ -1,7 +1,10 @@
 ---
 title: git 常用操作
-date: 2020-01-01 
-publish: false
+date: 2022-05-01 
+categories:
+ - tool
+tags:
+ - git
 ---
 
 ## git修改远程仓库地址
