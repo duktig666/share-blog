@@ -47,14 +47,26 @@ module.exports = {
         // 默认是 false, 设置为 true 来启用
         editLinks: true,
         // 评论系统配置
-        vssueConfig: {
-            platform: 'github',
-            owner: 'duktig666',
-            repo: 'vssues',
-            clientId: 'fbab7b9d7d2529d6207c',
-            clientSecret: 'a89a0cf8535c57aba36d5d5eb04fde91d8a2ecfc',
-            // 自动创建issues
-            autoCreateIssue: true,
+        // vssueConfig: {
+        //     platform: 'github',
+        //     owner: 'duktig666',
+        //     repo: 'vssues',
+        //     clientId: 'fbab7b9d7d2529d6207c',
+        //     clientSecret: 'a89a0cf8535c57aba36d5d5eb04fde91d8a2ecfc',
+        //     // 自动创建issues
+        //     autoCreateIssue: true,
+        // },
+        valineConfig: {
+            appId: 'cJXCRUAuFj0nwNYBdSPM0mke-gzGzoHsz',
+            appKey: 'uQ4GOlSaJobJdYp04idd3bjo',
+            // 默认头像模式
+            avatar: 'monsterid',
+            pageSize: 20,
+            // 文章访问量统计
+            visitor: false,
+            // 是否启用昵称框自动获取QQ昵称和QQ头像, 默认关闭，需博/网站主主动启用
+            enableQQ: true,
+
         },
         // 在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容
         subSidebar: 'auto',
