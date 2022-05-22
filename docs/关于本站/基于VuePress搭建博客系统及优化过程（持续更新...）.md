@@ -28,6 +28,7 @@ sticky: 1
 
 | 时间      |      优化内容      |
 | ------------- | ----------- |
+| 2022.05.23 | 【[vssue](https://vssue.js.org/zh/guide/github.html#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-oauth-app)】出现bug，将评论插件改为【[valine](https://valine.js.org/)】 |
 | 2022.03.09 | 新增插件【code-copy】、【copyright】、【sitemap】 |
 | 2022.03.09 | 解决github pages部署时，报错：`JavaScript heap out of memory` |
 | 2022.03.05 | 配置  【[友盟+](https://www.umeng.com/web)】的【网站统计U-Web】，实现网站底部的【站点统计】功能 |

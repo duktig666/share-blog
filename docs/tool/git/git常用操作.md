@@ -111,7 +111,7 @@ git cherry-pick <HashA> <HashB>
 
 
 
-## merge和rebase
+## merge 和 rebase
 
 比如`git pull`这个命令，我们经常会用，它默认是使用`merge`方式将远端别人的修改拉到本地；如果带上上参数`git pull -r`，就会使用`rebase`的方式将远端修改拉到本地。
 
