@@ -141,7 +141,7 @@ module.exports = {
         "searchMaxSuggestions": 10,
         "lastUpdated": "Last Updated",
         "author": "RenShiWei",
-        "authorAvatar": "/avatar.jpg",
+        "authorAvatar": "/avatar.jpeg",
         "record": "豫ICP备2021014891号-1",
         "startYear": "2018"
     },
