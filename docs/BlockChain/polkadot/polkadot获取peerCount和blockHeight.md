@@ -282,3 +282,6 @@ curl -X POST -H "Content-Type: application/json" -H'x-auth-token:6a9446d97c7e4ec
 - [Can Polkadot use the RPCAPI parameter to control the RPC method like ETH? ](https://github.com/paritytech/substrate/issues/11508)  （我提的issues）
 - [JSON-RPC method not found. code:-32601](https://github.com/paritytech/substrate/issues/11509) （我提的issues）
 - [https://explorer.polkascan.io/polkadot](https://explorer.polkascan.io/polkadot) （polkadot的区块浏览器）
+
+
+
