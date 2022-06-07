@@ -17,9 +17,37 @@ tags:
 
 
 
-## git clone 远程仓库的某个分支
+## git clone 远程仓库的某个分支/tag
 
-`git clone -b 分支名 xxx.git`
+`git clone -b 分支名/tag xxx.git`
+
+
+
+## git tag
+
+```sh
+# 创建tag
+git tag <tag_name> 
+git tag -a <tag_name> -m "message"
+# 为特定的commit创建tag
+git tag <tag_name> <commit_sha>
+# tag 推送到远程版本库
+git push --tags
+git push origin <branch> --tags
+# 查看tag
+git tag
+git tag -l "1.0*"
+# 获取标签的详细信息
+git show <tag_name>
+# 删除tag
+git tag -d <tag_name>
+# 将远程仓库的标签拉取（同步）到当前分支
+git fetch --tags
+# 切换tag
+git checkout <tag_name>
+```
+
+
 
 
 
