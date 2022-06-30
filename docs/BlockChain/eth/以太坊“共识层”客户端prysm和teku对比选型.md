@@ -20,17 +20,18 @@ ethereum”共识层”的客户端有prysm、teku、nimbus、light house等，�
 
 <!-- more -->
 
-
+> 本文首发于：[duktig.cn](https://www.duktig.cn/)
+>
 
 teku：
 
-- https://docs.teku.consensys.net/en/latest/
-- https://github.com/Consensys/teku/
+- [https://docs.teku.consensys.net/en/latest/](https://docs.teku.consensys.net/en/latest/)
+- [https://github.com/Consensys/teku/](https://github.com/Consensys/teku/)
 
 prysm：
 
-- https://docs.prylabs.network/docs/getting-started/
-- https://github.com/prysmaticlabs/prysm
+- [https://docs.prylabs.network/docs/getting-started/](https://docs.prylabs.network/docs/getting-started/)
+- [https://github.com/prysmaticlabs/prysm](https://github.com/prysmaticlabs/prysm)
 
 
 
@@ -187,9 +188,9 @@ teku有比较好的稳定性，安全性有官方维护的远程签名校验服�
 ## 参看
 
 - [以太坊2.0共识客户端的分析](https://foresightnews.pro/article/detail/6767) 
-- https://docs.teku.consensys.net/en/latest/
-- https://github.com/Consensys/teku/
-- https://docs.web3signer.consensys.net/en/latest/
-- https://docs.prylabs.network/docs/getting-started/
-- https://github.com/prysmaticlabs/prysm
+- [https://docs.teku.consensys.net/en/latest/](https://docs.teku.consensys.net/en/latest/)
+- [https://github.com/Consensys/teku/](https://github.com/Consensys/teku/)
+- [https://docs.web3signer.consensys.net/en/latest/](https://docs.web3signer.consensys.net/en/latest/)
+- [https://docs.prylabs.network/docs/getting-started/](https://docs.prylabs.network/docs/getting-started/)
+- [https://github.com/prysmaticlabs/prysm](https://github.com/prysmaticlabs/prysm)
 

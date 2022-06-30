@@ -129,6 +129,16 @@ function getNav() {
                     "link": "https://www.jianshu.com/u/421632ec0dc8",
                     "icon": "reco-jianshu"
                 },
+                {
+                    "text": "知乎",
+                    "link": "https://www.zhihu.com/people/zui-jing-de-zi-91/posts",
+                    "icon": "reco-zhihu"
+                },
+                {
+                    "text": "Twitter",
+                    "link": "https://twitter.com/duktig666",
+                    "icon": "reco-twitter"
+                },
             ]
         }
     ];
