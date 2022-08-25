@@ -209,6 +209,6 @@ java.security.cert.CertificateParsingException: Empty issuer DN not allowed in X
 - [SSL，HTTPS，TLS三者的区别](https://zhuanlan.zhihu.com/p/158711125)
 - [SSL 证书格式普及，PEM、CER、JKS、PKCS12](https://blog.freessl.cn/ssl-cert-format-introduce/)
 - [PKCS12（维基百科）](https://zh.m.wikipedia.org/zh-hans/PKCS_12)
-- ****[证书生成 .p12 .keyStore 和 .truststore文件理解](https://www.cnblogs.com/nhdlb/p/12258225.html)****
+- [证书生成 .p12 .keyStore 和 .truststore文件理解](https://www.cnblogs.com/nhdlb/p/12258225.html)
 - [https://cert-manager.io/v1.8-docs/reference/api-docs/#cert-manager.io/v1.PKCS12Keystore](https://cert-manager.io/v1.8-docs/reference/api-docs/#cert-manager.io/v1.PKCS12Keystore)
-- [secret使用](
+- [secret使用](https://www.qikqiak.com/post/use-secret-in-k8s/)
