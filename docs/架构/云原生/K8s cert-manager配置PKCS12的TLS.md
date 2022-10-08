@@ -6,7 +6,6 @@ categories:
 tags:
  - k8s
  - cert-manager
- - tls
 ---
 
 ## 概念

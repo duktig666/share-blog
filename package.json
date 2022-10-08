@@ -4,14 +4,15 @@
   "author": "RenShiWei",
   "scripts": {
     "dev": "vuepress dev docs/. --open --host \"localhost\"",
-    "build": "vuepress build docs/."
+    "build": "vuepress build docs/.",
+    "deploy": "./deploy.sh"
   },
   "license": "GPL-3.0",
   "devDependencies": {
     "@vuepress/plugin-pwa": "^1.9.7",
     "vuepress": "1.8.2",
     "vuepress-plugin-meting": "^0.3.1",
-    "vuepress-theme-reco": "^1.6.15"
+    "vuepress-theme-reco": "1.6.15"
   },
   "description": "个人博客",
   "dependencies": {

@@ -1,3 +1,9 @@
+---
+title: Gateway实现动态路由和灰度发布
+date: 2021-08-01
+publish: false
+---
+
 # 动态路由
 
 ## 什么是动态路由？
