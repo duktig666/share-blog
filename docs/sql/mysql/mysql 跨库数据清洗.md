@@ -3,7 +3,7 @@ title: Redis的发布订阅模式
 date: 2021-12-14
 categories:
 - 数据库
-  tags:
+tags:
 - mysql
 ---
 

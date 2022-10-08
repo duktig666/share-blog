@@ -41,6 +41,8 @@ git tag -l "1.0*"
 git show <tag_name>
 # 删除tag
 git tag -d <tag_name>
+# 删除远程仓库的tag
+git push origin :refs/tags/<tag_name>
 # 将远程仓库的标签拉取（同步）到当前分支
 git fetch --tags
 # 切换tag
