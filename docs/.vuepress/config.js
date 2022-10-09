@@ -163,39 +163,39 @@ module.exports = {
             }
         }],
         // 音乐插件
-        ['meting', {
-            //metingApi: "https://meting.sigure.xyz/api/music",
-            meting: {
-                // 网易
-                server: "netease",
-                // 读取歌单
-                type: "playlist",
-                // 歌单id（只用修改这个）
-                mid: "7256568321",
-            },
-            // 不配置该项的话不会出现全局播放器
-            aplayer: {
-                // 吸底模式
-                fixed: true,
-                mini: true,
-                // 自动播放
-                autoplay: false,
-                // 歌曲栏折叠
-                listFolded: true,
-                // 颜色
-                theme: '#f9bcdd',
-                // 播放顺序为随机
-                order: 'random',
-                // 初始音量
-                volume: 0.1,
-                // 关闭歌词显示
-                lrcType: 0
-            },
-            mobile: {
-                // 手机端去掉cover图
-                cover: false,
-            }
-        }],
+        // ['meting', {
+        //     //metingApi: "https://meting.sigure.xyz/api/music",
+        //     meting: {
+        //         // 网易
+        //         server: "netease",
+        //         // 读取歌单
+        //         type: "playlist",
+        //         // 歌单id（只用修改这个）
+        //         mid: "7256568321",
+        //     },
+        //     // 不配置该项的话不会出现全局播放器
+        //     aplayer: {
+        //         // 吸底模式
+        //         fixed: true,
+        //         mini: true,
+        //         // 自动播放
+        //         autoplay: false,
+        //         // 歌曲栏折叠
+        //         listFolded: true,
+        //         // 颜色
+        //         theme: '#f9bcdd',
+        //         // 播放顺序为随机
+        //         order: 'random',
+        //         // 初始音量
+        //         volume: 0.1,
+        //         // 关闭歌词显示
+        //         lrcType: 0
+        //     },
+        //     mobile: {
+        //         // 手机端去掉cover图
+        //         cover: false,
+        //     }
+        // }],
         // 添加Copy自动加版权信息
         ['copyright', {
             noCopy: false, // 选中的文字将无法被复制
