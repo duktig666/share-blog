@@ -179,6 +179,53 @@ git cherry-pick <HashA> <HashB>
 
 
 
+## git merge技巧
+
+### 合并单个commit
+
+首先，我们需要把A分支上提交的部分代码，放在B分支上
+
+```shell
+git checkout B  // 切换到B分支
+git cherry-pick 43aea9af  // 把某一次的commit合并到B分支，其中’43aea9af‘是某次commit提交记录的ID
+git push origin B  // 把分支B推送到远程仓库
+```
+
+### 合并连续的多个commit
+
+果我们想要合并多个连续的commit，用上面的第一种方法，显然效率不高，可以使用一下方法：
+比如我们再A分支上有43aea9af到70dfeec2a的连续的10个commit要合并到B分支上
+
+首先基于A分支创建一个临时分支temp，并指明新分支的最后一个commit
+
+```shell
+git checkout -b temp 70dfeec2a
+```
+
+将temp分支上的从43aea9af到最后一个commit，也就是70dfeec2a的commit合并到B分支上
+
+```shell
+git rebase --into B 43aea9af^
+```
+
+### 多个commit合成一个
+
+参看： [如何将git的多个commit合成一个了?](https://zhuanlan.zhihu.com/p/507794054)
+
+```shell
+# 修改 commit -m 的备注信息
+# 这时候就会弹出一个操作框需要会点基本的vim操作
+git commit --amend
+
+# 后续commit提交前操作
+# --no-edit就是表示我们不修改了还是和前面那个提交同一个提交
+git commit --amend --no-edit
+
+# 后续commit已提交操作
+git rebase -i HEAD~2
+git rebase -i <版本号>
+```
+
 
 
 
