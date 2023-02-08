@@ -8,11 +8,15 @@ tags:
  - ethereum 
 ---
 
+
+
 ::: tip
 
 传统 Ethereum validator client 有单节点故障问题，会引发质押的ETH的惩罚、甚至退网。分布式验证器技术（DVT）会成为接下来 Ethereum 的一个重点。
 
 :::
+
+<!-- more -->
 
 
 
