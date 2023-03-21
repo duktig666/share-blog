@@ -37,15 +37,15 @@ Redis 客户端可以订阅任意数量的频道。
 
 subscribe/publish
 
-![订阅](https://cos.duktig.cn/typora/202111102124676.png)
+![订阅](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111102124676.png)
 
-![发布](https://cos.duktig.cn/typora/202111102124186.png)
+![发布](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111102124186.png)
 
 psubscribe/publish
 
-![按模式订阅](https://cos.duktig.cn/typora/202111102124604.png)
+![按模式订阅](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111102124604.png)
 
-![按模式发布](https://cos.duktig.cn/typora/202111102124218.png)
+![按模式发布](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111102124218.png)
 
 ## Redis发布订阅模式 与 消息中间件 进行对比
 
@@ -205,7 +205,7 @@ public class TestScheduleRedisPublishController {
 
 5、启动程序后的结果
 
-![结果](https://cos.duktig.cn/typora/202112141953282.png)
+![结果](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112141953282.png)
 
 可以看到两个订阅者，都可以正常的接收消息。
 

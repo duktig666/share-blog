@@ -216,7 +216,7 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
    Java对象的元数据信息确定Java对象的大小，但是如果数组的长度是不确定的，将无法通过元数据中的
    信息推断出数组的大小。
 
-![HotSpot虚拟机对象头Mark Word](https://cos.duktig.cn/typora/202109242103520.png)
+![HotSpot虚拟机对象头Mark Word](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109242103520.png)
 
 ### 实例数据
 
@@ -1020,7 +1020,7 @@ Full gc的触发条件有多个，FULL GC的时候会STOP THE WORLD。
 
 > 注：如果标记结束后对象仍为白色，意味着已经“找不到”该对象在哪了，不可能会再被重新引用。
 
-![img](https://cos.duktig.cn/typora/202112292135030.gif)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112292135030.gif)
 
 当 Stop The World （以下简称 STW）时，对象间的引用是不会发生变化的，可以轻松完成标记。
 
@@ -1030,7 +1030,7 @@ Full gc的触发条件有多个，FULL GC的时候会STOP THE WORLD。
 
 假设已经遍历到 E（变为灰色了），此时应用执行了 objD.fieldE = null (D > E 的引用断开)：
 
-![img](https://cos.duktig.cn/typora/202112292142247.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112292142247.png)
 
 此刻之后，对象 E/F/G 是“应该”被回收的。然而因为 E 已经变为灰色了，其仍会被当作存活对象继续遍历下去。最终的结果是：这部分对象仍会被标记为存活，即本轮 GC 不会回收这部分内存。
 
@@ -1048,7 +1048,7 @@ objE.fieldG = null;  // 灰色E 断开引用 白色G
 objD.fieldG = G;  // 黑色D 引用 白色G
 ```
 
-![img](https://cos.duktig.cn/typora/202112292143458.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112292143458.png)
 
 此时切回 GC 线程继续跑，因为 E 已经没有对 G 的引用了，所以不会将 G 放到灰色集合；尽管因为 D 重新引用了 G，但因为 D 已经是黑色了，不会再重新做遍历处理。
 
@@ -1209,7 +1209,7 @@ Serial收集器对于运行在**客户端模式下的虚拟机**来说是一个�
 
 Serial/Serial Old收集器运行示意图：
 
-![Serial/Serial Old收集器运行示意图](https://cos.duktig.cn/typora/202110021731339.png)
+![Serial/Serial Old收集器运行示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021731339.png)
 
 
 
@@ -1226,7 +1226,7 @@ ParNew收集器是激活CMS后（使用-XX：+UseConcMarkSweepGC选项）的默�
 
 ParNew/Serial Old收集器运行示意图：
 
-![ParNew/Serial Old收集器运行示意图](https://cos.duktig.cn/typora/202110021732241.png)
+![ParNew/Serial Old收集器运行示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021732241.png)
 
 ### Parallel Scavenge收集器
 
@@ -1245,7 +1245,7 @@ CMS等收集器的关注点是尽可能地缩短垃圾收集时用户线程的�
 
 Parallel Scavenge/Parallel Old收集器运行示意图：
 
-![Parallel Scavenge/Parallel Old收集器运行示意图](https://cos.duktig.cn/typora/202110021732331.png)
+![Parallel Scavenge/Parallel Old收集器运行示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021732331.png)
 
 ### Serial Old收集器
 
@@ -1291,7 +1291,7 @@ CMS收集器仅作用于**老年代**的收集，是基于`标记-清除算法`�
 
 由于整个过程中耗时最长的并发标记和并发清除过程收集器线程都可以与用户线程一起工作。所以，从总体上来说，CMS收集器的内存回收过程是与用户线程一起并发执行的。通过下图可以比较清楚地看到CMS收集器的运作步骤中并发和需要停顿的时间：
 
-![Concurrent Mark Sweep收集器运行示意图](https://cos.duktig.cn/typora/202110021739818.png)
+![Concurrent Mark Sweep收集器运行示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021739818.png)
 
 CMS收集器**优点**：并发收集、低停顿。
 
@@ -1358,7 +1358,7 @@ Region中还有一类特殊的Humongous区域，专门用来存储大对象。**
 
 #### G1收集器Region分区示意图
 
-![G1收集器Region分区示意图](https://cos.duktig.cn/typora/202110021758946.png)
+![G1收集器Region分区示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021758946.png)
 
 #### G1将堆内存“化整为零”的“解题思路”，遇到的难题
 
@@ -1410,7 +1410,7 @@ G1收集器的停顿预测模型是以**衰减均值**（Decaying Average）为�
 
 G1收集器运行示意图：
 
-![G1收集器运行示意图](https://cos.duktig.cn/typora/202110021813564.png)
+![G1收集器运行示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110021813564.png)
 
 ## *CMS和G1的区别
 

@@ -106,7 +106,7 @@ WebSocket 只规定了 ping/pong 两种报文，但并不强制要求定时收�
 
 MQTT 则有明确的心跳协商机制。协商会话使用的 CONNECT 报文包含 Keep Alive 头部信息，结构如下：
 
-![img](https://cos.duktig.cn/typora/202201101144837.png)![img](https://pic2.zhimg.com/80/v2-e5133245f8f22ef73dd0b8ea0544739d_720w.jpg?source=1940ef5c)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201101144837.png)![img](https://pic2.zhimg.com/80/v2-e5133245f8f22ef73dd0b8ea0544739d_720w.jpg?source=1940ef5c)
 
 使用两个字节传输心跳间隔，单位是秒。会话协商后需要定时收发 PINGREQ 和 PINGRESP 报文。
 

@@ -14,7 +14,7 @@ publish: false
 
 ### 向Kafka发送消息的步骤
 
-![image-20220310153515464](https://cos.duktig.cn/typora/202203101535042.png)
+![image-20220310153515464](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203101535042.png)
 
 从创建一个 **ProducerRecord** 对象开始， ProducerRecord 对象需要包含 **目标主题** 和 **要发送的内容**。我们还可以 **指定键或分区**。在发送 ProducerRecord 对象时，生产者要先把键和值对象 **序列化成字节数组**，这样它们才能够在网络上传输。
 
@@ -232,19 +232,19 @@ Kafka 消费者从属于消费者群组。一个群组里的消费者订阅的�
 
 假设主题 T1 有 4 个分区，我们创建了消费者 C1 ，它是群组 G1 里唯一的消费者，我们用它订阅主题 T1 。消费者 C1 将收到主题 T1 全部 4 个分区的消息。如图：
 
-![image-20220312151955074](https://cos.duktig.cn/typora/202203121519019.png)
+![image-20220312151955074](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121519019.png)
 
 如果在群组 Gl 里新增一个消费者 C2 ，那么每个消费者将分别从两个分区接收消息。
 
-![image-20220312152029457](https://cos.duktig.cn/typora/202203121520857.png)
+![image-20220312152029457](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121520857.png)
 
 如果群组 G I 有 4 个消费者，那么每个消费者可以分配到一个分区。
 
-![image-20220312152054560](https://cos.duktig.cn/typora/202203121520858.png)
+![image-20220312152054560](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121520858.png)
 
 如果我们往群组里添加更多的消费者，超过主题的分区数量，那么有一部分消费者就会被闲置，不会接收到任何消息。
 
-![image-20220312152123232](https://cos.duktig.cn/typora/202203121521798.png)
+![image-20220312152123232](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121521798.png)
 
 **不过要注意，不要让消费者的数量超过主题分区的数量，多余的消费者只会被闲置。**
 
@@ -254,7 +254,7 @@ Kafka 消费者从属于消费者群组。一个群组里的消费者订阅的�
 
 如果新增一个只包含一个消费者的群组 G2 ，那么这个消费者将从主题T1 上接收所有的消息，与群组 G1 之间互不影响。群组 G2 可以增加更多的消费者，每个消费者可以悄费若干个分区，就像群组 G1 那样。
 
-![image-20220312152408501](https://cos.duktig.cn/typora/202203121524892.png)
+![image-20220312152408501](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121524892.png)
 
 **简而言之，为每一个需要获取一个或多个主题全部消息的应用程序创建一个消费者群组，然后往群组里添加消费者来伸缩读取能力和处理能力，群组里的每个消费者只处理一部分消息。**
 
@@ -429,11 +429,11 @@ socket 在读写数据时用到的 TCP 缓冲区也可以设置大小。如果�
 
 **如果提交的偏移量小于客户端处理的最后一个消息的偏移量 ，那么处于两个偏移量之间的消息就会被重复处理**。
 
-![image-20220312162433155](https://cos.duktig.cn/typora/202203121624841.png)
+![image-20220312162433155](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121624841.png)
 
 **如果提交的偏移量大于客户端处理的最后一个消息的偏移量，那么处于两个偏移量之间的消息将会丢失。**
 
-![image-20220312162509281](https://cos.duktig.cn/typora/202203121625614.png)
+![image-20220312162509281](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121625614.png)
 
 所以，处理偏移量的方式对客户端会有很大的影响。
 

@@ -31,11 +31,11 @@ try {
 
 ## Lock接口提供的synchronized关键字所不具备的主要特性
 
-![Lock接口提供的synchronized关键字所不具备的主要特性](https://cos.duktig.cn/typora/202110160911861.png)
+![Lock接口提供的synchronized关键字所不具备的主要特性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110160911861.png)
 
 `Lock`的主要API：
 
-![Lock的主要API](https://cos.duktig.cn/typora/202110160912526.png)
+![Lock的主要API](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110160912526.png)
 
 
 
@@ -66,13 +66,13 @@ try {
 
 ### 同步器可重写的方法
 
-![AQS 可重写的方法](https://cos.duktig.cn/typora/202110160950056.png)
+![AQS 可重写的方法](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110160950056.png)
 
 ### 同步器提供的模板方法
 
 同步器提供的模板方法基本上分为3类：独占式获取与释放同步状态、共享式获取与释放同步状态和查询同步队列中的等待线程情况。
 
-![AQS提供的模板方法](https://cos.duktig.cn/typora/202110160951509.png)
+![AQS提供的模板方法](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110160951509.png)
 
 ## AQS实战——自定义同步组件
 
@@ -232,11 +232,11 @@ public class Mutex implements Lock {
 
 同步队列中的节点（Node）用来保存获取同步状态失败的线程引用、等待状态以及前驱和后继节点，节点的属性类型与名称以及描述如下表所示：
 
-![同步队列的一个几点](https://cos.duktig.cn/typora/202110161407505.png)
+![同步队列的一个几点](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161407505.png)
 
 同步器拥有首节点（head）和尾节点（tail），没有成功获取同步状态的线程将会成为节点加入该队列的尾部，同步队列的基本结构如图：
 
-![同步队列的基本结构](https://cos.duktig.cn/typora/202110161414525.png)
+![同步队列的基本结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161414525.png)
 
 
 
@@ -246,7 +246,7 @@ public class Mutex implements Lock {
 
 同步队列遵循FIFO，首节点是获取同步状态成功的节点，首节点的线程在释放同步状态时，将会唤醒后继节点，而后继节点将会在获取同步状态成功时将自己设置为首节点，该过程如下图：
 
-![获取同步状态成功的节点示意图](https://cos.duktig.cn/typora/202110161414652.png)
+![获取同步状态成功的节点示意图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161414652.png)
 
 设置首节点是通过获取同步状态成功的线程来完成的，**由于只有一个线程能够成功获取到同步状态**，因此设置头节点的方法并不需要使用CAS来保证，它只需要**将首节点设置成为原首节点的后继节点并断开原首节点的next引用即可**。
 
@@ -254,7 +254,7 @@ public class Mutex implements Lock {
 
 独占式同步状态获取流程，也就是acquire(int arg)方法调用流程，如图：
 
-![独占式获取同步状态](https://cos.duktig.cn/typora/202110161433684.png)
+![独占式获取同步状态](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161433684.png)
 
 获取独占式同步状态：
 
@@ -276,7 +276,7 @@ public class Mutex implements Lock {
 
 以文件读写为例，共享式同步状态支持 **并发读和独占写**，具体不同如下图：
 
- ![共享式与独占式访问资源的对比](https://cos.duktig.cn/typora/202110161547964.png)
+ ![共享式与独占式访问资源的对比](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161547964.png)
 
 在共享式获取的自旋过程中，如果当前节点的前驱为头节点时，尝试获取同步状态，如果返回值大于等于0，表示该次获取同步状态成功并从自旋过程中退出。
 
@@ -302,7 +302,7 @@ public class Mutex implements Lock {
 
 具体过程如下：
 
-![超时的同步状态获取流程](https://cos.duktig.cn/typora/202110161619650.png)
+![超时的同步状态获取流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161619650.png)
 
 # ReetrantLock
 
@@ -442,7 +442,7 @@ public class Mutex implements Lock {
 
 下面运行测试用例（测试环境：ubuntuserver 14.04 i5-34708GB，测试场景：10个线程，每个线程获取100000次锁），通过vmstat统计测试运行时系统线程上下文切换的次数，运行结果如表：
 
-![公平锁和非公平锁 上下文切换次数比较](https://cos.duktig.cn/typora/202110161709694.png)
+![公平锁和非公平锁 上下文切换次数比较](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161709694.png)
 
 在测试中公平性锁与非公平性锁相比，总耗时是其94.3倍，总切换次数是其133倍。
 
@@ -489,7 +489,7 @@ ReentrantLock是排它锁，在同一时刻只允许一个线程进行访问。�
 
 ReadWriteLock仅定义了获取读锁和写锁的两个方法，即`readLock()`方法和`writeLock()`方法，而其实现——ReentrantReadWriteLock，除了接口方法之外，还提供了一些便于外界监控其内部工作状态的方法，这些方法以及描述如表：
 
-![ReentrantReadWriteLock 部分API](https://cos.duktig.cn/typora/202110161729546.png)
+![ReentrantReadWriteLock 部分API](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161729546.png)
 
 
 
@@ -572,7 +572,7 @@ public class ReadWriteLockCache {
 
 如果在一个整型变量上维护多种状态，就一定需要“**按位切割使用**”这个变量，读写锁将变量切分成了两个部分，**高16位表示读，低16位表示写**，划分方式如图：
 
-![读写锁状态的划分方式](https://cos.duktig.cn/typora/202110161737766.png)
+![读写锁状态的划分方式](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110161737766.png)
 
 当前同步状态表示一个线程已经获取了写锁，且重进入了两次，同时也连续获取了两次读锁。
 
@@ -706,7 +706,7 @@ public class ReadWriteLockCache {
 
 任意一个Java对象，都拥有一组监视器方法（定义在java.lang.Object上），主要包括wait()、wait(long timeout)、notify()以及notifyAll()方法，这些方法与synchronized同步关键字配合，可以实现**等待/通知模式**。Condition接口也提供了类似Object的监视器方法，与Lock配合可以实现等通知模式，但是这两者在使用方式以及功能特性上还是有差别的。具体如下：
 
-![Object的监视器方法与Condition接口的对比](https://cos.duktig.cn/typora/202110162008580.png)
+![Object的监视器方法与Condition接口的对比](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162008580.png)
 
 ## 如何使用Condition？
 
@@ -737,7 +737,7 @@ public void conditionSignal() throws InterruptedException {
 
 Condition定义的（部分）方法以及描述如下：
 
-![Condition定义的（部分）方法](https://cos.duktig.cn/typora/202110162013958.png)
+![Condition定义的（部分）方法](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162013958.png)
 
 获取一个Condition必须通过Lock的`newCondition()`方法。
 
@@ -881,13 +881,13 @@ Condition的实现，主要包括：等待队列、等待和通知。
 
 一个Condition包含一个等待队列，Condition拥有首节点（firstWaiter）和尾节点（lastWaiter）。当前线程调用`Condition.await()`方法，将会以当前线程构造节点，并将节点从尾部加入等待队列，等待队列的基本结构如图:
 
-![等待队列的基本结构](https://cos.duktig.cn/typora/202110162018219.png)
+![等待队列的基本结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162018219.png)
 
 上述**节点引用更新的过程并没有使用CAS保证**，原因在于调用await()方法的线程必定是获取了锁的线程，也就是说**该过程是由锁来保证线程安全的**。
 
 在Object的监视器模型上（synchronized），一个对象拥有一个同步队列和等待队列，而并发包中的Lock（更确切地说是同步器）拥有**一个同步队列和多个等待队列**，其对应关系如图：
 
-![同步队列与等待队列](https://cos.duktig.cn/typora/202110162020261.png)
+![同步队列与等待队列](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162020261.png)
 
 ### 等待机制
 
@@ -926,7 +926,7 @@ Condition的实现，主要包括：等待队列、等待和通知。
 
 如果从队列的角度去看，当前线程加入Condition的等待队列，该过程如图：
 
-![当前线程加入等待队列](https://cos.duktig.cn/typora/202110162023047.png)
+![当前线程加入等待队列](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162023047.png)
 
 
 
@@ -952,7 +952,7 @@ Condition的实现，主要包括：等待队列、等待和通知。
 
 节点从等待队列移动到同步队列的过程如图:
 
-![节点从等待队列移动到同步队列](https://cos.duktig.cn/typora/202110162025326.png)
+![节点从等待队列移动到同步队列](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110162025326.png)
 
 通过调用同步器的`enq(Node node)`方法，等待队列中的头节点线程安全地移动到同步队列。当节点移动到同步队列后，当前线程再使用LockSupport唤醒该节点的线程。
 

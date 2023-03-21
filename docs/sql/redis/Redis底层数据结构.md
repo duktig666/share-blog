@@ -21,7 +21,7 @@ String类型是二进制安全的。意味着Redis的string可以包含任何数
 
 String的数据结构为**简单动态字符串**(Simple Dynamic String，缩写SDS)。是可以修改的字符串，内部结构实现上类似于Java的ArrayList，采用**预分配冗余空间的方式来减少内存的频繁分配**。
 
-![String数据结构](https://cos.duktig.cn/typora/202111091645431.png)
+![String数据结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091645431.png)
 
 如图中所示，内部为当前字符串实际分配的空间capacity一般要高于实际字符串长度len。
 
@@ -45,7 +45,7 @@ Redis 列表是简单的字符串列表，按照插入顺序排序。你可以�
 
 它的底层实际是个**双向链表**，**对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差**。
 
-![image-20211109164542487](https://cos.duktig.cn/typora/202111091645367.png)
+![image-20211109164542487](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091645367.png)
 
 **应用场景:** 发布与订阅或者说消息队列、慢查询。
 
@@ -56,7 +56,7 @@ List的数据结构为快速链表quickList。
 - 首先在列表元素较少的情况下会使用一块连续的内存存储，这个结构是ziplist，也即是压缩列表。它将所有的元素紧挨着一起存储，分配的是一块连续的内存。
 - 当数据量比较多的时候才会改成quicklist。因为普通的链表需要的附加指针空间太大，会比较浪费空间。比如这个列表里存的只是int类型的数据，结构上还需要两个额外的指针prev和next。
 
-![image-20211109164705085](https://cos.duktig.cn/typora/202111091647949.png)
+![image-20211109164705085](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091647949.png)
 
 Redis将链表和ziplist结合起来组成了quicklist。也就是将多个ziplist使用双向指针串起来使用。这样既满足了快速的插入删除性能，又不会出现太大的空间冗余。
 
@@ -78,7 +78,7 @@ typedf struct listNode{
 
 `pre`指向前一个节点，`next`指针指向后一个节点，`value`保存着当前节点对应的数据对象。`listNode`的示意图如下所示：
 
-![img](https://cos.duktig.cn/typora/202111091749843.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091749843.png)
 
 链表的结构如下：
 
@@ -103,7 +103,7 @@ typedf struct list{
 
 链表的结构如下所示：
 
-![img](https://cos.duktig.cn/typora/202111091750815.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091750815.png)
 
 #### ZipList
 
@@ -126,7 +126,7 @@ typedf struct ziplist<T>{
 
 `zipList`的结构如下所示：
 
-![ziplist](https://cos.duktig.cn/typora/202111091737927.png)
+![ziplist](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091737927.png)
 
 注意到`zltail_offset`这个参数，有了这个参数就可以快速定位到最后一个`entry`节点的位置，然后开始倒序遍历，也就是说`zipList`支持双向遍历。
 
@@ -145,7 +145,7 @@ typede struct entry{
 
 `prelen`保存的是前一个`entry`节点的长度，这样在倒序遍历时就可以通过这个参数定位到上一个`entry`的位置。`encoding`保存了`content`的编码类型。`content`则是保存的元素内容，它是`optional`类型的，表示这个字段是可选的。当`content`是很小的整数时，它会内联到`content`字段的尾部。`entry`结构的示意图如下所示：
 
-![entry](https://cos.duktig.cn/typora/202111091738937.png)
+![entry](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091738937.png)
 
 好了，那现在我们思考一个问题，为什么有了`linkedList`还有设计一个`zipList`呢？就像`zipList`的名字一样，它是一个压缩列表，是为了节约内存而开发的。相比于`linkedList`，其少了`pre`和`next`两个指针。在`Redis`中，`pre`和`next`指针就要占用16个字节（64位系统的一个指针就是8个字节）。另外，`linkedList`的每个节点的内存都是单独分配，加剧内存的碎片化，影响内存的管理效率。与之相对的是，`zipList`是由连续的内存组成的，这样一来，由于内存是连续的，就减少了许多内存碎片和指针的内存占用，进而节约了内存。
 
@@ -160,7 +160,7 @@ typede struct entry{
 
 假设现在有一组压缩列表，长度都在250~253字节之间，突然新增一个`entry`节点，这个`entry`节点长度大于等于254字节。由于新的`entry`节点大于等于254字节，这个`entry`节点的`prelen`为5个字节，随后会导致其余的所有`entry`节点的`prelen`增大为5字节。
 
-![连锁更新](https://cos.duktig.cn/typora/202111091740545.png)
+![连锁更新](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091740545.png)
 
 同样地，删除操作也会导致出现**连锁更新**这种情况，假设在某一时刻，插入一个长度大于等于254个字节的`entry`节点，同时删除其后面的一个长度小于254个字节的`entry`节点，由于小于254的`entry`节点的删除，大于等于254个字节的`entry`节点将会与后面小于254个字节的`entry`节点相连，此时就与新增一个长度大于等于254个字节的`entry`节点时的情况一样，将会发生连续更新。发生连续更新时，`Redis`需要不断地对压缩列表进行**内存分配工作**，直到结束。
 
@@ -168,7 +168,7 @@ typede struct entry{
 
 在`Redis`3.2版本之后，`list`的底层实现方式又多了一种，`quickList`。`qucikList`是由`zipList`和双向链表`linkedList`组成的混合体。它将`linkedList`按段切分，每一段使用`zipList`来紧凑存储，多个`zipList`之间使用双向指针串接起来。示意图如下所示：
 
-![quicklist](https://cos.duktig.cn/typora/202111091743491.png)
+![quicklist](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091743491.png)
 
 节点`quickListNode`的定义如下：
 
@@ -248,7 +248,7 @@ typedf struct ziplist_compressed{
 
 此时`quickList`的示意图如下所示：
 
-![img](https://cos.duktig.cn/typora/202111091748141.png)]
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091748141.png)]
 
 当然，在`redis.conf`文件中的`DVANCED CONFIG`下面也可以对压缩深度进行配置。
 
@@ -334,7 +334,7 @@ typedf struct dictht{
 ```
 
 `table`是一个`dictEntry`类型的数组，用于真正存储数据；`size`表示`table`这个数组的大小；`sizemask`用于计算索引位置，且总是等于`size-1`；`used`表示`dictht`中已有的节点数量，其示意图如下所示：
-![img](https://cos.duktig.cn/typora/202111091726815.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091726815.png)
 
 #### **dictEntry**
 
@@ -355,7 +355,7 @@ typedf struct dictEntry{
 
 其示意图如下所示：
 
-![image-20200831175713878](https://cos.duktig.cn/typora/202111091727359.png)
+![image-20200831175713878](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091727359.png)
 
 最后整个`dict`的结构示意图如上所示：
 
@@ -440,13 +440,13 @@ Redis采用的是跳跃表。跳表可以保证增、删、查等操作时的时
 
 （1）  有序链表：
 
-![image-20211109171136112](https://cos.duktig.cn/typora/202111091711455.png)
+![image-20211109171136112](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091711455.png)
 
 要查找值为51的元素，需要从第一个元素开始依次查找、比较才能找到。共需要6次比较。
 
 （2）  跳跃表
 
-![image-20211109171219713](https://cos.duktig.cn/typora/202111091712526.png)
+![image-20211109171219713](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111091712526.png)
 
 
 
@@ -463,7 +463,7 @@ Redis采用的是跳跃表。跳表可以保证增、删、查等操作时的时
 
 现代计算机用二进制（位） 作为信息的基础单位， 1个字节等于8位， 例如“abc”字符串是由3个字节组成， 但实际在计算机存储时将其用二进制表示， “abc”分别对应的ASCII码分别是97、 98、 99， 对应的二进制分别是01100001、 01100010和01100011，如下图
 
-![image-20211111100250796](https://cos.duktig.cn/typora/202111111002687.png)                             
+![image-20211111100250796](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111002687.png)                             
 
 合理地使用操作位能够有效地提高内存使用率和开发效率。
 
@@ -473,7 +473,7 @@ Redis采用的是跳跃表。跳表可以保证增、删、查等操作时的时
 
 （2）  Bitmaps单独提供了一套命令， 所以在Redis中使用Bitmaps和使用字符串的方法不太相同。 可以把Bitmaps想象成一个以位为单位的数组， 数组的每个单元只能存储0和1， 数组的下标在Bitmaps中叫做偏移量。
 
- ![image-20211111100301872](https://cos.duktig.cn/typora/202111111003757.png)
+ ![image-20211111100301872](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111003757.png)
 
 ### 相关命令
 
@@ -489,11 +489,11 @@ setbit<key><offset><value>
 
 设置键的第offset个位的值（从0算起） ， 假设现在有20个用户，userid=1， 6， 11， 15， 19的用户对网站进行了访问， 那么当前Bitmaps初始化结果如图:
 
-![image-20211111100540833](https://cos.duktig.cn/typora/202111111005756.png)
+![image-20211111100540833](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111005756.png)
 
 unique:users:20201106代表2020-11-06这天的独立访问用户的Bitmaps.
 
-![image-20211111100601628](https://cos.duktig.cn/typora/202111111006438.png)
+![image-20211111100601628](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111006438.png)
 
 > 很多应用的用户id以一个指定数字（例如10000） 开头， 直接将用户id和Bitmaps的偏移量对应势必会造成一定的浪费， 通常的做法是每次做setbit操作时将用户id减去这个指定数字。
 >
@@ -550,15 +550,15 @@ setbit unique:users:20201103 9 1
 
 假设网站有1亿用户， 每天独立访问的用户有5千万， 如果每天用集合类型和Bitmaps分别存储活跃用户可以得到表：
 
-![image-20211111101502391](https://cos.duktig.cn/typora/202111111015921.png)
+![image-20211111101502391](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111015921.png)
 
-![image-20211111101542846](https://cos.duktig.cn/typora/202111111015690.png)
+![image-20211111101542846](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111015690.png)
 
 很明显， 这种情况下使用Bitmaps能节省很多的内存空间， 尤其是随着时间推移节省的内存还是非常可观的。
 
 但Bitmaps并不是万金油， 假如该网站每天的独立访问用户很少， 例如只有10万（大量的僵尸用户） ， 那么两者的对比如下表所示， 很显然， 这时候使用Bitmaps就不太合适了， 因为基本上大部分位都是0。
 
-![image-20211111101625476](https://cos.duktig.cn/typora/202111111016925.png)
+![image-20211111101625476](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111016925.png)
 
 ## HyperLogLog
 
@@ -598,7 +598,7 @@ pfadd <key>< element> [element ...]
 
 将所有元素添加到指定HyperLogLog数据结构中。如果执行命令后HLL估计的近似基数发生变化，则返回1，否则返回0。
 
-![image-20211111102059470](https://cos.duktig.cn/typora/202111111021159.png)
+![image-20211111102059470](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111111021159.png)
 
 #### 2、pfcount
 

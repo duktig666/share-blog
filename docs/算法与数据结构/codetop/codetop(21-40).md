@@ -8,7 +8,7 @@ publish: false
 
 > [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
 >
-> ![img](https://cos.duktig.cn/typora/202201252203690.png)
+> ![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252203690.png)
 >
 > 就是用一个数组表示一个条形图，问你这个条形图最多能接多少水。
 >
@@ -24,7 +24,7 @@ publish: false
 
 这么一想，可以发现这道题的思路其实很简单。具体来说，**仅仅对于位置 `i`，能装下多少水呢**？
 
-<img src="https://cos.duktig.cn/typora/202201252205657.jpeg" alt="img" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252205657.jpeg" alt="img" style="zoom:67%;" />
 
 能装 2 格水，因为 `height[i]` 的高度为 0，而这里最多能盛 2 格水，2-0=2。
 
@@ -41,9 +41,9 @@ water[i] = min(
             ) - height[i]
 ```
 
-<img src="https://cos.duktig.cn/typora/202201252206769.png" alt="image-20220125220612628" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252206769.png" alt="image-20220125220612628" style="zoom:67%;" />
 
-<img src="https://cos.duktig.cn/typora/202201252206796.png" alt="image-20220125220630885" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252206796.png" alt="image-20220125220630885" style="zoom:67%;" />
 
 这就是本问题的核心思路，我们可以简单写一个暴力算法：
 
@@ -170,7 +170,7 @@ public int trap(int[] height) {
 res += Math.min(lMax[i], rMax[i]) - height[i];
 ```
 
-<img src="https://cos.duktig.cn/typora/202201252212921.png" alt="image-20220125221203140" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252212921.png" alt="image-20220125221203140" style="zoom:67%;" />
 
 但是双指针解法中，`lMax` 和 `rMax` 代表的是 `height[0..left]` 和 `height[right..end]` 的最高柱子高度。比如这段代码：
 
@@ -181,13 +181,13 @@ if (lMax < rMax) {
 }
 ```
 
-<img src="https://cos.duktig.cn/typora/202201252213019.png" alt="image-20220125221311607" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252213019.png" alt="image-20220125221311607" style="zoom:67%;" />
 
 此时的 `lMax` 是 `left` 指针左边的最高柱子，但是 `rMax` 并不一定是 `left` 指针右边最高的柱子，这真的可以得到正确答案吗？
 
 其实这个问题要这么思考，我们只在乎 `min(lMax, rMax)`。**对于上图的情况，我们已经知道 `lMax < rMax` 了，至于这个 `rMax` 是不是右边最大的，不重要。重要的是 `height[i]` 能够装的水只和较低的 `lMax` 之差有关**：
 
-<img src="https://cos.duktig.cn/typora/202201252214531.png" alt="image-20220125221406021" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252214531.png" alt="image-20220125221406021" style="zoom:67%;" />
 
 这样，接雨水问题就解决了。
 
@@ -195,7 +195,7 @@ if (lMax < rMax) {
 
 > [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
 >
-> ![img](https://cos.duktig.cn/typora/202201252223424.png)
+> ![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201252223424.png)
 
 这题和接雨水问题很类似，可以完全套用前文的思路，而且还更简单。两道题的区别在于：
 
@@ -267,7 +267,7 @@ if (height[left] < height[right]) {
 >
 > 示例 1:
 >
-> ![img](https://cos.duktig.cn/typora/202202071716468.jpeg)
+> ![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202071716468.jpeg)
 >
 > 输入: [1,2,3,null,5,null,4]
 > 输出: [1,3,4]
@@ -565,11 +565,11 @@ private int oneSideMax(TreeNode root) {
 
 先排序，然后观察规律
 
-![image-20220210102126375](https://cos.duktig.cn/typora/202202101021372.png)
+![image-20220210102126375](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202101021372.png)
 
 **显然，对于几个相交区间合并后的结果区间`x`，`x.start`一定是这些相交区间中`start`最小的，`x.end`一定是这些相交区间中`end`最大的。**
 
-![image-20220210102207747](https://cos.duktig.cn/typora/202202101022606.png)
+![image-20220210102207747](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202101022606.png)
 
 由于已经排了序，`x.start`很好确定，求`x.end`也很容易，可以类比在数组中找最大值的过程。
 

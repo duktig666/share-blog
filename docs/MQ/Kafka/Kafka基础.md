@@ -173,7 +173,7 @@ Kafka 的基本概念来惊于 **提交日志**，我们可以把数据库的更
 
 **Kafka 使用 Zookeeper 保存集群的元数据信息和消费者信息**。 Kafka 发行版自带了Zookeeper ，可以直接从脚本启动，不过安装一个完整版的 Zookeeper 也并不费劲。
 
-<img src="https://cos.duktig.cn/typora/202203071125373.png" alt="image-20220307112519112" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203071125373.png" alt="image-20220307112519112" style="zoom:67%;" />
 
 Zoo keeper 集群被称为群组。 Zookeeper 使用的是**一致性协议**，所以建议每个群组里应该包含奇数个节点（比如 3 个、 5 个等）。
 
@@ -362,7 +362,7 @@ num.partions 参数指定了 **新创建的主题将包含多少个分区**。
 
 使用集群最大的好处是 **可以跨服务器进行负载均衡**，再则就是 **可以使用复制功能来避免因单点故障造成的数据丢失**。
 
-<img src="https://cos.duktig.cn/typora/202203071715163.png" alt="image-20220307171544089" style="zoom:50%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203071715163.png" alt="image-20220307171544089" style="zoom:50%;" />
 
 **1、需要多少个broker**
 

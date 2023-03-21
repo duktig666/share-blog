@@ -36,7 +36,7 @@ ENGINES;
 
 mysql版本是8.0.12，下面是在Navicat中执行的结果:
 
-![mysql支持的存储引擎](https://cos.duktig.cn/typora/202109251451522.png)
+![mysql支持的存储引擎](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109251451522.png)
 
 其他命令：
 

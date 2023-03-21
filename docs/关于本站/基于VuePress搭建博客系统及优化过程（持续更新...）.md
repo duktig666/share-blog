@@ -63,7 +63,7 @@ npm install @vuepress-reco/theme-cli -g theme-cli init [文件夹名字]
 
 注意：`init` 后可以直接加文件夹根目录，避免初始化时需要再次生成目录（不创建目录执行，会发生些报错）。
 
-![image-20220118213937581](https://cos.duktig.cn/typora/202201182139231.png)
+![image-20220118213937581](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201182139231.png)
 
 上图这个步骤，`What style do you want your home page to be?` 有三个选项，分别是：
 
@@ -162,7 +162,7 @@ jobs:
 
 #### 设置GitHub Pages
 
-![image-20220118233652096](https://cos.duktig.cn/typora/202201182336115.png)
+![image-20220118233652096](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201182336115.png)
 
 ### 方式二：两个仓库
 
@@ -273,7 +273,7 @@ module.exports = {
 
 3. 样式预览：
 
-   ![image-20220124210601486](https://cos.duktig.cn/typora/202201242106860.png)
+   ![image-20220124210601486](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201242106860.png)
 
 **Vssue**
 
@@ -357,17 +357,17 @@ npm install -D @vuepress/plugin-pwa
 
 样式如下：
 
-![image-20220305212239859](https://cos.duktig.cn/typora/202203052122578.png)
+![image-20220305212239859](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052122578.png)
 
 **步骤1：注册【[友盟+](https://www.umeng.com/)】**
 
 **步骤2：创建对应客户端的应用**
 
-<img src="https://cos.duktig.cn/typora/202203052124886.png" alt="image-20220305212444837" style="zoom: 50%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052124886.png" alt="image-20220305212444837" style="zoom: 50%;" />
 
 **步骤3：在【应用】->【站点设置】中获取对应的代码**
 
-![image-20220305212646547](https://cos.duktig.cn/typora/202203052127654.png)
+![image-20220305212646547](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052127654.png)
 
 **步骤4：将`id`和`src`进行解码**
 
@@ -375,7 +375,7 @@ npm install -D @vuepress/plugin-pwa
 
 **步骤5：新建如下两个文件**
 
-<img src="https://cos.duktig.cn/typora/202203052130451.png" alt="image-20220305212954374" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052130451.png" alt="image-20220305212954374" style="zoom:67%;" />
 
 tongji.js中，将id和src的值修改成自己的
 
@@ -450,7 +450,7 @@ export default {
 
 在首页的README.md中因为自定的组件：
 
-<img src="https://cos.duktig.cn/typora/202203052133451.png" alt="image-20220305213336152" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052133451.png" alt="image-20220305213336152" style="zoom:67%;" />
 
 配置完成！
 

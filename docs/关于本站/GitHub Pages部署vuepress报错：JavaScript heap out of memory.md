@@ -24,7 +24,7 @@ GitHub Pages部署Vuepress一直都没有什么问题，具体部署方案参看
 
 但是突然有一次部署就出现了如下的报错情况：
 
-![image-20220309180119580](https://cos.duktig.cn/typora/202203091801511.png)
+![image-20220309180119580](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203091801511.png)
 
 经过百度，发现原因是node使用的堆内存超出了V8引擎允许的最大值。
 

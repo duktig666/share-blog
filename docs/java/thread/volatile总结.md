@@ -22,7 +22,7 @@ publish: false
 
 #### 1.1.2 CPU高速缓存的工作方式
 
-![CPU缓存模型](https://cos.duktig.cn/2021/06/18/1623987055.png)
+![CPU缓存模型](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/06/18/1623987055.png)
 
 先复制一份数据到 CPU Cache 中，当 CPU 需要用到的时候就可以直接从 CPU Cache 中读取数据，当运算完成后，再将运算得到的数据写回 Main Memory 中。
 
@@ -32,7 +32,7 @@ publish: false
 
 ### 1.2 CPU的术语定义
 
-![CPU的术语定义](https://cos.duktig.cn/typora/202110122108366.png)
+![CPU的术语定义](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110122108366.png)
 
 ### 1.3 JMM（Java内存模型）
 
@@ -40,13 +40,13 @@ publish: false
 
 在 JDK1.2 之前，Java 的内存模型实现总是从**主存** （即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存** （比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致** 。
 
-![使用volatile前变量读取](https://cos.duktig.cn/2021/06/18/1624000135.png)
+![使用volatile前变量读取](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/06/18/1624000135.png)
 
 要解决这个问题，就需要把变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
 所以，**`volatile` 关键字 除了防止 JVM 的指令重排 ，还有一个重要的作用就是保证变量的可见性。**
 
-![使用volatile后变量读取](https://cos.duktig.cn/2021/06/18/1624000201.png)
+![使用volatile后变量读取](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/06/18/1624000201.png)
 
 JMM 关于同步的规定：
 
@@ -378,7 +378,7 @@ volatile通过添加读写屏障来禁止指令重排。
 - 在每个volatile写操作的前后插入一个StoreStore屏障
 - 在每个volatile读操作的后面插入一个LoadLoad屏障
 
-![volatile 禁止指令重排的读写屏障原理](https://cos.duktig.cn/typora/202110131743529.png)
+![volatile 禁止指令重排的读写屏障原理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110131743529.png)
 
 
 

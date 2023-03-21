@@ -20,7 +20,7 @@ HBase在HDFS之上提供了**高并发的随机写和支持实时查询**，这�
 
 ### HBase的逻辑结构
 
-![HBase的逻辑结构](https://cos.duktig.cn/typora/202111061556536.png)
+![HBase的逻辑结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111061556536.png)
 
 逻辑结构分析：
 
@@ -32,7 +32,7 @@ HBase在HDFS之上提供了**高并发的随机写和支持实时查询**，这�
 
 ### HBase 物理存储结构
 
-![HBase 物理存储结构](https://cos.duktig.cn/typora/202111061614634.png)
+![HBase 物理存储结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111061614634.png)
 
 每一行数据会有不同的版本，通过时间戳（TimeStamp）来进行区分。
 
@@ -169,7 +169,7 @@ truncate 'student'
 
 ## HBase的架构
 
-![HBase的架构](https://cos.duktig.cn/typora/202111061702755.png)
+![HBase的架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111061702755.png)
 
 
 
@@ -223,11 +223,11 @@ HDFS 为HBase 提供最终的底层数据存储服务，同时为HBase 提供高
 
 总结大致的流程就是：client请求到Zookeeper，然后Zookeeper返回HRegionServer地址给client，client得到Zookeeper返回的地址去请求HRegionServer，HRegionServer读写数据后返回给client。
 
-![读写流程大致总结](https://cos.duktig.cn/typora/202111071521122.jpg)
+![读写流程大致总结](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071521122.jpg)
 
 ## 写流程
 
-![写流程](https://cos.duktig.cn/typora/202111071520018.png)
+![写流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071520018.png)
 
 写流程： 
 
@@ -241,7 +241,7 @@ HDFS 为HBase 提供最终的底层数据存储服务，同时为HBase 提供高
 
 ## MemStore Flush流程
 
-![Flush流程](https://cos.duktig.cn/typora/202111071529180.png)
+![Flush流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071529180.png)
 
 MemStore 刷写时机（具体配置参看hbase-default.xml）： 
 
@@ -257,7 +257,7 @@ MemStore 刷写时机（具体配置参看hbase-default.xml）：
 
 ## 读流程
 
-![读流程](https://cos.duktig.cn/typora/202111071546440.png)
+![读流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071546440.png)
 
 读流程 ：
 
@@ -277,7 +277,7 @@ Compaction 分为两种，分别是 Minor Compaction 和 Major Compaction：
 - Minor Compaction会将临近的若干个较小的 HFile 合并成一个较大的 HFile，但不会清理过期和删除的数据。
 - Major Compaction 会将一个 Store 下的所有的 HFile 合并成一个大 HFile，并且会清理掉过期和删除的数据。 
 
-![StoreFile Compaction](https://cos.duktig.cn/typora/202111071558675.png)
+![StoreFile Compaction](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071558675.png)
 
 ## Region Split 
 
@@ -290,7 +290,7 @@ Region Split 时机：
 2. 当 1 个 region 中的某个 Store 下所有 StoreFile 的总大小超过 `Min(R^2 * 
    "hbase.hregion.memstore.flush.size",hbase.hregion.max.filesize")`，该Region 就会进行拆分，其中R 为当前Region Server 中属于该Table 的个数（0.94 版本之后）。 
 
-![Region Split ](https://cos.duktig.cn/typora/202111071602842.png)
+![Region Split ](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111071602842.png)
 
 # HBase API
 

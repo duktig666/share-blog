@@ -279,7 +279,7 @@ public class ZookeeperUniqueIDTest {
 
 **Zookeeper Client 查看节点数据**：
 
-![Zookeeper Client 节点数据](https://cos.duktig.cn/typora/20210820204818.png)
+![Zookeeper Client 节点数据](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/20210820204818.png)
 
 **分析**：
 
@@ -494,7 +494,7 @@ public class CuratorUniqueIDTest {
 
 **Zookeeper Client 查看节点数据**：
 
-![Zookeeper Client节点数据](https://cos.duktig.cn/typora/20210820212017.png)
+![Zookeeper Client节点数据](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/20210820212017.png)
 
 ### 3.4 单线程生成10万个分布式ID测速
 

@@ -27,13 +27,13 @@ publish: false
 
 YARN主要由ResourceManager、NodeManager、ApplicationMaster和Container等组件构成。
 
-![Yarn 基础架构](https://cos.duktig.cn/typora/202110091704417.png)
+![Yarn 基础架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091704417.png)
 
 
 
 ## Yarn工作机制
 
-![Yarn 工作机制](https://cos.duktig.cn/typora/202110091707853.png)
+![Yarn 工作机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091707853.png)
 
 详细流程：
 
@@ -73,7 +73,7 @@ YARN主要由ResourceManager、NodeManager、ApplicationMaster和Container等组
 
 ### HDFS、YARN、MapReduce三者关系
 
-![HDFS、YARN、MapReduce三者关系](https://cos.duktig.cn/typora/202110091711699.png)
+![HDFS、YARN、MapReduce三者关系](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091711699.png)
 
 
 
@@ -85,7 +85,7 @@ YARN主要由ResourceManager、NodeManager、ApplicationMaster和Container等组
 
 ### 作业提交过程之HDFS & MapReduce
 
-![作业提交过程之HDFS & MapReduce](https://cos.duktig.cn/typora/202110091713573.png)
+![作业提交过程之HDFS & MapReduce](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091713573.png)
 
 
 
@@ -162,7 +162,7 @@ YARN中的任务将其进度和状态(包括counter)返回给应用管理器, �
 
 FIFO调度器（First In First Out）：单队列，根据提交作业的先后顺序，先来先服务。
 
-![FIFO调度器](https://cos.duktig.cn/typora/202110091716045.png)
+![FIFO调度器](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091716045.png)
 
 优点：简单易懂；
 
@@ -172,7 +172,7 @@ FIFO调度器（First In First Out）：单队列，根据提交作业的先后�
 
 Capacity Scheduler是 Yahoo 开发的多用户调度器。
 
-![容量调度器（Capacity Scheduler）](https://cos.duktig.cn/typora/202110091719091.png)
+![容量调度器（Capacity Scheduler）](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091719091.png)
 
 特点：
 
@@ -189,7 +189,7 @@ Capacity Scheduler是 Yahoo 开发的多用户调度器。
 
 **容量调度器资源分配算法**：
 
-![容量调度器资源分配算法](https://cos.duktig.cn/typora/202110091722827.png)
+![容量调度器资源分配算法](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091722827.png)
 
 ### 公平调度器（Fair Scheduler）
 
@@ -225,7 +225,7 @@ Fair Schedulere是Facebook开发的多用户调度器。
 
 #### 公平调度器——缺额
 
-![公平调度器——缺额](https://cos.duktig.cn/typora/202110091726367.png)
+![公平调度器——缺额](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091726367.png)
 
 公平调度器设计目标是：在时间尺度上，所有作业获得公平的资源。
 
@@ -266,11 +266,11 @@ queueB：分33.33 + 16.66 = 50
 queueC：分30
 ```
 
-![队列资源分配](https://cos.duktig.cn/typora/202110091730650.png)
+![队列资源分配](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091730650.png)
 
 **（2）作业资源分配**
 
-![作业资源分配](https://cos.duktig.cn/typora/202110091731149.png)
+![作业资源分配](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091731149.png)
 
 **3）DRF策略**
 

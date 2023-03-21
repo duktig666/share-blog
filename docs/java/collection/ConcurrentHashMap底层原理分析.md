@@ -79,7 +79,7 @@ class HashMapThread extends Thread {
 
 我们着重分析为什么会出现死循环的情况，通过`jps`和`jstack`命名查看死循环情况，结果如下：
 
-![jdk1.8 HashMap死循环堆栈情况](https://cos.duktig.cn/typora/202109252012771.jpeg)
+![jdk1.8 HashMap死循环堆栈情况](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109252012771.jpeg)
 
 从堆栈信息中可以看到出现死循环的位置，通过该信息可明确知道死循环发生在HashMap的 **扩容函数** 中，根源在**`transfer`函数**中，jdk1.7中HashMap的`transfer`函数如下：
 
@@ -176,7 +176,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 在 JDK1.7中，本质上还是采用链表+数组的形式存储键值对的。但是，为了提高并发，把原来的整个 table 划分为 n 个 `Segment` 。所以，从整体来看，它是一个由 `Segment` 组成的数组。然后，每个 `Segment` 里边是由 `HashEntry` 组成的数组，每个 `HashEntry`之间又可以形成链表。我们可以把每个 `Segment` 看成是一个小的 `HashMap`，其内部结构和 `HashMap` 是一模一样的，每一个 `HashMap` 的内部可以进行扩容。但是 `Segment` 的个数一旦**初始化就不能改变**，默认 `Segment` 的个数是 16 个，你也可以认为 `ConcurrentHashMap` 默认支持最多 16 个线程并发。
 
-![ConcurrentHashMap 1.7存储结构](https://cos.duktig.cn/typora/202109252101050.png)
+![ConcurrentHashMap 1.7存储结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109252101050.png)
 
 当对某个 Segment 加锁时，并不会影响到其他 Segment 的读写。每个 Segment 内部自己操作自己的数据。这样一来，我们要做的就是**尽可能的让元素均匀的分布在不同的 Segment中**。最理想的状态是，所有执行的线程操作的元素都是不同的 Segment，这样就可以降低锁的竞争。
 
@@ -184,7 +184,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 可以发现 Java8 的 `ConcurrentHashMap` 相对于 Java7 来说变化比较大，不再是之前的 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
-![Java8 ConcurrentHashMap 存储结构](https://cos.duktig.cn/typora/202109252157388.png)
+![Java8 ConcurrentHashMap 存储结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109252157388.png)
 
 不再使用分段锁，而是给数组中的每一个头节点（为了方便，以后都叫桶）都加锁，锁的粒度降低了。并且，用的是 `Synchronized `锁。
 

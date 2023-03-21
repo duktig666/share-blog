@@ -36,31 +36,31 @@ Apache Flink 是一个框架和分布式处理引擎，用于对 **无界和有�
 
 事务处理（OLTP）：
 
-![image-20211122200218443](https://cos.duktig.cn/typora/202111222003529.png)
+![image-20211122200218443](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222003529.png)
 
 分析处理（OLAP）：
 
 将数据从业务数据库复制到数仓，再进行分析和查询
 
-![image-20211122200257708](https://cos.duktig.cn/typora/202111222003696.png)
+![image-20211122200257708](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222003696.png)
 
 ### 有状态的流式处理
 
-![image-20211122200406028](https://cos.duktig.cn/typora/202111222004362.png)
+![image-20211122200406028](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222004362.png)
 
 lambda 架构：用两套系统，同时保证低延迟和结果准确
 
-![image-20211122200436367](https://cos.duktig.cn/typora/202111222004159.png)
+![image-20211122200436367](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222004159.png)
 
 ## 流处理的演变
 
-![image-20211122200512855](https://cos.duktig.cn/typora/202111222005626.png)
+![image-20211122200512855](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222005626.png)
 
 ## Flink的主要特点
 
 **事件驱动**
 
-![image-20211122201146939](https://cos.duktig.cn/typora/202111222011416.png)
+![image-20211122201146939](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222011416.png)
 
 
 
@@ -68,7 +68,7 @@ lambda 架构：用两套系统，同时保证低延迟和结果准确
 
 在 Flink 的世界观中，一切都是由流组成的，离线数据是有界的流；实时数据是一个没有界限的流：这就是所谓的有界流和无界流
 
-![image-20211122201457567](https://cos.duktig.cn/typora/202111222015734.png)
+![image-20211122201457567](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222015734.png)
 
 **Flink 的分层 API**
 
@@ -76,7 +76,7 @@ lambda 架构：用两套系统，同时保证低延迟和结果准确
 
 越底层越具体，表达能力越丰富，使用越灵活
 
-![image-20211122201704054](https://cos.duktig.cn/typora/202111222017452.png)
+![image-20211122201704054](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222017452.png)
 
 其他：
 
@@ -112,7 +112,7 @@ Flink 运行时由两种类型的进程组成：一个 JobManager 和一个或�
 
 典型的 Master-Slave 架构
 
-![image-20211122211018059](https://cos.duktig.cn/typora/202111222110310.png)
+![image-20211122211018059](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222110310.png)
 
 
 
@@ -150,17 +150,17 @@ JobMaster 负责管理单个 JobGraph 的执行。Flink 集群中可以同时运
 
 ## 任务提交流程
 
-![image-20211122212648752](https://cos.duktig.cn/typora/202111222126258.png)
+![image-20211122212648752](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222126258.png)
 
-![image-20211122212954588](https://cos.duktig.cn/typora/202111222130840.png)
+![image-20211122212954588](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222130840.png)
 
 
 
-![image-20211122213417523](https://cos.duktig.cn/typora/202111222134372.png)
+![image-20211122213417523](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222134372.png)
 
 ## TaskManager 和 Slots
 
-![image-20211122213642814](https://cos.duktig.cn/typora/202111222136599.png)
+![image-20211122213642814](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222136599.png)
 
 Flink 中每一个 TaskManager 都是一个 JVM 进程，每一个任务插槽都会启动一个线程，它可能会在独立的线程上执行一个或多个 subtask，每一个子任务占用一个任务插槽（Task Slot）
 
@@ -172,7 +172,7 @@ Task Slot 是静态的概念，是指 TaskManager 具有的并发执行能力。
 
 ## 程序与数据流 (DataFlow)
 
-![image-20211122215310212](https://cos.duktig.cn/typora/202111222153198.png)
+![image-20211122215310212](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222153198.png)
 
 所有的 Flink 程序都是由三部分组成的：Source、Transformation 和 Sink。
 
@@ -184,24 +184,24 @@ Source 负责读取数据源，Transformation 利用各种算子进行处理加�
 
 在大部分情况下，程序中的转换运算（transformations）跟dataflow 中的算子（operator）是一一对应的关系
 
-![image-20211122215338526](https://cos.duktig.cn/typora/202111222153496.png)
+![image-20211122215338526](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222153496.png)
 
 ## 图数据结构的转化
 
-![image-20211122215511531](https://cos.duktig.cn/typora/202111222155154.png)
+![image-20211122215511531](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222155154.png)
 
 - StreamGraph：是根据用户通过 Stream API 编写的代码生成的最初的图。用来表示程序的拓扑结构。
 - JobGraph：StreamGraph 在编译的阶段经过优化后生成了JobGraph，提交给 JobManager 的数据结构。主要的优化为，将多个符合条件（窄依赖，没有 shuffle）的算子 chain 在一起作为一个节点。
 - ExecutionGraph：JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph 是 JobGraph 的并行化版本，是调度层最核心的数据结构。
 - 物理执行图：JobManager 根据 ExecutionGraph 对 Job 进行调度后，在各个 TaskManager 上部署 Task 后形成的“图”，并不是一个具体的数据结构。 
 
-![slide2](https://cos.duktig.cn/typora/202111222203969.png)
+![slide2](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222203969.png)
 
 ## 并行度
 
-![image-20211122220208047](https://cos.duktig.cn/typora/202111222202799.png)
+![image-20211122220208047](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222202799.png)
 
-![image-20211122220433482](https://cos.duktig.cn/typora/202111222204741.png)
+![image-20211122220433482](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222204741.png)
 
 -  一个特定算子的子任务（subtask）的个数被称之为其并行度（parallelism）。一般情况下，一个 stream 的并行度，可以认为就是其所有算子中最大的并行度。
 - 算子之间传输数据的形式可以是 one-to-one (forwarding) 的模式也可以是 redistributing 的模式，具体是哪一种形式，取决于算子的种类
@@ -211,7 +211,7 @@ Source 负责读取数据源，Transformation 利用各种算子进行处理加�
 
 ## 任务链
 
-![slide2](https://cos.duktig.cn/typora/202111222206707.png)
+![slide2](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111222206707.png)
 
 Flink 采用了一种称为任务链的优化技术，可以在特定条件下减少本地通信的开销。为了满足任务链的要求，必须将两个或多个算子设为相同的并行度，并通过本地转发（localforward）的方式进行连接
 

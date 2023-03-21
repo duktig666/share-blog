@@ -33,7 +33,7 @@ categories:
 
 DNS 实现负载均衡是最基础简单的方式。一个域名通过 DNS 解析到多个 IP，每个 IP 对应不同的服务器实例，这样就完成了流量的调度，虽然没有使用常规的负载均衡器，但实现了简单的负载均衡功能。
 
-![DNS负载均衡](https://cos.duktig.cn/typora/202109131515528.png)
+![DNS负载均衡](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131515528.png)
 
 优点：实现简单，成本低，无需自己开发或维护负载均衡设备
 
@@ -91,7 +91,7 @@ DNS 实现负载均衡是最基础简单的方式。一个域名通过 DNS 解�
 
 **正向代理**：局域网中的电脑用户想要直接访问网络是不可行的，只能通过代理服务器来访问，这种代理服务就被称为正向代理。
 
-![正向代理](https://cos.duktig.cn/typora/202109132015131.jpeg)
+![正向代理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109132015131.jpeg)
 
 由于防火墙的原因，我们并不能直接访问谷歌，那么我们可以借助VPN来实现，这就是一个简单的正向代理的例子。这里你能够发现，正向代理“代理”的是客户端，而且客户端是知道目标的，而目标是不知道客户端是通过VPN访问的。
 
@@ -189,7 +189,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 项目前期没啥流量，所以只部署了一台 tomcat server，让客户端直接请求这台 server。
 
-![单节点直接访问](https://cos.duktig.cn/typora/202109131034316.png)
+![单节点直接访问](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131034316.png)
 
 这样部署一开始也没啥问题，因为业务量不是很大，单机足以扛住。
 
@@ -201,7 +201,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 **为了避免单机性能瓶颈与解决单点故障的隐患**，可以多部署几台机器（假设为三台），这样可以让 client 随机打向其中的一台机器，这样就算其中一台机器挂了，另外的机器还存活，让 client 打向其它没有宕机的机器即可。
 
-![多节点访问](https://cos.duktig.cn/typora/202109131034924.png)
+![多节点访问](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131034924.png)
 
 问题：
 
@@ -211,7 +211,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 在架构设计中有个经典的共识：没有什么是加一层解决不了的，如果有那就再加一层，所以我们在 server 端再加一层，将其命名为 LB（Load Balance，负载均衡），由 LB 统一接收 client 的请求，然后再由它来决定具体与哪一个 server 通信，一般业界普遍使用 Nginx 作为 LB。
 
-![负载均衡访问](https://cos.duktig.cn/typora/202109131043358.png)
+![负载均衡访问](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131043358.png)
 
 采用这样的架构设计支撑了业务的快速增长。
 
@@ -221,7 +221,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 ### （4）网关+负载均衡
 
-![网关+负载均衡](https://cos.duktig.cn/typora/202109131049022.png)
+![网关+负载均衡](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131049022.png)
 
 这样的话所有的流量在打到  server 前都要经过网关这一层，鉴权通过后才把流量转发到 server 中，否则就向 client 返回报错信息，除了鉴权外，网关还起到风控（防止羊毛党），协议转换（比如将 HTTP 转换成 Dubbo），流量控制等功能，以最大程度地保证转发给 server 的流量是安全的，可控的。
 
@@ -237,7 +237,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 **直接访问**：并不是所有的动态请求都需要经过网关，像某些后台由于是内部员工使用的，所以它的鉴权与网关的 api 鉴权并不相同，所以单独部署 server ，直接让 Nginx 将的请求打到了这台 server 上，绕过网关。
 
-![动静分离](https://cos.duktig.cn/typora/202109131102630.png)
+![动静分离](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131102630.png)
 
 ### （6）Nginx集群
 
@@ -245,7 +245,7 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 为了避免单点故障 Nginx 也需要部署至少两台机器，于是我们的架构变成了下面这样，Nginx 部署两台，以主备的形式存在，备 Nginx 会通过 keepalived 机制（发送心跳包） 来及时感知到主 Nginx 的存活，发现宕机自己就顶上充当主 Nginx 的角色。
 
-![Nginx集群](https://cos.duktig.cn/typora/202109131112752.png)
+![Nginx集群](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131112752.png)
 
 #### 2. 考虑LVS
 
@@ -257,13 +257,13 @@ HAProxy跟LVS类似，本身就只是一款负载均衡软件；单纯从效率�
 
 Nginx 是七层（即应用 层）负载均衡器 ，这意味着如果它要转发流量首先得和 client 建立一个 TCP 连接，并且转发的时候也要与转发到的上游 server 建立一个 TCP 连接，而我们知道建立 TCP 连接其实是需要耗费内存（TCP Socket，接收/发送缓存区等需要占用内存）的，客户端和上游服务器要发送数据都需要先发送暂存到到 Nginx 再经由另一端的 TCP 连接传给对方。
 
-![Nginx TCP连接传输](https://cos.duktig.cn/typora/202109131128279.png)
+![Nginx TCP连接传输](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131128279.png)
 
 所以 Nginx 的负载能力受限于机器I/O，CPU内存等一系列配置，一旦连接很多（比如达到百万）的话，Nginx 抗负载能力就会急遽下降。
 
 经过分析可知 Nginx 的负载能力较差主要是因为它是**七层负载均衡器必须要在上下游分别建立两个 TCP 所致**，那么是否能设计一个**类似路由器那样的只负载转发包但不需要建立连接的负载均衡器**呢？这样由于**不需要建立连接，只负责转发包，不需要维护额外的 TCP 连接**，它的负载能力必然大大提升，于是四层负载均衡器 LVS 就诞生了，简单对比下两者的区别
 
-![Nginx与LVS对比](https://cos.duktig.cn/typora/202109131128072.png)
+![Nginx与LVS对比](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131128072.png)
 
 可以看到 LVS 只是单纯地转发包，不需要和上下游建立连接即可转发包，相比于 Nginx 它的抗负载能力强、*性能*高，能达到 F5 硬件的 60%；对内存和cpu资源消耗比较低。
 
@@ -271,7 +271,7 @@ Nginx 是七层（即应用 层）负载均衡器 ，这意味着如果它要转
 >
 > 负载均衡设备在接收到第一个来自客户端的SYN 请求时，即通过负载均衡算法选择一个最佳的服务器，并**对报文中目标IP地址进行修改(改为后端服务器 IP ），直接转发给该服务器**。**TCP 的连接建立，即三次握手是客户端和服务器直接建立的，负载均衡设备只是起到一个类似路由器的转发动作**。在某些部署情况下，为保证服务器回包可以正确返回给负载均衡设备，在转发报文的同时可能还会对报文原来的源地址进行修改。
 
-![LVS主从](https://cos.duktig.cn/typora/202109131143763.png)
+![LVS主从](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131143763.png)
 
 问题：
 
@@ -279,25 +279,25 @@ Nginx 是七层（即应用 层）负载均衡器 ，这意味着如果它要转
 
 #### 3. LVS集群
 
-![LVS集群](https://cos.duktig.cn/typora/202109131154087.png)
+![LVS集群](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131154087.png)
 
 >  LVS 可以采用部署多台的形式来避免单点故障，那 Nginx 也可以，而且 Nginx 在 1.9 之后也开始支持*四层负载*均衡了，所以貌似 LVS 不是很有必要？
 
 #### 4. Nginx集群（最终版）
 
-![Nginx集群](https://cos.duktig.cn/typora/202109131200707.png)
+![Nginx集群](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131200707.png)
 
 ### （7）引入CDN
 
 如果流量很大时，静态资源应该部署在 CDN 上， CDN 会自动选择离用户最近的节点返回给用户，所以我们最终的架构改进如下：
 
-![引入CDN](https://cos.duktig.cn/typora/202109131208101.png)
+![引入CDN](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131208101.png)
 
 ### （8）最终架构图
 
 通过部署多台 Nginx 的方式在流量不是那么大的时候确实是可行，但 LVS 是 Linux 的内核模块，工作在内核态，而 Nginx 工作在用户态，也相对比较重，所以在性能和稳定性上 Nginx 是不如 LVS 的，这就是为什么我们要采用 LVS + Nginx 的部署方式。
 
-![最终架构图](https://cos.duktig.cn/typora/202109131450033.png)
+![最终架构图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109131450033.png)
 
 
 
@@ -939,7 +939,7 @@ hash(object) % nodeTotal
 
 一致性哈希算法（Consistent Hashing）最早在论文《Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web》中被提出。简单来说，一致性哈希将整个哈希值空间组织成一个虚拟的圆环，如假设某哈希函数H的值空间为0-2^32^-1（即哈希值是一个32位无符号整形），整个哈希空间环如下：
 
-![一致性hash原理](https://cos.duktig.cn/typora/202109132137866.png)
+![一致性hash原理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109132137866.png)
 
 
 

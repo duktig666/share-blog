@@ -76,7 +76,7 @@ IoC（Inverse of Control:控制反转）是一种**设计思想**，就是 **将
 
 就是依赖倒置原则的一种代码设计的思路。具体采用的方法就是所谓的依赖注入（Dependency Injection）。
 
-![IOC原理](https://cos.duktig.cn/typora/202109111449502.png)
+![IOC原理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111449502.png)
 
 控制反转容器(IOC Container)
 
@@ -177,7 +177,7 @@ BeanFactory通常以编程的方式被创建，ApplicationContext还能以声明
 
 `BeanFactory`和`ApplicationContext`都支持`BeanPostProcessor`、`BeanFactoryPostProcessor`的使用，但两者之间的区别是：`BeanFactory`需要手动注册，而`ApplicationContext`则是自动注册。
 
-![ApplicationContext UML类图](https://cos.duktig.cn/typora/202109111607037.png)
+![ApplicationContext UML类图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111607037.png)
 
 ## 6. `ApplicationContext`通常的实现是什么？
 
@@ -207,29 +207,29 @@ ApplicationContext context = new ClassPathXmlApplicationContext(“application.x
 
 第三级缓存：用来保存一个对象工厂，提供一个匿名内部类，用于创建二级缓存中的对象
 
-![三级缓存](https://cos.duktig.cn/typora/202109111624717.jpg)
+![三级缓存](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111624717.jpg)
 
 假设一个简单的循环依赖场景，A、B互相依赖。
 
-![循环依赖示例](https://cos.duktig.cn/typora/202109111624540.jpg)
+![循环依赖示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111624540.jpg)
 
 A对象的创建过程：
 
 1. 创建对象A，实例化的时候把A对象工厂放入三级缓存
 
-![解决循环依赖流程1](https://cos.duktig.cn/typora/202109111625161.jpg)
+![解决循环依赖流程1](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111625161.jpg)
 
 2.A注入属性时，发现依赖B，转而去实例化B
 
 3.同样创建对象B，注入属性时发现依赖A，依次从一级到三级缓存查询A，从三级缓存通过对象工厂拿到A，把A放入二级缓存，同时删除三级缓存中的A，此时，B已经实例化并且初始化完成，把B放入一级缓存。
 
-![解决循环依赖流程2](https://cos.duktig.cn/typora/202109111625083.jpg)
+![解决循环依赖流程2](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111625083.jpg)
 
 4.接着继续创建A，顺利从一级缓存拿到实例化且初始化完成的B对象，A对象创建也完成，删除二级缓存中的A，同时把A放入一级缓存
 
 5.最后，一级缓存中保存着实例化、初始化都完成的A、B对象
 
-![解决循环依赖流程3](https://cos.duktig.cn/typora/202109111625001.jpg)
+![解决循环依赖流程3](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111625001.jpg)
 
 因此，由于把实例化和初始化的流程分开了，所以如果都是用构造器的话，就没法分离这个操作，所以都是构造器的话就无法解决循环依赖的问题了。
 
@@ -245,7 +245,7 @@ setter方式 - 单例(singleton)
 
 Spring是先将Bean对象实例化之后再设置对象属性的
 
-![img](https://cos.duktig.cn/typora/202112301515674.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112301515674.png)
 
 **为什么用set方式就不报错了呢 ？**
 
@@ -267,13 +267,13 @@ Spring是先将Bean对象实例化之后再设置对象属性的
 
 假设只有二级缓存的情况，往二级缓存中放的显示一个普通的Bean对象，`BeanPostProcessor`去生成代理对象之后，覆盖掉二级缓存中的普通Bean对象，那么**多线程环境下可能取到的对象就不一致了**。
 
-![只有二级缓存的问题](https://cos.duktig.cn/typora/202109111629284.jpeg)
+![只有二级缓存的问题](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111629284.jpeg)
 
 ## 9.IoC 的容器构建流程
 
 核心的构建流程如下，也就是 refresh 方法的核心内容：
 
-![IoC 的容器构建流程](https://cos.duktig.cn/typora/202109112024701.jpeg)
+![IoC 的容器构建流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109112024701.jpeg)
 
 
 
@@ -337,7 +337,7 @@ AOP 领域中的特性术语：
 - 织入（Weaving）: 将增强处理添加到目标对象中，并创建一个被增强的对象，这个过程就是织入。
 - 目标对象（Target Object）： 被一个或者多个切面（aspect）所通知（advise）的对象。它通常是一个代理对象。也有人把它叫做 被通知（adviced） 对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个 被代理（proxied） 对象。
 
-![AOP术语](https://cos.duktig.cn/typora/202109071556064.png)
+![AOP术语](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071556064.png)
 
 ## 6. Spring通知有哪些类型？
 
@@ -380,7 +380,7 @@ java.lang.RuntimeException: 异常发生
 
 **回答一**
 
-![Bean的生命周期](https://cos.duktig.cn/typora/202109071618798.jpeg)
+![Bean的生命周期](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071618798.jpeg)
 
 1. Spring 启动，查找并加载需要被 Spring 管理的 Bean，并实例化 Bean。
 2. 利用依赖注入完成 Bean 中所有属性值的配置注入。
@@ -404,7 +404,7 @@ bean 的生命周期主要有以下几个阶段，深色底的5个是比较重�
 - 正常使用
 - 销毁
 
-![Bean生命周期](https://cos.duktig.cn/typora/202109111552892.jpeg)
+![Bean生命周期](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109111552892.jpeg)
 
 ## 2. Bean的作用域
 

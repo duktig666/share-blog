@@ -107,7 +107,7 @@ MVCC通过ReadView找到符合条件的记录版本，**查询语句只能读到
 
 ### 锁结构详解
 
-<img src="https://cos.duktig.cn/typora/202203022325296.jpg" alt="271a340123d72197fd99faa32c1190b" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203022325296.jpg" alt="271a340123d72197fd99faa32c1190b" style="zoom:67%;" />
 
 - 锁所在事务信息和索引信息 在内存结构中是一个指针，不会占用太大空间
 - 表锁/行锁信息：
@@ -117,7 +117,7 @@ MVCC通过ReadView找到符合条件的记录版本，**查询语句只能读到
         - Page Number：记录所在的页号
         - n_bits：对于行锁来说，一条记录对用一个比特。用以区分哪些记录被加了行锁，n_bits为了让页面插入新记录时不至于重新分配锁结构，一般来说会比页面记录多一些。
 - type_mode：是一个32比特的数，分为 lock_mode、lock_type、rec_lock_type
-  三部分。![91bb6399110c93e44260472028a69fc](https://cos.duktig.cn/typora/202203022332392.jpg)
+  三部分。![91bb6399110c93e44260472028a69fc](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203022332392.jpg)
     - lock_mode（锁模式）占用4比特，具体如下：
         - LOCK_IS（十进制0）
         - LOCK_IX（十进制1）
@@ -154,7 +154,7 @@ MVCC通过ReadView找到符合条件的记录版本，**查询语句只能读到
 
 共享锁的特性主要是为了支持并发的读取数据，读取数据的时候不支持修改，避免出现重复读的问题。
 
-![共享锁](https://cos.duktig.cn/typora/202111051714836.png)
+![共享锁](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111051714836.png)
 
 ### 排它锁
 
@@ -162,7 +162,7 @@ MVCC通过ReadView找到符合条件的记录版本，**查询语句只能读到
 
 排他锁的目的是在数据修改时候，不允许其他人同时修改，也不允许其他人读取。避免了出现脏数据和脏读的问题。
 
-![排它锁](https://cos.duktig.cn/typora/202111051729003.png)
+![排它锁](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111051729003.png)
 
 ## 读写意向锁
 
@@ -311,7 +311,7 @@ MySQL Server 会根据 WHERE 条件读取第一条满足条件的记录，然后
 
 不同的锁锁定的位置是不同的，比如说记录锁只锁住对应的记录，而间隙锁锁住记录和记录之间的间隔，Next-Key Lock 则所属记录和记录之前的间隙。
 
-![行锁的范围](https://cos.duktig.cn/typora/202111051714635.png)
+![行锁的范围](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111051714635.png)
 
 ### 记录锁（Record Lock）
 
@@ -334,7 +334,7 @@ MySQL Server 会根据 WHERE 条件读取第一条满足条件的记录，然后
 
 比如下面的表里面的数据ID 为 1,4,5,7,10 ,那么会形成以下几个间隙区间，-n-1区间，1-4区间，7-10区间，10-n区间 （-n代表负无穷大，n代表正无穷大）
 
-![间隙锁](https://cos.duktig.cn/typora/202111051721479.png)
+![间隙锁](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111051721479.png)
 
 **大致触发条件：**范围查询并且查询未命中记录，查询条件必须命中索引、间隙锁只会出现在REPEATABLE_READ（重复读)的事务级别中。
 

@@ -227,9 +227,9 @@ public class ThreadLocalExample1 {
 
 它所对应的底层结构图为:
 
-[![ThreadLocal实例内存结构](https://cos.duktig.cn/2021/07/05/1625453067.png)](https://cos.duktig.cn/2021/07/05/1625453067.png)
+[![ThreadLocal实例内存结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/07/05/1625453067.png)](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/07/05/1625453067.png)
 
-[ThreadLocal实例内存结构](https://cos.duktig.cn/2021/07/05/1625453067.png)
+[ThreadLocal实例内存结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/07/05/1625453067.png)
 
 
 
@@ -407,7 +407,7 @@ Unsafe类支持CAS的方法。那Java具体是如何使用这几个方法来实�
 
 JDK提供了一些用于原子操作的类，在`java.util.concurrent.atomic`包下面。在JDK 8中，有如下17个类：
 
-[![java.util.concurrent.atomic](https://cos.duktig.cn/2021/07/05/1625455891.png)](https://cos.duktig.cn/2021/07/05/1625455891.png)
+[![java.util.concurrent.atomic](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/07/05/1625455891.png)](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/2021/07/05/1625455891.png)
 
 从名字就可以看得出来这些类大概的用途：
 

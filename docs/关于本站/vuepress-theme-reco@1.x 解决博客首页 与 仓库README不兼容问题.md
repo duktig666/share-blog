@@ -25,7 +25,7 @@ tags:
 
 但是存在一个比较大的问题——vuepress-theme-reco 搭建的博客系统，默认以 `READM.md` 文件作为首页，会使github的仓库默认页变得很丑。如下：
 
-![image-20220305204002764](https://cos.duktig.cn/typora/202203052040098.png)
+![image-20220305204002764](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052040098.png)
 
 **你能忍受你的github仓库首页长这个样子吗？**
 
@@ -39,17 +39,17 @@ tags:
 
 我们通过对比发现，vuepress的默认根目录是`docs`：
 
-<img src="https://cos.duktig.cn/typora/202203052054939.png" alt="image-20220305204953129" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052054939.png" alt="image-20220305204953129" style="zoom:67%;" />
 
 所以 `.vuepress目录` 在docs下，所以docs下的README就是默认的首页。
 
-<img src="https://cos.duktig.cn/typora/202203052054841.png" alt="image-20220305205100188" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052054841.png" alt="image-20220305205100188" style="zoom:67%;" />
 
 ###  vuepress-theme-reco 的默认根目录
 
 分析vuepress-theme-reco的**package.json**文件，发现其默认以当前项目为根目录。
 
-![image-20220305205456729](https://cos.duktig.cn/typora/202203052054518.png)
+![image-20220305205456729](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052054518.png)
 
 那么只需要让其 `.vuepress` 文件夹也在docs下，那么docs下的README.md自然就成为了首页；那么项目根目录下的README.md文件就可以作为git仓库的默认首页了。
 
@@ -68,7 +68,7 @@ tags:
 
 ### 2、将 .vuepress文件夹 从项目根目录移动到docs文件夹下
 
-<img src="https://cos.duktig.cn/typora/202203052102549.png" alt="image-20220305210244212" style="zoom:67%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203052102549.png" alt="image-20220305210244212" style="zoom:67%;" />
 
 ### 3、特别注意：博客内的根路径之后 从`/docs` 开始
 

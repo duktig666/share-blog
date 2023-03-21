@@ -83,7 +83,7 @@ X（Exchanges）：交换机一方面：接收生产者发送的消息。另一�
 
 可以通过设置消息的expiration字段或者x-message-ttl属性来设置时间，两者是一样的效果。只是expiration字段是字符串参数，所以要写个int类型的字符串：
 
-![img](https://cos.duktig.cn/typora/202201101007749.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201101007749.png)
 
 当上面的消息扔到队列中后，过了3分钟，如果没有被消费，它就死了。不会被消费者消费到。这个消息后面的，没有“死掉”的消息对顶上来，被消费者消费。死信在队列中并不会被删除和释放，它会被统计到队列的消息数中去。单靠死信还不能实现延迟任务，还要靠Dead Letter Exchange。
 
@@ -103,7 +103,7 @@ Dead Letter Exchange其实就是一种普通的exchange，和创建其他exchang
 
 延迟任务通过消息的TTL和Dead Letter Exchange来实现。我们需要建立2个队列，一个用于发送消息，一个用于消息过期后的转发目标队列。
 
-![image-20220110101328411](https://cos.duktig.cn/typora/202201101013728.png)
+![image-20220110101328411](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201101013728.png)
 
 生产者输出消息到Queue1，并且这个消息是设置有有效时间的，比如3分钟。消息会在Queue1中等待3分钟，如果没有消费者收掉的话，它就是被转发到Queue2，Queue2有消费者，收到，处理延迟任务。
 

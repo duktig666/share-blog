@@ -68,7 +68,7 @@ mysql CONCAT(str1,str2,…)
 
 SELECT CONCAT(stu_id, '# ', stu_name) FROM student;
 
-![x.jpeg](https://cos.duktig.cn/typora/x.jpeg)
+![x.jpeg](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/x.jpeg)
 
 # 最终实现
 

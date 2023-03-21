@@ -1450,7 +1450,7 @@ protected void run() {
 
 参考下图
 
-<img src="https://cos.duktig.cn/typora/202112132059512.png"  />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112132059512.png"  />
 
 
 

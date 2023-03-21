@@ -68,7 +68,7 @@ Spring 总共大约有 20 个模块， 由 1300 多个不同的文件构成。 �
 
 *目前最新的 5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。*
 
-![Spring5的组成](https://cos.duktig.cn/typora/202109071442872.jpg)
+![Spring5的组成](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071442872.jpg)
 
 - spring core：提供了框架的基本组成部分，包括控制反转（Inversion of Control，IOC）和依赖注入（Dependency Injection，DI）功能。
   - spring beans：提供了BeanFactory，是工厂模式的一个经典实现，Spring将管理对象称为Bean。
@@ -105,7 +105,7 @@ Spring 总共大约有 20 个模块， 由 1300 多个不同的文件构成。 �
 
 **图例**
 
-![Spring IOC控制反转图例](https://cos.duktig.cn/typora/202109071517854.png)
+![Spring IOC控制反转图例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071517854.png)
 
 传统程序设计都是主动去创建相关对象然后再组合起来：
 
@@ -137,7 +137,7 @@ IoC的思想最核心的地方在于，==资源不由使用资源的双方管理
 
 AOP 是一种编程思想，是面向对象编程（OOP）的一种补充。面向对象编程将程序抽象成各个层次的对象，而面向切面编程是将程序抽象成各个切面。
 
-![AOP实例](https://cos.duktig.cn/typora/202109071538296.png)
+![AOP实例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071538296.png)
 
 AOP 要实现的是在我们原来写的代码的基础上，进行一定的包装，如在方法执行前、方法返回后、方法抛出异常后等地方进行一定的拦截处理或者叫增强处理。
 
@@ -159,7 +159,7 @@ AOP 领域中的特性术语：
 - 织入（Weaving）: 将增强处理添加到目标对象中，并创建一个被增强的对象，这个过程就是织入。
 - 目标对象（Target Object）： 被一个或者多个切面（aspect）所通知（advise）的对象。它通常是一个代理对象。也有人把它叫做 被通知（adviced） 对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个 被代理（proxied） 对象。
 
-![AOP术语](https://cos.duktig.cn/typora/202109071556064.png)
+![AOP术语](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071556064.png)
 
 ### AOP 实现分类
 
@@ -257,7 +257,7 @@ public Person personPrototype() {
 
 ### Bean的生命周期
 
-![Bean的生命周期](https://cos.duktig.cn/typora/202109071618798.jpeg)
+![Bean的生命周期](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109071618798.jpeg)
 
 1. Spring 启动，查找并加载需要被 Spring 管理的 Bean，并实例化 Bean。
 

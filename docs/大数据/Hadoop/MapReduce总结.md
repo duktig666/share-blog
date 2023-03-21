@@ -39,7 +39,7 @@ MapReduce 核心功能是**将用户编写的业务逻辑代码和自带默认�
 
 ### MapReduce 核心思想
 
-![MapReduce 核心思想 ](https://cos.duktig.cn/typora/202110071622121.png)
+![MapReduce 核心思想 ](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071622121.png)
 
 ### MapReduce 进程
 
@@ -100,7 +100,7 @@ MapReduce 核心功能是**将用户编写的业务逻辑代码和自带默认�
 
 按照 MapReduce 编程规范，分别编写 Mapper，Reducer，Driver。 
 
-![统计一堆文件中单词出现的个数（WordCount案例）](https://cos.duktig.cn/typora/202110071646744.png)
+![统计一堆文件中单词出现的个数（WordCount案例）](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071646744.png)
 
 #### 编写 Mapper 类 
 
@@ -214,7 +214,7 @@ FPX
 
 第二个参数：输出文件目录
 
-![测试参数](https://cos.duktig.cn/typora/202110071800851.png)
+![测试参数](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071800851.png)
 
 参数内容：
 
@@ -226,7 +226,7 @@ hadoop-example/src/main/resources/WordCountInput.txt hadoop-example/src/main/res
 
 结果：
 
-![测试结果](https://cos.duktig.cn/typora/202110071800562.png)
+![测试结果](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071800562.png)
 
 part-r-00000统计结果：
 
@@ -355,7 +355,7 @@ id   手机号码       网络ip                        上行流量 下行流�
 
 **需求分析：**
 
-![需求分析](https://cos.duktig.cn/typora/202110081447362.png)
+![需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081447362.png)
 
 **编写 MapReduce 程序** 
 
@@ -559,7 +559,7 @@ public class FlowDriver {
 
 ## MapReduce 框架原理
 
-![MapReduce 框架原理](https://cos.duktig.cn/typora/202110081525220.png)
+![MapReduce 框架原理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081525220.png)
 
 ### InputFormat 数据输入
 
@@ -575,7 +575,7 @@ MapTask 的并行度决定 Map 阶段的任务处理并发度，进而影响到�
 数据块：Block 是 HDFS 物理上把数据分成一块一块。**数据块是 HDFS 存储数据单位**。
 数据切片：数据切片只是在逻辑上对输入进行分片，并不会在磁盘上将其切分成片进行存储。**数据切片是 MapReduce 程序计算输入数据的单位**，一个切片会对应启动一个 MapTask。
 
-![MapTask 并行度决定机制 ](https://cos.duktig.cn/typora/202110081544504.png)
+![MapTask 并行度决定机制 ](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081544504.png)
 
 #### InputFormat实现类
 
@@ -627,7 +627,7 @@ CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);// 4m
 
 生成切片过程包括：虚拟存储过程和切片过程二部分。 
 
-![CombineTextInputFormat切片机制](https://cos.duktig.cn/typora/202110081609776.png)
+![CombineTextInputFormat切片机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081609776.png)
 
 （1）虚拟存储过程： 
 将输入目录下所有文件大小，依次和设置的 setMaxInputSplitSize 值比较，如果不大于设置的最大值，逻辑上划分一个块。如果输入文件大于设置的最大值且大于两倍，那么以最大值切割一块：**当剩余数据大小超过设置的最大值且不大于最大值 2 倍，此时将文件均分成 2 个虚拟存储块（防止出现太小切片）**。 
@@ -662,9 +662,9 @@ CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);
 
 ### MapReduce详细工作流程
 
-![MapReduce工作流程1](https://cos.duktig.cn/typora/202110081644694.png)
+![MapReduce工作流程1](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081644694.png)
 
-![MapReduce工作流程2](https://cos.duktig.cn/typora/202110081645208.png)
+![MapReduce工作流程2](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081645208.png)
 
 ### Shuffle 机制
 
@@ -672,7 +672,7 @@ CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);
 
 `Map` 方法之后，`Reduce`方法之前的数据处理过程称之为 Shuffle。 
 
-![Shuffle 机制](https://cos.duktig.cn/typora/202110081649265.png)
+![Shuffle 机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081649265.png)
 
 #### Partition 分区
 
@@ -756,7 +756,7 @@ job.setNumReduceTasks(5);
 
 ##### **需求分析**
 
-![需求分析](https://cos.duktig.cn/typora/202110081718203.png)
+![需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081718203.png)
 
 ##### 代码实现
 
@@ -854,7 +854,7 @@ public class FlowPartitionerDriver {
 
 分了5个文件，如下图
 
-![分区结果](https://cos.duktig.cn/typora/202110081730114.png)
+![分区结果](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081730114.png)
 
 具体文件内容如下：
 
@@ -981,7 +981,7 @@ public int compareTo(FlowBean bean) {
 
 ##### 需求分析 
 
-![全排序需求分析](https://cos.duktig.cn/typora/202110081754324.png)
+![全排序需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110081754324.png)
 
 ##### 代码实现
 
@@ -1222,7 +1222,7 @@ public int compareTo(FlowBean o) {
 ```
 
 结果：
-![二次排序结果](https://cos.duktig.cn/typora/202110082015695.png)
+![二次排序结果](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082015695.png)
 
 可以看出，当总流量为240时，3行相同的数据，按照上行流量倒序排序。
 
@@ -1235,7 +1235,7 @@ public int compareTo(FlowBean o) {
 
  基于前一个需求，增加自定义分区类，分区按照省份手机号设置。
 
-![区内排序需求分析](https://cos.duktig.cn/typora/202110082021047.png) 
+![区内排序需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082021047.png) 
 
 ##### 代码实现
 
@@ -1387,7 +1387,7 @@ Combiner 功能。
 
 ##### 需求分析 
 
-![Combiner 合并需求分析](https://cos.duktig.cn/typora/202110082047902.png)
+![Combiner 合并需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082047902.png)
 
 ##### 代码实现——方案1
 
@@ -1444,7 +1444,7 @@ job.setCombinerClass(WordCountReducer.class);
 
 `OutputFormat`是MapReduce输出的基类，所有实现MapReduce输出都实现了`OutputFormat`接口。下面我们介绍几种常见的`OutputFormat`实现类。
 
-![OutputFormat实现类](https://cos.duktig.cn/typora/202110082111974.png)
+![OutputFormat实现类](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082111974.png)
 
 默认输出格式 `TextOutputFormat`。
 
@@ -1628,7 +1628,7 @@ https://www.zhihu.com
 
 ### MapTask 工作机制
 
-![MapTask 工作机制](https://cos.duktig.cn/typora/202110082153299.png)
+![MapTask 工作机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082153299.png)
 
 （1）Read 阶段：MapTask 通过 InputFormat 获得的 RecordReader，从输入 InputSplit 中解析出一个个 key/value。 
 
@@ -1650,7 +1650,7 @@ https://www.zhihu.com
 
 ### ReduceTask 工作机制
 
-![ReduceTask 工作机制](https://cos.duktig.cn/typora/202110082203874.png)
+![ReduceTask 工作机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110082203874.png)
 
 （1）Copy 阶段：ReduceTask 从各个 MapTask 上远程拷贝一片数据，并针对某一片数据，如果其大小超过一定阈值，则写到磁盘上，否则直接放到内存中。 
 
@@ -1679,7 +1679,7 @@ job.setNumReduceTasks(4);
 
 （2）实验结论： 
 
-![改变ReduceTask](https://cos.duktig.cn/typora/202110090901523.png)
+![改变ReduceTask](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110090901523.png)
 
 （1）ReduceTask=0，表示没有Reduce阶段，输出文件个数和Map个数一致。
 
@@ -1705,13 +1705,13 @@ job.setNumReduceTasks(4);
 
 #### 需求
 
-![Join实例需求](https://cos.duktig.cn/typora/202110090919281.png)
+![Join实例需求](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110090919281.png)
 
 #### 需求分析
 
 通过将关联条件作为 Map 输出的 key，将两表满足 Join 条件的数据并携带数据所来源的文件信息，发往同一个 ReduceTask，在 Reduce 中进行数据的串联。
 
-![Join实例需求分析](https://cos.duktig.cn/typora/202110090921969.png) 
+![Join实例需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110090921969.png) 
 
 #### 代码实现
 
@@ -2069,7 +2069,7 @@ job.addCacheFile(new URI("hdfs://hadoop102:8020/cache/pd.txt"));
 
 #### 需求分析
 
-![MapJoin实例-需求分析](https://cos.duktig.cn/typora/202110091124540.png)
+![MapJoin实例-需求分析](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091124540.png)
 
 #### 代码实现
 
@@ -2307,7 +2307,7 @@ Combiner 合并可以提高程序执行效率，减少 IO 传输。
 
 压缩可以在 MapReduce 以下三个阶段进行：
 
-![MapReduce压缩位置选择](https://cos.duktig.cn/typora/202110091500760.png)
+![MapReduce压缩位置选择](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110091500760.png)
 
 
 

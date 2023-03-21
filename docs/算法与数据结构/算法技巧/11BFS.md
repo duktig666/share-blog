@@ -135,7 +135,7 @@ public int minDepth(TreeNode root) {
 
 这里注意这个 `while` 循环和 `for` 循环的配合，**`while` 循环控制一层一层往下走，`for` 循环利用 `sz` 变量控制从左到右遍历每一层二叉树节点**：
 
-![image-20220121151258634](https://cos.duktig.cn/typora/202201211513211.png)
+![image-20220121151258634](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211513211.png)
 
 **1、为什么 BFS 可以找到最短距离，DFS 不行吗**？
 
@@ -330,9 +330,9 @@ private String minusOne(String s, int j) {
 
 为什么这样能够能够提升效率呢？其实从 Big O 表示法分析算法复杂度的话，它俩的最坏复杂度都是 `O(N)`，但是实际上双向 BFS 确实会快一些，参看下图：
 
-![image-20220121160528881](https://cos.duktig.cn/typora/202201211605185.png)
+![image-20220121160528881](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211605185.png)
 
-![image-20220121160542387](https://cos.duktig.cn/typora/202201211605217.png)
+![image-20220121160542387](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211605217.png)
 
 图示中的树形结构，如果终点在最底部，按照传统 BFS 算法的策略，会把整棵树的节点都搜索一遍，最后找到 `target`；而双向 BFS 其实只遍历了半棵树就出现了交集，也就是找到了最短距离。从这个例子可以直观地感受到，双向 BFS 是要比传统 BFS 高效的。
 
@@ -412,7 +412,7 @@ public int openLock2(String[] deadends, String target) {
 >
 > 比如说输入的二维数组`board = [[4,1,2],[5,0,3]]`，算法应该返回 5：
 >
-> ![image-20220121161757191](https://cos.duktig.cn/typora/202201211618661.png)
+> ![image-20220121161757191](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211618661.png)
 >
 > 如果输入的是`board = [[1,2,3],[5,4,0]]`，则算法返回 -1，因为这种局面下无论如何都不能赢得游戏。
 
@@ -430,7 +430,7 @@ public int openLock2(String[] deadends, String target) {
 
 我们的问题转化成了：**如何穷举出`board`当前局面下可能衍生出的所有局面**？这就简单了，看数字 0 的位置呗，和上下左右的数字进行交换就行了：
 
-![image-20220121162135970](https://cos.duktig.cn/typora/202201211621124.png)
+![image-20220121162135970](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211621124.png)
 
 这样其实就是一个 BFS 问题，每次先找到数字 0，然后和周围的数字进行交换，形成新的局面加入队列…… 当第一次到达`target`时，就得到了赢得游戏的最少步数。
 
@@ -451,7 +451,7 @@ vector<vector<int>> neighbor = {
 
 **这个含义就是，在一维字符串中，索引`i`在二维数组中的的相邻索引为`neighbor[i]`**，：
 
-![image-20220121163126304](https://cos.duktig.cn/typora/202201211631247.png)
+![image-20220121163126304](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201211631247.png)
 
 至此，我们就把这个问题完全转化成标准的 BFS 问题了，直接就可以套出解法代码了：
 

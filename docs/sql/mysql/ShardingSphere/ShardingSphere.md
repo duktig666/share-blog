@@ -39,21 +39,21 @@ publish: false
 
 操作数据库中某张表，把这张表中一部分字段数据存到一张新表里面，再把这张表另一部分字段数据存到另外一张表里面 。
 
-![image-20211209161632645](https://cos.duktig.cn/typora/202112091616452.png)
+![image-20211209161632645](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091616452.png)
 
 ### 垂直分库
 
 把单一数据库按照业务进行划分，专库专表 。
 
-![image-20211209161812792](https://cos.duktig.cn/typora/202112091618567.png)
+![image-20211209161812792](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091618567.png)
 
 ### 水平分库 
 
-![image-20211209161836489](https://cos.duktig.cn/typora/202112091618511.png)
+![image-20211209161836489](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091618511.png)
 
 ### 水平分表
 
-![image-20211209161909428](https://cos.duktig.cn/typora/202112091619321.png)
+![image-20211209161909428](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091619321.png)
 
 ## 分库分表应用和问题
 
@@ -82,7 +82,7 @@ Sharding-JDBC 不是做分表分库，而是 **简化对分库分表之后数据
 1. 数据分片
 2. 读写分离
 
-![image-20211209162405938](https://cos.duktig.cn/typora/202112091624356.png)
+![image-20211209162405938](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091624356.png)
 
 ## Sharding-JDBC 实现水平分表
 
@@ -113,7 +113,7 @@ Sharding-JDBC 不是做分表分库，而是 **简化对分库分表之后数据
 
 ### 读写分离原理
 
-![image-20211209180204882](https://cos.duktig.cn/typora/202112091802113.png)
+![image-20211209180204882](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091802113.png)
 
 **Sharding-JDBC 通过 sql 语句语义分析，实现读写分离过程，不会做数据同步**。
 
@@ -123,7 +123,7 @@ Sharding-JDBC 不是做分表分库，而是 **简化对分库分表之后数据
 
 定位为透明的数据库代理端
 
-![image-20211209181213379](https://cos.duktig.cn/typora/202112091812688.png)
+![image-20211209181213379](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112091812688.png)
 
 Sharding-Proxy 独立应用，需要安装服务，进行分库分表或者读写分离配置，启动使用。 
 

@@ -37,7 +37,7 @@ categories:
 
 从部署的 **架构发展史** 角度出发：
 
-![部署架构发展史](https://cos.duktig.cn/typora/202110072149288.png)
+![部署架构发展史](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110072149288.png)
 
 ### 传统部署时代
 
@@ -118,7 +118,7 @@ categories:
 
 工作节点托管作为应用负载的组件的 Pod 。控制平面管理集群中的工作节点和 Pod 。 为集群提供故障转移和高可用性，这些控制平面一般跨多主机运行，集群跨多个节点运行。
 
-![K8S架构](https://cos.duktig.cn/typora/202109302051980.png)
+![K8S架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302051980.png)
 
 ### 1、控制平面组件（Control Plane Components）
 
@@ -197,7 +197,7 @@ kube-proxy 维护节点上的网络规则。这些网络规则允许从集群内
 
 下图为尚硅谷云原生视频中讲述的例子，方便理解：
 
-![K8S架构详解](https://cos.duktig.cn/typora/202109302051122.png)
+![K8S架构详解](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302051122.png)
 
 - Control Plane Components（硅谷总部）：K8S的控制层，用于管理所有的容器节点，一般部署在master节点上。可类比公司总部，宏观调控整个公司。
   - kubu-apiserver（秘书部）：控制层的入口，负责传达决策的命令。就像秘书一样。有点类似于微服务架构中的Nginx，访问后端的唯一入口。
@@ -221,7 +221,7 @@ kube-proxy 维护节点上的网络规则。这些网络规则允许从集群内
 >
 > KubeSphere 为用户提供构建企业级 Kubernetes 环境所需的多项功能，例如**多云与多集群管理、Kubernetes 资源管理、DevOps、应用生命周期管理、微服务治理（服务网格）、日志查询与收集、服务与网络、多租户管理、监控告警、事件与审计查询、存储管理、访问权限控制、GPU 支持、网络策略、镜像仓库管理以及安全管理**等。
 
-![KubeSphere功能](https://cos.duktig.cn/typora/202109302151590.jpeg)
+![KubeSphere功能](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302151590.jpeg)
 
 ## **KubeSphere**的优势？
 
@@ -298,9 +298,9 @@ KubeSphere适用于企业在数字化转型时所面临的敏捷开发与自动�
 >
 > DevOps **是一系列做法和工具**，可以使 IT 和软件开发团队之间的**流程实现自动化**。其中，随着敏捷软件开发日趋流行，**持续集成 (CI)** 和**持续交付 (CD)** 已经成为该领域一个理想的解决方案。在 CI/CD 工作流中，每次集成都通过自动化构建来验证，包括编码、发布和测试，从而帮助开发者提前发现集成错误，团队也可以快速、安全、可靠地将内部软件交付到生产环境。
 
-![KubeSphere的DevOps流程](https://cos.duktig.cn/typora/202109302213567.png)
+![KubeSphere的DevOps流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302213567.png)
 
-![DevOps流程](https://cos.duktig.cn/typora/202109302217855.jpeg)
+![DevOps流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302217855.jpeg)
 
 在DevOps的流程下，运维人员会在项目开发期间就介入到开发过程中，了解开发人员使用的系统架构和技术路线，从而制定适当的运维方案。而开发人员也会在运维的初期参与到系统部署中，并提供系统部署的优化建议。
 
@@ -310,11 +310,11 @@ DevOps的实施，促进开发和运维人员的沟通，增进彼此的理（ga
 
 对比的瀑布式开发和敏捷开发，我们可以明显看出，DevOps贯穿了软件全生命周期，而不仅限于开发阶段。
 
-![开发模式对比](https://cos.duktig.cn/typora/202109302218214.jpeg)
+![开发模式对比](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302218214.jpeg)
 
 ## DevOps的价值
 
-![DevOps的价值](https://cos.duktig.cn/typora/202109302220840.jpg)
+![DevOps的价值](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109302220840.jpg)
 
 
 

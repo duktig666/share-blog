@@ -31,6 +31,8 @@ git tag <tag_name>
 git tag -a <tag_name> -m "message"
 # 为特定的commit创建tag
 git tag <tag_name> <commit_sha>
+# tag 推送指定版本到远程版本库
+git push origin <tag_name>
 # tag 推送到远程版本库
 git push --tags
 git push origin <branch> --tags
@@ -151,7 +153,7 @@ git cherry-pick <HashA> <HashB>
 
 那么问题来了，`rebase`是如何将两条不同的分支合并到同一条分支的呢：
 
-![image-20211220094646114](https://cos.duktig.cn/typora/202112200947816.png)
+![image-20211220094646114](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112200947816.png)
 
 **首先，找到这两条分支的最近公共祖先`LCA`，然后从`master`节点开始，重演`LCA`到`dev`几个`commit`的修改**，如果这些修改和`LCA`到`master`的`commit`有冲突，就会提示你手动解决冲突，最后的结果就是把`dev`的分支完全接到`master`上面。
 
@@ -159,15 +161,15 @@ git cherry-pick <HashA> <HashB>
 
 但是与此同时，有些人也在"origin"分支上做了一些修改并且做了提交了. 这就意味着"origin"和"mywork"这两个分支各自"前进"了，它们之间"分叉"了。
 
-![image-20211220110915080](https://cos.duktig.cn/typora/202112201109279.png)
+![image-20211220110915080](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112201109279.png)
 
 在这里，你可以用"pull"命令把"origin"分支上的修改拉下来并且和你的修改合并； 结果看起来就像一个新的"合并的提交"(merge commit)：
 
-![image-20211220111009074](https://cos.duktig.cn/typora/202112201110093.png)
+![image-20211220111009074](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112201110093.png)
 
 但是，如果你想让"mywork"分支历史看起来像没有经过任何合并一样，你也许可以用 git rebase:
 
-![image-20211220111043121](https://cos.duktig.cn/typora/202112201110178.png)
+![image-20211220111043121](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112201110178.png)
 
 解决冲突：
 

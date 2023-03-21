@@ -53,24 +53,24 @@ Hadoop 三大发行版本：Apache、Cloudera、Hortonworks。
 高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元
 素或存储出现故障，也不会导致数据的丢失。
 
-![高可靠性](https://cos.duktig.cn/typora/202110061035051.png)
+![高可靠性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061035051.png)
 
 高扩展性：在集群间分配任务数据，可方便的扩展数以千计的节点。可实现不停机扩展节点。
 
-![高扩展性](https://cos.duktig.cn/typora/202110061035664.png)
+![高扩展性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061035664.png)
 
 高效性：在MapReduce的思想下，Hadoop是并行工作的，以加快任务处
 理速度。
 
-![高效性](https://cos.duktig.cn/typora/202110061035670.png)
+![高效性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061035670.png)
 
 高容错性：能够自动将失败的任务重新分配。
 
-![高容错性](https://cos.duktig.cn/typora/202110061035280.png)
+![高容错性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061035280.png)
 
 ## Hadoop 组成（重点）
 
-![Hadoop1.x、2.x、3.x区别](https://cos.duktig.cn/typora/202110061036778.png)
+![Hadoop1.x、2.x、3.x区别](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061036778.png)
 
 ### HDFS
 
@@ -130,7 +130,7 @@ Yet Another Resource Negotiator 简称 YARN ，另一种资源协调者，是 Ha
 
 4）Container：容器，相当一台独立的服务器，里面封装了任务运行所需要的资源，如内存、CPU、磁盘、网络等。
 
-![YARN架构](https://cos.duktig.cn/typora/202110061050089.png)
+![YARN架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061050089.png)
 
 说明1：客户端可以有多个
 
@@ -155,7 +155,7 @@ MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 1）Map 阶段并行处理输入数据 
 2）Reduce 阶段对 Map 结果进行汇总 
 
-![MapReduce架构](https://cos.duktig.cn/typora/202110061058676.png)
+![MapReduce架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061058676.png)
 
 ### MapReduce 的使用场景
 
@@ -184,7 +184,7 @@ MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 
 ### HDFS、YARN、MapReduce 三者关系 
 
-![HDFS、YARN、MapReduce 三者关系 ](https://cos.duktig.cn/typora/202110061100391.png)
+![HDFS、YARN、MapReduce 三者关系 ](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110061100391.png)
 
 # Hadoop的环境配置
 

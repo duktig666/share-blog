@@ -206,11 +206,11 @@ func TestPoint(t *testing.T) {
 
 #### 算术运算符
 
-![算术运算符](https://cos.duktig.cn/typora/202202082009887.png)
+![算术运算符](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082009887.png)
 
 #### ⽐比较运算符
 
-![image-20220208200957392](https://cos.duktig.cn/typora/202202082010449.png)
+![image-20220208200957392](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082010449.png)
 
 **⽤用 == ⽐比较数组** 
 
@@ -233,11 +233,11 @@ func TestCompareArray(t *testing.T) {
 
 #### 逻辑运算符
 
-![image-20220208201104058](https://cos.duktig.cn/typora/202202082011009.png)
+![image-20220208201104058](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082011009.png)
 
 #### 位运算符
 
-![image-20220208201141925](https://cos.duktig.cn/typora/202202082011727.png)
+![image-20220208201141925](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082011727.png)
 
 **&^ 按位置零**
 
@@ -363,7 +363,7 @@ func TestArraySection(t *testing.T) {
 
 切⽚片内部结构
 
-![image-20220208204755924](https://cos.duktig.cn/typora/202202082047104.png)
+![image-20220208204755924](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082047104.png)
 
 **切⽚声明**
 
@@ -393,7 +393,7 @@ func TestSliceGrowing(t *testing.T) {
 
 **切⽚片共享存储结构**
 
-![image-20220208210810569](https://cos.duktig.cn/typora/202202082108055.png)
+![image-20220208210810569](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202082108055.png)
 
 #### map
 
@@ -1000,7 +1000,7 @@ func TestClient(t *testing.T) {
 
 接口变量：
 
-![image-20220209090909477](https://cos.duktig.cn/typora/202202090909748.png)
+![image-20220209090909477](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202090909748.png)
 
 #### 扩展与复用
 
@@ -1115,7 +1115,7 @@ func TestEmptyInterfaceAssertion(t *testing.T) {
 
 **Go 接⼝口最佳实践**
 
-![image-20220209095239609](https://cos.duktig.cn/typora/202202090952314.png)
+![image-20220209095239609](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202090952314.png)
 
 ### 读写数据
 

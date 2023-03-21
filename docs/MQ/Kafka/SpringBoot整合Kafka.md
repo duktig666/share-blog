@@ -111,7 +111,7 @@ public class KafkaConsumer {
 
 **测试**
 
-![image-20220222215803067](https://cos.duktig.cn/typora/202202222158645.png)
+![image-20220222215803067](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202202222158645.png)
 
 
 

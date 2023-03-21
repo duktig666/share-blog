@@ -65,7 +65,7 @@ Channel 为 Netty ⽹络操作(读写等操作)抽象类， EventLoop 负责处�
 
 #### EventloopGroup
 
-![image-20220108162043255](https://cos.duktig.cn/typora/202201081620462.png)
+![image-20220108162043255](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201081620462.png)
 
 EventLoopGroup 包含多个 EventLoop （每⼀个 EventLoop 通常内部包含⼀个线程），上⾯我们已经说了 EventLoop 的主要作⽤实际就是负责监听⽹络事件并调⽤事件处理器进⾏相关 I/O 操作的处理。
 
@@ -293,7 +293,7 @@ TCP 实际上⾃带的就有⻓连接选项，本身是也有⼼跳包机制，�
 
 TCP 粘包/拆包 就是你基于 TCP 发送数据的时候，出现了多个字符串“粘”在了⼀起或者⼀个字符串被“拆”开的问题。⽐如你多次发送：“你好,你真帅啊！哥哥！”，但是客户端接收到的可能是下⾯这样的：
 
-![image-20220108155937215](https://cos.duktig.cn/typora/202201081559263.png)
+![image-20220108155937215](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201081559263.png)
 
 应用程序写入的字节大小大于套接字发送缓冲区的大小，会发生拆包现象，而应用程序写入数据小于套接字缓冲区大小，网卡将应用程序多次写入的数据封装成一个数据包发送到网络上，这将会发生粘包现象。
 
@@ -341,7 +341,7 @@ TCP 粘包/拆包 就是你基于 TCP 发送数据的时候，出现了多个字
 
    1. `ulimit -a` 命令查看当前设置的值是否满足要求
 
-      ![image-20220108170836545](https://cos.duktig.cn/typora/202201081708869.png)
+      ![image-20220108170836545](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201081708869.png)
 
       当并发接入的TCP连接数超过上限时，就会提示“too many open files”，所有新的客户端接入将失败。
 
@@ -459,7 +459,7 @@ JVM GC调优的三个基本原则如下：
 
 **3、Java堆大小设置原则**
 
-![image-20220108200405259](https://cos.duktig.cn/typora/202201082004545.png)
+![image-20220108200405259](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201082004545.png)
 
 **4、垃圾收集器的选择**
 

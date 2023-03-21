@@ -193,23 +193,23 @@ synchronized用的锁是存在Java对象头里的。如果对象是数组类型�
 
 Java对象头的长度：
 
-![Java对象头的长度](https://cos.duktig.cn/typora/202110011130581.png)
+![Java对象头的长度](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011130581.png)
 
 Java对象头里的Mark Word里默认存储对象的HashCode、分代年龄和锁标记位。
 
 Java对象头的存储结构：
 
-![Java对象头的存储结构](https://cos.duktig.cn/typora/202110011131420.png)
+![Java对象头的存储结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011131420.png)
 
 在运行期间，Mark Word里存储的数据会随着锁标志位的变化而变化。Mark Word可能变化为存储以下4种数据：
 
 32位Mark Word的状态变化：
 
-![32位Mark Word的状态变化](https://cos.duktig.cn/typora/202110011132836.png)
+![32位Mark Word的状态变化](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011132836.png)
 
 在64位虚拟机下，Mark Word是64bit大小的，其存储结构如表：
 
-![64位 Mark Word的存储结构](https://cos.duktig.cn/typora/202110011133698.png)
+![64位 Mark Word的存储结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011133698.png)
 
 ## 8 synchronized的锁升级过程
 
@@ -249,7 +249,7 @@ synchronized可以进行锁升级，但是不能降级，目的是**为了提高
 
 **偏向锁获得和撤销锁的过程：**
 
-![偏向锁获得和撤销锁的过程](https://cos.duktig.cn/typora/202110011056649.png)
+![偏向锁获得和撤销锁的过程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011056649.png)
 
 **偏向锁的升级：**
 
@@ -274,7 +274,7 @@ synchronized可以进行锁升级，但是不能降级，目的是**为了提高
 
 **轻量级锁膨胀的流程图**：
 
-![轻量级锁膨胀的流程图](https://cos.duktig.cn/typora/202110011116663.png)
+![轻量级锁膨胀的流程图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011116663.png)
 
 ### 8.3 重量级锁
 
@@ -284,4 +284,4 @@ synchronized可以进行锁升级，但是不能降级，目的是**为了提高
 
 ### 8.4 锁的优缺点对比
 
-![synchronized锁的优缺点对比](https://cos.duktig.cn/typora/202110011118990.png)
+![synchronized锁的优缺点对比](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110011118990.png)

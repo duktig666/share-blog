@@ -17,7 +17,7 @@ publish: false
 
 ## 概述
 
-### HDFS 产生背景 
+### HDFS 产生背景
 
 随着数据量越来越大，在一个操作系统存不下所有的数据，那么就分配到更多的操作系统管理的磁盘中，但是不方便管理和维护，迫切**需要一种系统来管理多台机器上的文件**，这就是分布式文件管理系统。**HDFS 只是分布式文件管理系统中的一种**。 
 
@@ -50,7 +50,7 @@ HDFS（Hadoop Distributed File System），它是一个文件系统，用于存�
 
 ### HDFS组成架构
 
-![HDFS组成架构](https://cos.duktig.cn/typora/202110062048937.png)
+![HDFS组成架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110062048937.png)
 
 **NameNode（nn）：就是Master，它是一个主管、管理者。**
 
@@ -183,7 +183,7 @@ hadoop fs -appendToFile ./input/liubei.txt /sanguo/shuguo.txt
 
 可以在web页面进行查看：
 
-![hadoop上传命令测试](https://cos.duktig.cn/typora/202110062119679.png)
+![hadoop上传命令测试](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110062119679.png)
 
 ### 下载
 
@@ -335,7 +335,7 @@ public void testCopyFromLocalFile() {
 
 **配置前的文件副本数量**：
 
-![配置前的文件副本数量](https://cos.duktig.cn/typora/202110071028338.png)
+![配置前的文件副本数量](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071028338.png)
 
 将 hdfs-site.xml 拷贝到项目的 resources 资源目录下 （**配置副本数量为1**）
 
@@ -362,7 +362,7 @@ configuration.set("dfs.replication", "2");
 
 配置后的文件副本数量：
 
-![配置后的文件副本数量](https://cos.duktig.cn/typora/202110071028379.png)
+![配置后的文件副本数量](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071028379.png)
 
 由此得出优先级结论：
 
@@ -516,7 +516,7 @@ public void testListStatus() {
 
 #### 文件写入整体流程
 
-![HDFS的写流程](https://cos.duktig.cn/typora/202110071200957.png)
+![HDFS的写流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071200957.png)
 
 流程详解：
 
@@ -535,11 +535,11 @@ public void testListStatus() {
 
 **节点距离：两个节点到达最近的共同祖先的距离总和**。 
 
-![网络拓扑-节点距离计算](https://cos.duktig.cn/typora/202110071402203.png)
+![网络拓扑-节点距离计算](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071402203.png)
 
 
 
-![网络拓扑-节点距离计算](https://cos.duktig.cn/typora/202110071401536.png)
+![网络拓扑-节点距离计算](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071401536.png)
 
 #### 副本存储节点选择
 
@@ -547,11 +547,11 @@ public void testListStatus() {
 >
 > 源码说明：server端（hadoop安装包的源码）查找 `BlockPlacementPolicyDefault`，在该类中查找 `chooseTargetInOrder` 方法
 
-![副本存储节点选择](https://cos.duktig.cn/typora/202110071406949.png)
+![副本存储节点选择](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071406949.png)
 
 ### HDFS的读流程
 
-![HDFS的读流程](https://cos.duktig.cn/typora/202110071415563.png)
+![HDFS的读流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071415563.png)
 
 流程详解：
 
@@ -576,7 +576,7 @@ public void testListStatus() {
 
 ### 工作机制
 
-![NameNode和SecondaryNameNode 的工作机制](https://cos.duktig.cn/typora/202110071442451.png)
+![NameNode和SecondaryNameNode 的工作机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071442451.png)
 
 #### 第一阶段：NameNode 启动 
 
@@ -666,7 +666,7 @@ hdfs oev -p 文件类型 -i 编辑日志 -o 转换后文件输出路径
 
 ### Datanode工作机制
 
-![Datanode工作机制](https://cos.duktig.cn/typora/202110071506634.png)
+![Datanode工作机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071506634.png)
 
 
 
@@ -714,7 +714,7 @@ DN 扫描自己节点块信息列表的时间，默认 6 小时
 
 （5）DataNode 在其文件创建后周期验证 CheckSum。 
 
-![数据完整性](https://cos.duktig.cn/typora/202110071525356.png)
+![数据完整性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110071525356.png)
 
 ### 掉线时限参数设置
 

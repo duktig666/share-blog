@@ -85,7 +85,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 ## 5. 如何保障mysql和redis之间的数据一致性？
 
-![mysql和redis的数据一致性](https://cos.duktig.cn/typora/202112021507099.jpg)
+![mysql和redis的数据一致性](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112021507099.jpg)
 
 **缓存与数据库双写时数据不一致**的问题。不管是先写数据库，再删除缓存；还是先删除缓存，再写库，都有可能出现数据不一致的情况。具体情况如下：
 
@@ -810,7 +810,7 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 文件事件处理器：组成结构：多个套接字、IO多路复用程序、文件事件分派器、事件处理器
 
-![详解Redis非阻塞io多路复用线程模型](https://cos.duktig.cn/typora/202111251639666.png)
+![详解Redis非阻塞io多路复用线程模型](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111251639666.png)
 
 Redis客户端对服务端的调用分为发送命令，执行命令，返回结果三个过程。
 

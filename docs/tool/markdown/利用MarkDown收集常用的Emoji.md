@@ -25,7 +25,7 @@ subSidebar: false
 
 看到过许多的 MarkDown 文件里都引用格式各样的emoji，也看到过许多的github网站的仓库简介也都使用emoji，如下：
 
-![image-20220312102910928](https://cos.duktig.cn/typora/202203121029687.png)
+![image-20220312102910928](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121029687.png)
 
 这样的emoji，要么是 `Unicode` 格式，要么需要直接复制粘贴去使用。
 
@@ -41,7 +41,7 @@ subSidebar: false
 
   - 想要的格式类似于 [Emoji中文网](https://www.emojiall.com/zh-hans) 的排列（**上边一行emoji，下边一行描述**），如下：
 
-    ![image-20220312104240290](https://cos.duktig.cn/typora/202203121042663.png)
+    ![image-20220312104240290](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121042663.png)
 
 - 在 MarkDown 文件中，可以随意使用复制的 emoji
 
@@ -127,7 +127,7 @@ grid-template-columns: repeat(auto-fill, 10%);
 
 效果图：
 
-![image-20220312110005626](https://cos.duktig.cn/typora/202203121112859.png)
+![image-20220312110005626](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202203121112859.png)
 
 但还是有缺点，如果10列放不下会出现拥挤情况，尤其在手机端显示不友好。
 

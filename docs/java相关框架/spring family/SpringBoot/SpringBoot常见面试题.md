@@ -172,7 +172,7 @@ SpringBoot 的 jar 无法被其他项目依赖，主要还是他和普通 jar �
 3. 通过`@Conditional`注解按需加载的配置类
 4. 想要其生效必须引入`spring-boot-starter-xxx`包实现起步依赖
 
-![SpringBoot自动配置原理 总结](https://cos.duktig.cn/typora/202109161008646.jpeg)
+![SpringBoot自动配置原理 总结](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161008646.jpeg)
 
 详情参看：[SpringBoot自动装配和Starter原理.md](./SpringBoot自动装配和Starter原理.md) 
 

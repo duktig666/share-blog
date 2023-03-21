@@ -202,7 +202,7 @@ SET
 FOREIGN_KEY_CHECKS = 1;
 ```
 
-![image-20220110203957838](https://cos.duktig.cn/typora/202201102040477.png)
+![image-20220110203957838](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201102040477.png)
 
 **1、查询Student表中的所有记录的Sname、Ssex和Class列。**
 

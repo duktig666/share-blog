@@ -113,7 +113,7 @@ SELECT LAST_INSERT_ID();
 commit;
 ```
 
-![mysql自增id方案](https://cos.duktig.cn/typora/20210820153658.png)
+![mysql自增id方案](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/20210820153658.png)
 
 #### **优点：**
 
@@ -144,7 +144,7 @@ auto-increment-offset = 2
 
 假设我们要部署N台机器，步长需设置为N，每台的初始值依次为0,1,2…N-1那么整个架构就变成了如下图所示：
 
-![MySQL多实例主键自增](https://cos.duktig.cn/typora/20210820153920.png)
+![MySQL多实例主键自增](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/20210820153920.png)
 
 #### **优点：**
 
@@ -193,7 +193,7 @@ auto-increment-offset = 2
 
 Twitter的分布式自增ID算法snowflake，这种方案大致来说是一种以划分命名空间（UUID也算，由于比较常见，所以单独分析）来生成ID的一种算法，这种方案把64-bit分别划分成多段，分开来标示机器、时间等，比如在snowflake中的64-bit分别表示如下图所示：
 
-![雪花算法](https://cos.duktig.cn/typora/20210820154238.png)
+![雪花算法](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/20210820154238.png)
 
 #### **分析：**
 

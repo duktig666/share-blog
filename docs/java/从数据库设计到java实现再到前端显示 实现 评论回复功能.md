@@ -22,11 +22,11 @@ tags:
 
 #### Blog（博客表）
 
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222340562.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222340562.png)
 #### User（用户表）
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222340160.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222340160.png)
 #### Observe评论表
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222340641.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222340641.png)
 ### 数据库设计概要
 1. 博客表主要用于id和评论表的`blog_id`关联，用于表示这条评论是和哪篇博客相关联的。
 2. 用户表主要用于id和评论表的observer_id关联，用于表示这条评论和哪个用户相关联。
@@ -427,7 +427,7 @@ public class ObserveController {
 数据库数据
 
 博客id为29的所有评论信息
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222341656.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222341656.png)
 
 查询后回显的数据
 
@@ -560,7 +560,7 @@ public class ObserveController {
 引入依赖的目录结构（当然也可以使用CDN的方式引入）
 
 关于Element UI引入，资源已经上传，可在文章顶部下载。
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222341142.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222341142.png)
 
 HTML（只保留关键部分）
 ```javascript
@@ -819,4 +819,4 @@ $(document).ready(function () {
 #### 回显数据实例展示
 
 多级评论回复层级结构非常鲜明
-![在这里插入图片描述](https://cos.duktig.cn/typora/202201222341006.png)
+![在这里插入图片描述](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201222341006.png)

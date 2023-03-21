@@ -52,7 +52,7 @@ create database if not exists test;
 
 结果：
 
-![Hive创建数据库](https://cos.duktig.cn/typora/202110282206130.png)
+![Hive创建数据库](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110282206130.png)
 
 ## 查询数据库
 
@@ -353,7 +353,7 @@ load data local inpath './dept.txt' overwrite into table dept;
 load data local inpath './emp.txt' overwrite into table emp; 
 ```
 
-![数据导入成功](https://cos.duktig.cn/typora/202110291750028.png)
+![数据导入成功](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202110291750028.png)
 
 ## 全表和特定列查询
 

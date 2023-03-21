@@ -6,7 +6,7 @@ publish: false
 
 ## 远程调用的流程
 
-![img](https://cos.duktig.cn/typora/202201151957953.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201151957953.png)
 
 生产者端流程：
 

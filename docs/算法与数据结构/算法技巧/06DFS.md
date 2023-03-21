@@ -28,7 +28,7 @@ publish: false
 
 岛屿问题是一类典型的网格问题。每个格子中的数字可能是 0 或者 1。我们把数字为 0 的格子看成海洋格子，数字为 1 的格子看成陆地格子，这样相邻的陆地格子就连接成一个岛屿。
 
-![岛屿问题示例](https://cos.duktig.cn/typora/202112181649619.jpeg)
+![岛屿问题示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181649619.jpeg)
 
 在这样一个设定下，就出现了各种岛屿问题的变种，包括岛屿的数量、面积、周长等。不过这些问题，基本都可以用 DFS 遍历来解决。
 
@@ -58,11 +58,11 @@ void traverse(TreeNode root) {
 
 首先，网格结构中的格子有多少相邻结点？答案是上下左右四个。对于格子 (r, c) 来说（r 和 c 分别代表行坐标和列坐标），四个相邻的格子分别是 (r-1, c)、(r+1, c)、(r, c-1)、(r, c+1)。换句话说，网格结构是「四叉」的。
 
-![网格结构中四个相邻的格子](https://cos.duktig.cn/typora/202112181656265.jpeg)
+![网格结构中四个相邻的格子](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181656265.jpeg)
 
 其次，网格 DFS 中的 base case 是什么？从二叉树的 base case 对应过来，应该是网格中不需要继续遍历、`grid[r][c]` 会出现数组下标越界异常的格子，也就是那些超出网格范围的格子。
 
-![网格 DFS 的 base case](https://cos.duktig.cn/typora/202112181657709.jpeg)
+![网格 DFS 的 base case](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181657709.jpeg)
 
 这一点稍微有些反直觉，坐标竟然可以临时超出网格的范围？这种方法我称为「**先污染后治理**」—— 甭管当前是在哪个格子，先往四个方向走一步再说，如果发现走出了网格范围再赶紧返回。这跟二叉树的遍历方法是一样的，先递归调用，发现 `root == null` 再返回。
 
@@ -72,7 +72,7 @@ void traverse(TreeNode root) {
 
 这时候，DFS 可能会不停地「兜圈子」，永远停不下来，如下图所示：
 
-![DFS 遍历可能会兜圈子（动图）](https://cos.duktig.cn/typora/202112181659979.gif)
+![DFS 遍历可能会兜圈子（动图）](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181659979.gif)
 
 如何避免这样的重复遍历呢？答案是标记已经遍历过的格子。以岛屿问题为例，我们需要在所有值为 1 的陆地格子上做 DFS 遍历。每走过一个陆地格子，就把格子的值改为 2，这样当我们遇到 2 的时候，就知道这是遍历过的格子了。也就是说，每个格子可能取三个值：
 
@@ -204,7 +204,7 @@ private boolean inArea(int[][] grid, int row, int col) {
 >
 >  岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。计算这个岛屿的周长。
 >
->  ![题目示例](https://cos.duktig.cn/typora/202112181710343.jpeg)
+>  ![题目示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181710343.jpeg)
 
 实话说，这道题用 DFS 来解并不是最优的方法。对于岛屿，直接用数学的方法求周长会更容易。不过这道题是一个很好的理解 DFS 遍历过程的例题。
 
@@ -217,7 +217,7 @@ private boolean inArea(int[][] grid, int row, int col) {
 
 那么这些和我们岛屿的周长有什么关系呢？实际上，**岛屿的周长是计算岛屿全部的「边缘」，而这些边缘就是我们在 DFS 遍历中，dfs 函数返回的位置**。观察题目示例，我们可以将岛屿的周长中的边分为两类，如下图所示。黄色的边是与网格边界相邻的周长，而蓝色的边是与海洋格子相邻的周长。
 
-![将岛屿周长中的边分为两类](https://cos.duktig.cn/typora/202112181714017.jpeg)
+![将岛屿周长中的边分为两类](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202112181714017.jpeg)
 
 当我们的 dfs 函数因为「坐标 (r, c) 超出网格范围」返回的时候，实际上就经过了一条黄色的边；而当函数因为「当前格子是海洋格子」返回的时候，实际上就经过了一条蓝色的边。这样，我们就把岛屿的周长跟 DFS 遍历联系起来了，我们的题解代码也呼之欲出：
 
@@ -583,7 +583,7 @@ private boolean inArea(int[][] grid, int r, int c) {
 >
 >   ⽐如题⽬输⼊下⾯这个⼆维矩阵：
 >
-> ![image-20220120214133747](https://cos.duktig.cn/typora/202201202141219.png)
+> ![image-20220120214133747](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201202141219.png)
 >
 > 其中有四个岛屿，但是左下⻆和右上⻆的岛屿形状相同，所以不同的岛屿共有三个，算法返回 3。
 
@@ -607,7 +607,7 @@ void dfs(int[][] grid, int i, int j) {
 
 所以，遍历顺序从某种意义上说就可以⽤来描述岛屿的形状，⽐如下图这两个岛屿：
 
-<img src="https://cos.duktig.cn/typora/202201202152367.png" alt="image-20220120215207962" style="zoom:80%;" />
+<img src="https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202201202152367.png" alt="image-20220120215207962" style="zoom:80%;" />
 
 假设它们的遍历顺序是：
 

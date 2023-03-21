@@ -53,7 +53,7 @@ OAuth就是为了解决上面这些问题而诞生的。
 
 OAuth的作用就是让"客户端"安全可控地获取"用户"的授权，与"服务商提供商"进行互动。
 
-![OAuth2.0主要角色](https://cos.duktig.cn/typora/202109011416017.png)
+![OAuth2.0主要角色](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011416017.png)
 
 ## OAuth的思路
 
@@ -67,7 +67,7 @@ OAuth在"客户端"与"服务提供商"之间，设置了一个**授权层（aut
 
 ## OAuth的运行流程
 
-![抽象OAuth协议流程](https://cos.duktig.cn/typora/202109011137923.png)
+![抽象OAuth协议流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011137923.png)
 
 > （A）用户打开客户端以后，客户端要求用户给予授权。
 >
@@ -83,7 +83,7 @@ OAuth在"客户端"与"服务提供商"之间，设置了一个**授权层（aut
 
 不难看出来，上面六个步骤之中，**B是关键，即用户怎样才能给于客户端授权**。有了这个授权以后，客户端就可以获取令牌，进而凭令牌获取资源。
 
-![授权流程例子](https://cos.duktig.cn/typora/202109011419950.jpg)
+![授权流程例子](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011419950.jpg)
 
 客户端获取授权有四种模式。
 
@@ -108,9 +108,9 @@ OAuth 2.0 对于如何颁发令牌的细节，规定得非常详细。具体来�
 
 这种方式是最常用的流程，安全性也最高，它**适用于那些有后端的 Web 应用**。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。
 
-![授权码模式-RFC 6749](https://cos.duktig.cn/typora/202109011142456.png)
+![授权码模式-RFC 6749](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011142456.png)
 
-![授权码方式流程](https://cos.duktig.cn/typora/202109010957694.png)
+![授权码方式流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109010957694.png)
 
 第一步，A 网站提供一个链接，用户点击后就会跳转到 B 网站，授权用户数据给 A 网站使用。下面就是 A 网站跳转 B 网站的一个示意链接。
 
@@ -173,9 +173,9 @@ https://b.com/oauth/token?
 >
 > 所有步骤在浏览器（前端）中完成，令牌对访问者是可见的，且客户端不需要认证。
 
-![简化模式-RFC 6749](https://cos.duktig.cn/typora/202109011358233.png)
+![简化模式-RFC 6749](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011358233.png)
 
-![隐藏式流程](https://cos.duktig.cn/typora/202109011001308.png)
+![隐藏式流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011001308.png)
 
 第一步，A 网站提供一个链接，要求用户跳转到 B 网站，授权用户数据给 A 网站使用。
 
@@ -209,7 +209,7 @@ https://b.com/oauth/token?
 >
 > 在这种模式中，用户必须把自己的密码给客户端，但是客户端不得储存密码。这通常用在用户对客户端高度信任的情况下，比如客户端是操作系统的一部分，或者由一个著名公司出品。而认证服务器只有在其他授权模式无法执行的情况下，才能考虑使用这种模式。
 
-![密码模式-RFC 6749](https://cos.duktig.cn/typora/202109011404961.png)
+![密码模式-RFC 6749](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011404961.png)
 
 第一步，A 网站要求用户提供 B 网站的用户名和密码。拿到以后，A 就直接向 B 请求令牌。
 
@@ -233,7 +233,7 @@ https://b.com/oauth/token?
 >
 > **适用于没有前端的命令行应用，即在命令行下请求令牌。**
 
-![客户端模式-RFC 6749](https://cos.duktig.cn/typora/202109011406349.png)
+![客户端模式-RFC 6749](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011406349.png)
 
 第一步，A 应用在命令行向 B 发出请求。
 
@@ -311,15 +311,15 @@ OAuth 2.0 的优点：保证了令牌既可以让第三方应用获得权限，�
 
 ### 传统单体应用架构应用安全
 
-![传统单体应用安全架构图](https://cos.duktig.cn/typora/202109011423230.png)
+![传统单体应用安全架构图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011423230.png)
 
 ### 微服务应用架构应用安全
 
-![微服务应用安全架构图](https://cos.duktig.cn/typora/202109011424719.png)
+![微服务应用安全架构图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011424719.png)
 
 
 
-![OAuth2.0应用安全架构简图](https://cos.duktig.cn/typora/202109011425268.png)
+![OAuth2.0应用安全架构简图](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109011425268.png)
 
 ## 第三方登录
 

@@ -24,7 +24,7 @@ tags:
 
 在 **[Vitalik 发布以太坊最新路线六大关键路线](https://www.chaincatcher.com/article/2082160)** 中的 **The Merge** 部分提到了—— **Distributed Validators（DV）**，分布式验证器技术。
 
-![dv](https://cos.duktig.cn/typora/dv.jpg)
+![dv](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/dv.jpg)
 
 
 

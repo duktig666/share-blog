@@ -42,7 +42,7 @@ Hive 是基于 Hadoop 的一个 **数据仓库工具**，可以 **将结构化�
 - Hive 分析数据底层的实现是 MapReduce 
 - 执行程序运行在 Yarn 上 
 
-![将 HQL 转化成MapReduce 程序](https://cos.duktig.cn/typora/202111021035124.png)
+![将 HQL 转化成MapReduce 程序](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111021035124.png)
 
 ## Hive 的优缺点
 
@@ -72,7 +72,7 @@ Hive 是基于 Hadoop 的一个 **数据仓库工具**，可以 **将结构化�
 
 ## Hive的架构
 
-![Hive架构](https://cos.duktig.cn/typora/202111021049951.png)
+![Hive架构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202111021049951.png)
 
 - **用户接口Client**： CLI（command-line interface）、JDBC/ODBC(jdbc 访问 hive)、WEBUI（浏览器访问hive）
 - **元数据Metastore**：元数据包括：表名、表所属的数据库（默认是 default）、表的拥有者、列/分区字段、

@@ -71,7 +71,7 @@ SpringBoot提供了我们快速创建SpringBoot项目的地方：[https://start.
 
 我们只需要在这个网页中把整个项目起好名字，然后选好我们需要的组件，就可以直接获得一个可以跑起来的SpringBoot项目。
 
-![开箱即用体验](https://cos.duktig.cn/typora/202109161026632.jpeg)
+![开箱即用体验](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161026632.jpeg)
 
 我们只需要填完上述信息，点击Generate，就可以直接将一个SpringBoot项目下载下来，然后导入我们的IDE，Eclipse或者IDEA都可，之后就可以直接将它运行起来。
 
@@ -191,9 +191,9 @@ web.xml:
 
 再点 `spring-boot-dependencies` 进去，可以发现里面放了很多的依赖和依赖的版本号。由于这个文件实在太长了，所以这里只展示一部分。
 
-![spring-boot-dependencies 部分代码](https://cos.duktig.cn/typora/202109161037697.jpeg)
+![spring-boot-dependencies 部分代码](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161037697.jpeg)
 
-![spring-boot-dependencies 部分代码](https://cos.duktig.cn/typora/202109161037773.jpeg)
+![spring-boot-dependencies 部分代码](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161037773.jpeg)
 
 **得出第一个结论**：
 
@@ -416,7 +416,7 @@ public String[] selectImports(AnnotationMetadata annotationMetadata) {
 
 这里我们需要重点关注一下`getAutoConfigurationEntry()`方法，这个方法主要负责**获取所有候选的配置**。
 
-![getAutoConfigurationEntry()方法 调用链路](https://cos.duktig.cn/typora/202109152021540.image)
+![getAutoConfigurationEntry()方法 调用链路](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152021540.image)
 
 `getAutoConfigurationEntry()`的源码：
 
@@ -448,11 +448,11 @@ AutoConfigurationEntry getAutoConfigurationEntry(AutoConfigurationMetadata autoC
 
 默认`spring.boot.enableautoconfiguration=true`，可在 `application.properties` 或 `application.yml` 中设置
 
-![第 1 步](https://cos.duktig.cn/typora/202109152024727.png)
+![第 1 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152024727.png)
 
 ##### **第 2 步** ：用于获取`EnableAutoConfiguration`注解中的 `exclude` 和 `excludeName`
 
-![第 2 步](https://cos.duktig.cn/typora/202109152024799.png)
+![第 2 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152024799.png)
 
 ##### **第 3 步**：获取需要自动装配的所有配置类（重要方法——`getCandidateConfigurations()`）
 
@@ -464,11 +464,11 @@ AutoConfigurationEntry getAutoConfigurationEntry(AutoConfigurationMetadata autoC
 spring-boot/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories
 ```
 
-![第 3-1 步](https://cos.duktig.cn/typora/202109152044629.png)
+![第 3-1 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152044629.png)
 
 从下图可以看到这个文件的配置内容都被我们读取到了。`XXXAutoConfiguration`的作用就是按需加载组件。
 
-![第 3-2 步](https://cos.duktig.cn/typora/202109152044161.png)
+![第 3-2 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152044161.png)
 
 不光是这个依赖下的`META-INF/spring.factories`被读取到，所有 Spring Boot Starter 下的`META-INF/spring.factories`都会被读取到。
 
@@ -476,7 +476,7 @@ spring-boot/spring-boot-project/spring-boot-autoconfigure/src/main/resources/MET
 
 如果，我们自己要创建一个 Spring Boot Starter，这一步是必不可少的。
 
-![第 3-3 步](https://cos.duktig.cn/typora/202109152045328.png)
+![第 3-3 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152045328.png)
 
 ##### **`getCandidateConfigurations()` 详细分析**
 
@@ -516,15 +516,15 @@ spring-boot/spring-boot-project/spring-boot-autoconfigure/src/main/resources/MET
 
 带着这个疑问，我们首先找到spring.factories这个文件：
 
-![spring.factories 位置](https://cos.duktig.cn/typora/202109161054144.jpeg)
+![spring.factories 位置](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161054144.jpeg)
 
 可以看到里面包含了很多自动配置属性：
 
-![spring.factories 内容](https://cos.duktig.cn/typora/202109161054911.jpeg)
+![spring.factories 内容](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161054911.jpeg)
 
 我们可以随便找一个自动配置点进去,比如**`WebMvcAutoConfiguration`**：
 
-![WebMvcAutoConfiguration](https://cos.duktig.cn/typora/202109161057858.jpeg)
+![WebMvcAutoConfiguration](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161057858.jpeg)
 
 
 
@@ -533,7 +533,7 @@ spring-boot/spring-boot-project/spring-boot-autoconfigure/src/main/resources/MET
 到这里可能面试官会问你:“`spring.factories`中这么多配置，每次启动都要全部加载么？”。
 
 很明显，这是不现实的。我们 debug 到后面你会发现，`configurations` 的值变小了。
-![第 4 步](https://cos.duktig.cn/typora/202109152046247.png)
+![第 4 步](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109152046247.png)
 
 这其实也是我在看源码的时候存在疑问的地方，因为其中有一个注解并不常用，我们点开一个配置类就可以看到。
 
@@ -583,7 +583,7 @@ public class RabbitAutoConfiguration {
 3. 通过`@Conditional`注解按需加载的配置类
 4. 想要其生效必须引入`spring-boot-starter-xxx`包实现起步依赖
 
-![SpringBoot自动配置原理 总结](https://cos.duktig.cn/typora/202109161008646.jpeg)
+![SpringBoot自动配置原理 总结](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161008646.jpeg)
 
 ## 五、约定大于配置 解析
 
@@ -711,15 +711,15 @@ blog.objectspace.cn
 
 我们依旧是选取SpringMVC的自动配置类，我们来看看其中有些什么东西。
 
-![img](https://cos.duktig.cn/typora/202109161132577.jpeg)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161132577.jpeg)
 
 点击任意一个`*Properties`类中，look一下其中的内容：
 
-![Properties类](https://cos.duktig.cn/typora/202109161132531.jpeg)
+![Properties类](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161132531.jpeg)
 
 看到这里相信所有人都明白了，我们就拿mvc配置来举例。
 
-![img](https://cos.duktig.cn/typora/202109161133901.jpeg)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109161133901.jpeg)
 
 我们在yml中配置的`date-format`，就可以通过`@ConfigurationProperties`映射到类中的`dateFormat`中,然后在通过自动配置类，将这些属性配置到配置类中。
 

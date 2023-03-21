@@ -153,7 +153,7 @@ void backtrack(路径, 选择列表){
 
 其实这就是回溯算法，直接画出如下这棵回溯树：
 
-![全排列 回溯树](https://cos.duktig.cn/typora/202109091433320.png)
+![全排列 回溯树](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109091433320.png)
 
 只要从根遍历这棵树，记录路径上的数字，其实就是所有的全排列。**我们不妨把这棵树称为回溯算法的「决策树」**。
 
@@ -161,7 +161,7 @@ void backtrack(路径, 选择列表){
 
 **可以把「路径」和「选择列表」作为决策树上每个节点的属性**，比如下图列出了几个节点的属性：
 
-![回溯树详解](https://cos.duktig.cn/typora/202109091438882.jpeg)
+![回溯树详解](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109091438882.jpeg)
 
 **定义的`backtrack`方法其实就像一个指针，在这棵树上游走，同时要正确维护每个节点的属性，每当走到树的底层，其「路径」就是一个全排列**。
 
@@ -178,17 +178,17 @@ void traverse(TreeNode root) {
 
 而所谓的前序遍历和后序遍历，他们只是两个很有用的时间点，如下图：
 
-![多叉树遍历](https://cos.duktig.cn/typora/202109091449683.png)
+![多叉树遍历](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109091449683.png)
 
 **前序遍历的代码在进入某一个节点之前的那个时间点执行，后序遍历代码在离开某个节点之后的那个时间点执行**。
 
 「路径」和「选择」是每个节点的属性，函数在树上游走要正确维护节点的属性，那么就要在这两个特殊时间点搞点动作：
 
-![路径和选择](https://cos.duktig.cn/typora/202109091450787.png)
+![路径和选择](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109091450787.png)
 
 总结搜索的方法：按顺序枚举每一位可能出现的情况，已经选择的数字在 **当前** 要选择的数字中不能出现。按照这种策略搜索就能够做到 **不重不漏**。这样的思路，可以用一个树形结构表示。
 
-![全排列过程](https://cos.duktig.cn/typora/202109092021557.png)
+![全排列过程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109092021557.png)
 
 ### 全排列代码
 
@@ -344,7 +344,7 @@ if (depth == len) {
 
 https://leetcode-cn.com/problems/n-queens/
 
-![n皇后的决策树](https://cos.duktig.cn/typora/202109092139757.jpeg)
+![n皇后的决策树](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109092139757.jpeg)
 
 #### 基于数组拷贝实现
 
@@ -465,7 +465,7 @@ private void dfsBacktrack(List<List<String>> res, char[][] chess, int row) {
 
 例如下面的矩阵包含了一条 bfce 路径。但是矩阵中不包含"abcb"路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。
 
-![矩阵中的路径](https://cos.duktig.cn/typora/202109092157108.png)
+![矩阵中的路径](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109092157108.png)
 
 #### 原版剑指Offer的Java代码实现（仅参考）
 
@@ -674,17 +674,17 @@ public class RobotMove13 {
 
 例如，最短路径问题有如下的最优子结构：
 
-![动态规划之最优子结构性质示例](https://cos.duktig.cn/typora/202109151442075.png)
+![动态规划之最优子结构性质示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151442075.png)
 
 结点 x 是从源结点 u 到目标结点 v 的最短路径上的结点，则源结点 u 到目标结点 v 的最短路径 7 就等于从源结点 u 到结点 x 的最短路径 5 加上从结点 x 到目标结点 v 的最短路径 2 的和。**源结点 u 到目标结点 v 的最短路径就是要求解的最优解**，源结点 u 到结点 x 的最短路径和从结点 x 到目标结点 v 的最短路径均为**子问题的最优解**，而**问题的最优解包含了其子问题的最优解**，则该问题具有**最优子结构性质**。
 
 但是最长路径问题就不具有最优子结构性质，注意这里的最长路径指的是两个结点间的最长简单路径（即不存在环的路径）。
 
-![不符合最优子结构性质示例](https://cos.duktig.cn/typora/202109151443379.png)
+![不符合最优子结构性质示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151443379.png)
 
 从结点 u 到结点 v 有两条最长路径，分别为 **u → s → v** 和 **u → t → v** ，但是与最短路径问题不同，这些最长路径不具有最优子结构性质。比如，从结点 u 到结点 v 有两条最长路径 **u → s → v** 并不等于从 u 到 s 的最长路径  **u → t → v → s** 与从 s 到 v 的最长路径 **s → u → t → v** 的加和。
 
-![不符合最优子结构性质示例](https://cos.duktig.cn/typora/202109151444456.png)
+![不符合最优子结构性质示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151444456.png)
 
 ### 重叠子问题性质
 
@@ -708,7 +708,7 @@ int fib(int n)
 
 再来看看 时的递归树：
 
-![斐波那契数列 n=5时的递归树](https://cos.duktig.cn/typora/202109151445349.png)
+![斐波那契数列 n=5时的递归树](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151445349.png)
 
 可以看到，fib(3) 被调用了两次，如果我们已经保存 fib(3) 的值，我们就可以复用保存的 fib(3) 的值，而不是重新计算，fib(2) 也是同样的道理。
 
@@ -720,17 +720,17 @@ DP table 就是动态规划算法自底向上建立的一个表格，用于保�
 
 比如我们计算 fib(5)，先由 fib(0) + fib(1) 得到 fib(2)，再由 fib(1) + fib(2) 得到 fib(3)，再由 fib(2) + fib(3) 得到 fib(4)，最后由 fib(3) + fib(4) 得到 fib(5)。
 
-![DP table（自底向上）](https://cos.duktig.cn/typora/202109151446875.png)
+![DP table（自底向上）](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151446875.png)
 
 也就是说，我们只需要存储子问题的解，而不需要重复计算子问题的解，对上图进行简化：
 
-![DP table（自底向上）简化](https://cos.duktig.cn/typora/202109151446725.png)
+![DP table（自底向上）简化](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151446725.png)
 
 此图也就是动态规划法求斐波那契数的过程图。其实就实现而言，其实质上是斐波那契数的迭代实现，所以之前说斐波那契数严格意义上不是动态规划所解决的问题，但是其对于我们理解**「重叠子问题性质」**还有很有帮助的。
 
 对斐波那契数列问题，动态规划法（自底而上）保存重叠子问题的解的更一般形式为：
 
-![DP table（自底向上）](https://cos.duktig.cn/typora/202109151447607.png)
+![DP table（自底向上）](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151447607.png)
 
 实现起来更是 so easy !
 
@@ -777,17 +777,17 @@ public class Fibonacci {
 
 PS：递归调用可理解为入栈操作，而返回则为出栈操作。
 
-![备忘录](https://cos.duktig.cn/typora/202109151448100.png)
+![备忘录](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151448100.png)
 
 由 fib(5) 的递归树，可以发现，备忘录方法与动态规划方法一样，把一颗存在巨量冗余的递归树进行剪枝，改造成了一颗不存在冗余的递归图。重叠子问题的解都被保存了起来，用到时直接查表即可，而不需要重新计算，这一点备忘录与动态规划方法一样。不同的是，**备忘录方法是自顶向下对问题求解，与直接递归方法的控制结构相同，而动态规划方法是自底向上对问题求解，与迭代实现方式的结构一致**。
 
 以 fib(5) 为例，备忘录方法（自顶向下）最终就是这样：
 
-![备忘录](https://cos.duktig.cn/typora/202109151449277.png)
+![备忘录](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151449277.png)
 
 对任意一个斐波那契数，更一般的备忘录方法则为下图这样，与动态规划法正好相反：
 
-![备忘录](https://cos.duktig.cn/typora/202109151449840.png)
+![备忘录](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151449840.png)
 
 实现上只需要对递归实现进行稍加改动即可：
 
@@ -1126,7 +1126,7 @@ int solve(int x){
 
 > 小明手中有 1，5，10，50，100 五种面额的纸币，每种纸币对应张数分别为 5，2，2，3，5 张。若小明需要支付 456 元，则需要多少张纸币？
 
-![贪心算法示例](https://cos.duktig.cn/typora/202109151611941.jpg)
+![贪心算法示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109151611941.jpg)
 
 ### 题目分析
 

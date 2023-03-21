@@ -22,9 +22,9 @@ Map的key存`ThreadLocal`对象，value存数据值。每个`Thread`的Map只对
 
 ## ThreadLocal的数据结构
 
-![ThreadLocal的数据结构](https://cos.duktig.cn/typora/202109141421470.png)
+![ThreadLocal的数据结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141421470.png)
 
-![ThreadLocal的数据结构](https://cos.duktig.cn/typora/202109141421487.png)
+![ThreadLocal的数据结构](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141421487.png)
 
 - `Thread`类有一个类型为`ThreadLocal.ThreadLocalMap`的实例变量`threadLocals`，也就是说每个线程有一个自己的`ThreadLocalMap`。
 - `ThreadLocalMap`有自己的独立实现，可以简单地将它的`key`视作`ThreadLocal`，`value`为代码中放入的值（实际上`key`并不是`ThreadLocal`本身，而是它的一个**弱引用**）。
@@ -137,7 +137,7 @@ public class ThreadLocalHashDemo {
 
 `HashMap`中解决冲突的方法是在数组上构造一个**链表**结构，冲突的数据挂载到链表上，如果链表长度超过一定数量则会转化成**红黑树**。而 `ThreadLocalMap` 中并没有链表结构，所以这里不能使用 `HashMap` 解决冲突的方式了。
 
-![ThreadLocal的Hash冲突](https://cos.duktig.cn/typora/202109141507366.png)
+![ThreadLocal的Hash冲突](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141507366.png)
 
 如上图所示，如果我们插入一个`value=27`的数据，通过 `hash` 计算后应该落入第 4 个槽位中，而槽位 4 已经有了 `Entry` 数据。
 
@@ -214,25 +214,25 @@ new ThreadLocal<>().set("duktig");
 
 **第一种情况：** 通过`hash`计算后的槽位对应的`Entry`数据为空：
 
-![情况1，待插入的下标，是空位置直接插入](https://cos.duktig.cn/typora/202109141525395.png)
+![情况1，待插入的下标，是空位置直接插入](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141525395.png)
 
 这里直接将数据放到该槽位即可。
 
 **第二种情况：** 槽位数据不为空，`key`值与当前`ThreadLocal`通过`hash`计算获取的`key`值一致：
 
-![情况2，待插入的下标，不为空，key 相同，直接更新](https://cos.duktig.cn/typora/202109141525180.png)
+![情况2，待插入的下标，不为空，key 相同，直接更新](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141525180.png)
 
 这里直接更新该槽位的数据。
 
 **第三种情况：** 槽位数据不为空，往后遍历过程中，在找到`Entry`为`null`的槽位之前，没有遇到`key`过期的`Entry`：
 
-![情况3，待插入的下标，不为空，key 不相同，线性探测法寻址](https://cos.duktig.cn/typora/202109141525927.png)
+![情况3，待插入的下标，不为空，key 不相同，线性探测法寻址](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141525927.png)
 
 遍历散列数组，线性往后查找，如果找到`Entry`为`null`的槽位，则将数据放入该槽位中，或者往后遍历过程中，遇到了**key 值相等**的数据，直接更新即可。
 
 **第四种情况：** 槽位数据不为空，往后遍历过程中，在找到`Entry`为`null`的槽位之前，遇到`key`过期的`Entry`，如下图，往后遍历过程中，一到了`index=7`的槽位数据`Entry`的`key=null`：
 
-![情况4，不为空，key 不相同，碰到过期key，进行探测清理过期key](https://cos.duktig.cn/typora/202109141525740.png)
+![情况4，不为空，key 不相同，碰到过期key，进行探测清理过期key](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141525740.png)
 
 散列数组下标为 7 位置对应的`Entry`数据`key`为`null`，表明此数据`key`值已经被垃圾回收掉了，此时就会执行`replaceStaleEntry()`方法，该方法含义是**替换过期数据的逻辑**，以**index=7**位起点开始遍历，进行探测式数据清理工作。
 
@@ -246,7 +246,7 @@ new ThreadLocal<>().set("duktig");
 
 以当前节点(`index=7`)向前迭代，检测是否有过期的`Entry`数据，如果有则更新`slotToExpunge`值。碰到`null`则结束探测。以上图为例`slotToExpunge`被更新为 0。
 
-![以当前节点位置向前迭代查找，直到碰到Entry为null结束](https://cos.duktig.cn/typora/202109141807871.png)
+![以当前节点位置向前迭代查找，直到碰到Entry为null结束](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141807871.png)
 
 向前迭代的操作是**为了更新探测清理过期数据的起始下标`slotToExpunge`的值**，**它是用来判断当前过期槽位`staleSlot`之前是否还有过期元素**。
 
@@ -254,21 +254,21 @@ new ThreadLocal<>().set("duktig");
 
 从当前节点`staleSlot`(index=7)向后查找`key`值相等的`Entry`元素，找到后更新`Entry`的值并交换`staleSlot`元素的位置。
 
-![以当前节点位置向后迭代查找——如果找到了相同 key 值的 Entry 数据](https://cos.duktig.cn/typora/202109141808301.png)
+![以当前节点位置向后迭代查找——如果找到了相同 key 值的 Entry 数据](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141808301.png)
 
 **（3-2）向后遍历过程中，如果没有找到相同 key 值的 Entry 数据，创建新的`Entry`，替换`table[stableSlot]`位置**
 
 从当前节点`staleSlot`向后查找`key`值相等的`Entry`元素，直到`Entry`为`null`则停止寻找。
 
-![向后遍历过程中，如果没有找到相同 key 值的 Entry 数据](https://cos.duktig.cn/typora/202109141808513.png)
+![向后遍历过程中，如果没有找到相同 key 值的 Entry 数据](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141808513.png)
 
 通过上图可知，此时`table`中没有`key`值相同的`Entry`。创建新的`Entry`，替换`table[stableSlot]`位置：
 
-![创建新的Entry，替换table[stableSlot]位置](https://cos.duktig.cn/typora/202109141808557.png)
+![创建新的Entry，替换table[stableSlot]位置](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141808557.png)
 
 **（4）从`staleToExpunge`位置开始向后检查过期数据，并清理。**
 
-![从staleToExpunge位置开始向后检查过期数据，并清理](https://cos.duktig.cn/typora/202109141809201.png)
+![从staleToExpunge位置开始向后检查过期数据，并清理](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141809201.png)
 
 清理工作主要是有两个方法：`expungeStaleEntry()`和`cleanSomeSlots()`，具体细节后面会讲到，请继续往后看。
 
@@ -324,7 +324,7 @@ int i = key.threadLocalHashCode & (len-1);
 
 接着就是执行`for`循环遍历，向后查找，我们先看下`nextIndex()`、`prevIndex()`方法实现：
 
-![nextIndex()、prevIndex()方法实现](https://cos.duktig.cn/typora/202109141708618.png)
+![nextIndex()、prevIndex()方法实现](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141708618.png)
 
 ```java
 private static int nextIndex(int i, int len) {
@@ -468,13 +468,13 @@ private void expungeStaleEntries() {
 
 我们还记得上面进行`rehash()`的阈值是`size >= threshold`，所以当面试官套路我们`ThreadLocalMap`扩容机制的时候 我们一定要说清楚这两个步骤。
 
-![ThreadLocalMap的扩容示例](https://cos.duktig.cn/typora/202109141816837.png)
+![ThreadLocalMap的扩容示例](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141816837.png)
 
 ### `resize()`机制
 
 接着看看具体的`resize()`方法，为了方便演示，我们以`oldTab.len=8`来举例：
 
-![resize()机制](https://cos.duktig.cn/typora/202109141816884.png)
+![resize()机制](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141816884.png)
 
 具体包括如下步骤；
 
@@ -542,7 +542,7 @@ private void resize() {
 
 **总结：**
 
-![ThreadLocalMap.get() 情况总结](https://cos.duktig.cn/typora/202109141819161.png)
+![ThreadLocalMap.get() 情况总结](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141819161.png)
 
 按照不同的数据元素存储情况，基本包括如下情况；
 
@@ -651,7 +651,7 @@ garbage but would cause some insertions to take O(n) time.
 
 **启发式清理**，有这么一段注释，大概意思是；试探的扫描一些单元格，寻找过期元素，也就是被垃圾回收的元素。*当添加新元素或删除另一个过时元素时，将调用此函数。它执行对数扫描次数，作为不扫描（快速但保留垃圾）和与元素数量成比例的扫描次数之间的平衡，这将找到所有垃圾，但会导致一些插入花费O（n）时间。*
 
-![启发式清理流程](https://cos.duktig.cn/typora/202109141622264.png)
+![启发式清理流程](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141622264.png)
 
 具体代码：
 
@@ -744,7 +744,7 @@ public class ThreadLocalDemo {
 弱引用key:null,值:def
 ```
 
-![img](https://cos.duktig.cn/typora/202109141502178.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141502178.png)
 
 如图所示，因为这里创建的`ThreadLocal`并没有指向任何值，也就是没有任何引用：
 
@@ -754,13 +754,13 @@ new ThreadLocal<>().set(s);
 
 所以这里在`GC`之后，`key`就会被回收，我们看到上面`debug`中的`referent=null`, 如果**改动一下代码：**
 
-![img](https://cos.duktig.cn/typora/202109141502850.png)
+![img](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141502850.png)
 
 这个问题刚开始看，如果没有过多思考，**弱引用**，还有**垃圾回收**，那么肯定会觉得是`null`。
 
 其实是不对的，因为题目说的是在做 `ThreadLocal.get()` 操作，证明其实还是有**强引用**存在的，所以 `key` 并不为 `null`，如下图所示，`ThreadLocal`的**强引用**仍然是存在的。
 
-![image.png](https://cos.duktig.cn/typora/202109141502456.png)
+![image.png](https://typecho-1300745270.cos.ap-shanghai.myqcloud.com/typora/202109141502456.png)
 
 如果我们的**强引用**不存在的话，那么 `key` 就会被回收，也就是会出现我们 `value` 没被回收，`key` 被回收，导致 `value` 永远存在，出现内存泄漏。
 
