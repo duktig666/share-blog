@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ windows-latest, ubuntu-latest ]
         node: [ 12, 14, 16 ]
+        include:
+          - os: windows-latest
+            node: 16
+            npm: 6
     steps:
       # 拉取代码
       - name: Checkout
