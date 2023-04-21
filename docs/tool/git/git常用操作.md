@@ -23,6 +23,14 @@ tags:
 
 
 
+## 添加远程仓库地址
+
+```sh
+git remote add upstream ssh://主仓库地址
+```
+
+
+
 ## git tag
 
 ```sh

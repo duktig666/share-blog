@@ -13,6 +13,7 @@ module.exports = {
             title: "个人博客",
         }
     },
+    // base: '/docs/',
     // 永久链接格式 （1.6.10 配置这个 导致插件vuepress-plugin-permalink-pinyin 中文路由转拼音失效）
     permalink: "/:year/:month/:day/:slug",
     // 静态资源路径
