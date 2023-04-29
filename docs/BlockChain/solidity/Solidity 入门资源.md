@@ -2,11 +2,12 @@
 title: Solidity 入门资源
 date: 2023-04-29
 categories:
-- 区块链
+- web3
 tags:
 - blockchain
 - solidity
 - web3
+permalink: /web3/solidity-started-resource
 ---
 
 
