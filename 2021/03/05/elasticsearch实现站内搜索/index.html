@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ElasticSearch实现站内搜索 | 个人博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="./favicon.ico">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?55943ae09e5901d7a9f5705133737eec";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+           </script>
+    <script src="https://hm.baidu.com/hm.js?xxxxxxxxxxx"></script>
+    <meta name="description" content="优秀还努力。愿你付出甘之如饴，所得归于欢喜。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="robots" content="all">
+    <meta name="author" content="RenShiWei">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="./assets/css/0.styles.64695689.css" as="style"><link rel="preload" href="./assets/js/app.7a1bd950.js" as="script"><link rel="preload" href="./assets/js/3.cb5ac92f.js" as="script"><link rel="preload" href="./assets/js/1.a307db49.js" as="script"><link rel="preload" href="./assets/js/114.41225bb2.js" as="script"><link rel="preload" href="./assets/js/10.6878b594.js" as="script"><link rel="prefetch" href="./assets/js/100.b10893aa.js"><link rel="prefetch" href="./assets/js/101.d1709d30.js"><link rel="prefetch" href="./assets/js/102.1a58a379.js"><link rel="prefetch" href="./assets/js/103.f0c582ac.js"><link rel="prefetch" href="./assets/js/104.04de97cb.js"><link rel="prefetch" href="./assets/js/105.353a5f47.js"><link rel="prefetch" href="./assets/js/106.4af0aeb7.js"><link rel="prefetch" href="./assets/js/107.bf61756d.js"><link rel="prefetch" href="./assets/js/108.0edfb977.js"><link rel="prefetch" href="./assets/js/109.87d4823f.js"><link rel="prefetch" href="./assets/js/11.a3599389.js"><link rel="prefetch" href="./assets/js/110.a5ed1380.js"><link rel="prefetch" href="./assets/js/111.2c649c5b.js"><link rel="prefetch" href="./assets/js/112.17877f4b.js"><link rel="prefetch" href="./assets/js/113.bb372fc4.js"><link rel="prefetch" href="./assets/js/115.bb36f433.js"><link rel="prefetch" href="./assets/js/116.413121df.js"><link rel="prefetch" href="./assets/js/117.d12e7957.js"><link rel="prefetch" href="./assets/js/118.2de30048.js"><link rel="prefetch" href="./assets/js/119.235e97bf.js"><link rel="prefetch" href="./assets/js/12.59a31928.js"><link rel="prefetch" href="./assets/js/120.5bea2ed7.js"><link rel="prefetch" href="./assets/js/121.584ccdfc.js"><link rel="prefetch" href="./assets/js/122.d932197c.js"><link rel="prefetch" href="./assets/js/123.0d00bf67.js"><link rel="prefetch" href="./assets/js/124.48945d55.js"><link rel="prefetch" href="./assets/js/125.aa08484f.js"><link rel="prefetch" href="./assets/js/126.88020d75.js"><link rel="prefetch" href="./assets/js/127.e1eb2923.js"><link rel="prefetch" href="./assets/js/128.a40cfbfc.js"><link rel="prefetch" href="./assets/js/129.d500888c.js"><link rel="prefetch" href="./assets/js/13.9b2912a8.js"><link rel="prefetch" href="./assets/js/130.3c2fd1e2.js"><link rel="prefetch" href="./assets/js/131.f14e5c6c.js"><link rel="prefetch" href="./assets/js/132.630ca592.js"><link rel="prefetch" href="./assets/js/133.d8b4681d.js"><link rel="prefetch" href="./assets/js/134.5aae6986.js"><link rel="prefetch" href="./assets/js/135.c563fc2d.js"><link rel="prefetch" href="./assets/js/136.64094bd0.js"><link rel="prefetch" href="./assets/js/137.c3b87b3e.js"><link rel="prefetch" href="./assets/js/138.6f748b55.js"><link rel="prefetch" href="./assets/js/139.106d99e8.js"><link rel="prefetch" href="./assets/js/14.6dd6cec3.js"><link rel="prefetch" href="./assets/js/140.444246f2.js"><link rel="prefetch" href="./assets/js/141.f119cc80.js"><link rel="prefetch" href="./assets/js/142.220825fb.js"><link rel="prefetch" href="./assets/js/143.fed637ad.js"><link rel="prefetch" href="./assets/js/144.4531bff4.js"><link rel="prefetch" href="./assets/js/145.f0b31eea.js"><link rel="prefetch" href="./assets/js/146.13b23db3.js"><link rel="prefetch" href="./assets/js/147.67282192.js"><link rel="prefetch" href="./assets/js/148.b28f0004.js"><link rel="prefetch" href="./assets/js/149.d6b42420.js"><link rel="prefetch" href="./assets/js/15.0e49ede8.js"><link rel="prefetch" href="./assets/js/150.9b024b10.js"><link rel="prefetch" href="./assets/js/151.22197513.js"><link rel="prefetch" href="./assets/js/152.626158b2.js"><link rel="prefetch" href="./assets/js/153.53850bec.js"><link rel="prefetch" href="./assets/js/154.b4fb8108.js"><link rel="prefetch" href="./assets/js/155.8f7b080e.js"><link rel="prefetch" href="./assets/js/156.6773b339.js"><link rel="prefetch" href="./assets/js/157.4285458a.js"><link rel="prefetch" href="./assets/js/158.c15e775e.js"><link rel="prefetch" href="./assets/js/159.35d7feff.js"><link rel="prefetch" href="./assets/js/16.d786a69a.js"><link rel="prefetch" href="./assets/js/160.d7ea2332.js"><link rel="prefetch" href="./assets/js/161.2f91cd32.js"><link rel="prefetch" href="./assets/js/162.8465aa6c.js"><link rel="prefetch" href="./assets/js/163.2951de95.js"><link rel="prefetch" href="./assets/js/164.662d2ef2.js"><link rel="prefetch" href="./assets/js/165.4b3397fb.js"><link rel="prefetch" href="./assets/js/166.8d42d4fc.js"><link rel="prefetch" href="./assets/js/167.3a2067b3.js"><link rel="prefetch" href="./assets/js/168.f2919ff5.js"><link rel="prefetch" href="./assets/js/169.74842eab.js"><link rel="prefetch" href="./assets/js/17.a1b91715.js"><link rel="prefetch" href="./assets/js/170.4620ce6d.js"><link rel="prefetch" href="./assets/js/171.68122119.js"><link rel="prefetch" href="./assets/js/172.32b91b88.js"><link rel="prefetch" href="./assets/js/173.cc298090.js"><link rel="prefetch" href="./assets/js/174.4d94dc83.js"><link rel="prefetch" href="./assets/js/175.33b02d87.js"><link rel="prefetch" href="./assets/js/176.f987e538.js"><link rel="prefetch" href="./assets/js/177.da2422e7.js"><link rel="prefetch" href="./assets/js/178.643c910b.js"><link rel="prefetch" href="./assets/js/179.1edc31a3.js"><link rel="prefetch" href="./assets/js/18.04bd315a.js"><link rel="prefetch" href="./assets/js/180.a58e720a.js"><link rel="prefetch" href="./assets/js/181.09c2ec61.js"><link rel="prefetch" href="./assets/js/182.a9f7ba23.js"><link rel="prefetch" href="./assets/js/183.8a0d77ba.js"><link rel="prefetch" href="./assets/js/184.69461209.js"><link rel="prefetch" href="./assets/js/185.531aa09e.js"><link rel="prefetch" href="./assets/js/186.ba00a4f2.js"><link rel="prefetch" href="./assets/js/187.244e37c2.js"><link rel="prefetch" href="./assets/js/188.c69147a3.js"><link rel="prefetch" href="./assets/js/189.c052c66d.js"><link rel="prefetch" href="./assets/js/19.44a5121b.js"><link rel="prefetch" href="./assets/js/190.031eec9a.js"><link rel="prefetch" href="./assets/js/191.f44826ec.js"><link rel="prefetch" href="./assets/js/192.3caaf932.js"><link rel="prefetch" href="./assets/js/193.4f7d20cb.js"><link rel="prefetch" href="./assets/js/194.1a72e492.js"><link rel="prefetch" href="./assets/js/195.a79459e4.js"><link rel="prefetch" href="./assets/js/196.e40c69f1.js"><link rel="prefetch" href="./assets/js/20.9050f00f.js"><link rel="prefetch" href="./assets/js/21.693ec316.js"><link rel="prefetch" href="./assets/js/22.28738cee.js"><link rel="prefetch" href="./assets/js/23.4897735d.js"><link rel="prefetch" href="./assets/js/24.dabeb794.js"><link rel="prefetch" href="./assets/js/25.e02ca12e.js"><link rel="prefetch" href="./assets/js/26.d45a8181.js"><link rel="prefetch" href="./assets/js/27.6aba7760.js"><link rel="prefetch" href="./assets/js/28.7dedcab4.js"><link rel="prefetch" href="./assets/js/29.260e7f7f.js"><link rel="prefetch" href="./assets/js/30.6d7b0433.js"><link rel="prefetch" href="./assets/js/31.32462a85.js"><link rel="prefetch" href="./assets/js/32.f3f5048a.js"><link rel="prefetch" href="./assets/js/33.2688a581.js"><link rel="prefetch" href="./assets/js/34.2500012f.js"><link rel="prefetch" href="./assets/js/35.c446f3ff.js"><link rel="prefetch" href="./assets/js/36.e081800c.js"><link rel="prefetch" href="./assets/js/37.c8d473a1.js"><link rel="prefetch" href="./assets/js/38.0d8a0872.js"><link rel="prefetch" href="./assets/js/39.90069eb2.js"><link rel="prefetch" href="./assets/js/4.807ce41c.js"><link rel="prefetch" href="./assets/js/40.302351ae.js"><link rel="prefetch" href="./assets/js/41.a0814dfe.js"><link rel="prefetch" href="./assets/js/42.2705e772.js"><link rel="prefetch" href="./assets/js/43.85b64651.js"><link rel="prefetch" href="./assets/js/44.7d3180ee.js"><link rel="prefetch" href="./assets/js/45.80e65efe.js"><link rel="prefetch" href="./assets/js/46.429a6bf8.js"><link rel="prefetch" href="./assets/js/47.429c40d0.js"><link rel="prefetch" href="./assets/js/48.d8423860.js"><link rel="prefetch" href="./assets/js/49.bdc9e620.js"><link rel="prefetch" href="./assets/js/5.884d6fa1.js"><link rel="prefetch" href="./assets/js/50.d72ed5ab.js"><link rel="prefetch" href="./assets/js/51.8ed545db.js"><link rel="prefetch" href="./assets/js/52.39629162.js"><link rel="prefetch" href="./assets/js/53.9acad23a.js"><link rel="prefetch" href="./assets/js/54.6bd0a54c.js"><link rel="prefetch" href="./assets/js/55.a691d339.js"><link rel="prefetch" href="./assets/js/56.456d6a62.js"><link rel="prefetch" href="./assets/js/57.dd6a35c2.js"><link rel="prefetch" href="./assets/js/58.56cbe95d.js"><link rel="prefetch" href="./assets/js/59.4944f8de.js"><link rel="prefetch" href="./assets/js/6.dd7a6d69.js"><link rel="prefetch" href="./assets/js/60.e03d8019.js"><link rel="prefetch" href="./assets/js/61.d4f3ffad.js"><link rel="prefetch" href="./assets/js/62.9da7466a.js"><link rel="prefetch" href="./assets/js/63.1f0b1575.js"><link rel="prefetch" href="./assets/js/64.d62cf82f.js"><link rel="prefetch" href="./assets/js/65.6fedb0fa.js"><link rel="prefetch" href="./assets/js/66.e8d95b01.js"><link rel="prefetch" href="./assets/js/67.68f9f524.js"><link rel="prefetch" href="./assets/js/68.687f7c88.js"><link rel="prefetch" href="./assets/js/69.9d3459c6.js"><link rel="prefetch" href="./assets/js/7.2a7f9dde.js"><link rel="prefetch" href="./assets/js/70.a172431d.js"><link rel="prefetch" href="./assets/js/71.74b06b55.js"><link rel="prefetch" href="./assets/js/72.a4a724f7.js"><link rel="prefetch" href="./assets/js/73.7bc4b187.js"><link rel="prefetch" href="./assets/js/74.0f868a30.js"><link rel="prefetch" href="./assets/js/75.721d640d.js"><link rel="prefetch" href="./assets/js/76.bb4f7baf.js"><link rel="prefetch" href="./assets/js/77.8f0c495f.js"><link rel="prefetch" href="./assets/js/78.2db81b89.js"><link rel="prefetch" href="./assets/js/79.2c3afe93.js"><link rel="prefetch" href="./assets/js/8.e71ad162.js"><link rel="prefetch" href="./assets/js/80.82ad2482.js"><link rel="prefetch" href="./assets/js/81.344c57f3.js"><link rel="prefetch" href="./assets/js/82.20917223.js"><link rel="prefetch" href="./assets/js/83.e75fd719.js"><link rel="prefetch" href="./assets/js/84.16c0beda.js"><link rel="prefetch" href="./assets/js/85.bb79c09c.js"><link rel="prefetch" href="./assets/js/86.30354d37.js"><link rel="prefetch" href="./assets/js/87.e09cb22f.js"><link rel="prefetch" href="./assets/js/88.b6c8baac.js"><link rel="prefetch" href="./assets/js/89.6b46241f.js"><link rel="prefetch" href="./assets/js/9.8e556905.js"><link rel="prefetch" href="./assets/js/90.18b0274f.js"><link rel="prefetch" href="./assets/js/91.576afa67.js"><link rel="prefetch" href="./assets/js/92.3f26d552.js"><link rel="prefetch" href="./assets/js/93.f9f38c15.js"><link rel="prefetch" href="./assets/js/94.292cf729.js"><link rel="prefetch" href="./assets/js/95.6d0fbbbc.js"><link rel="prefetch" href="./assets/js/96.4ed56472.js"><link rel="prefetch" href="./assets/js/97.5b3fba34.js"><link rel="prefetch" href="./assets/js/98.8bfb52b6.js"><link rel="prefetch" href="./assets/js/99.3a15be66.js">
+    <link rel="stylesheet" href="./assets/css/0.styles.64695689.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Duktig</h3> <p class="description" data-v-59e6cb88>优秀还努力。愿你付出甘之如饴，所得归于欢喜。</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>RenShiWei</span>
+          
+        <span data-v-59e6cb88>2018 - </span>
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/./" class="home-link router-link-active"><img src="./logo.png" alt="个人博客" class="logo"> <span class="site-name">个人博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/./" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/./java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/./java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/./java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/./java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li><li class="dropdown-item"><h4>Spring</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/spring family/Spring/Spring总结.html" class="nav-link"><i class="undefined"></i>
+  Spring总结
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/Spring/Spring常见面试题.html" class="nav-link"><i class="undefined"></i>
+  Spring常见面试题
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringMVC/SpringMVC.html" class="nav-link"><i class="undefined"></i>
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringBoot/SpringBoot自动装配和Starter原理.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot自动装配和Starter原理
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringBoot/SpringBoot常见面试题.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot常见面试题
+</a></li></ul></li><li class="dropdown-item"><h4>JWT</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/JWT相关.html" class="nav-link"><i class="undefined"></i>
+  JWT总结
+</a></li></ul></li><li class="dropdown-item"><h4>Netty</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/Netty/Netty总结.html" class="nav-link"><i class="undefined"></i>
+  Netty总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/./doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/./tool/emoji/我的常用emoji.html" class="nav-link"><i class="undefined"></i>
+  工具
+</a></div><div class="nav-item"><a href="/./aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.zhihu.com/people/zui-jing-de-zi-91/posts" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-zhihu"></i>
+  知乎
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://twitter.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-twitter"></i>
+  Twitter
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <a href="https://github.com/duktig666/share-blog" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="./avatar.jpeg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    RenShiWei
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>52</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>33</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f8b26a;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#f47e60;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#abbd81;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-jianshu" style="color:#3498db;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/./" class="nav-link"><i class="iconfont reco-home"></i>
+  博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Java
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java 基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java/basics/面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java 基础
+</a></li><li class="dropdown-subitem"><a href="/./java/collection/HashMap底层原理分析.html" class="nav-link"><i class="undefined"></i>
+  Java 集合
+</a></li><li class="dropdown-subitem"><a href="/./java/io/IO基础.html" class="nav-link"><i class="undefined"></i>
+  Java IO
+</a></li><li class="dropdown-subitem"><a href="/./java/reflect/反射总结.html" class="nav-link"><i class="undefined"></i>
+  Java 反射
+</a></li><li class="dropdown-subitem"><a href="/./java/thread/多线程基础笔记.html" class="nav-link"><i class="undefined"></i>
+  Java 并发编程
+</a></li></ul></li><li class="dropdown-item"><h4>JVM</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java/jvm/JVM总结.html" class="nav-link"><i class="undefined"></i>
+  JVM总结
+</a></li></ul></li><li class="dropdown-item"><h4>Spring</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/spring family/Spring/Spring总结.html" class="nav-link"><i class="undefined"></i>
+  Spring总结
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/Spring/Spring常见面试题.html" class="nav-link"><i class="undefined"></i>
+  Spring常见面试题
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringMVC/SpringMVC.html" class="nav-link"><i class="undefined"></i>
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringBoot/SpringBoot自动装配和Starter原理.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot自动装配和Starter原理
+</a></li><li class="dropdown-subitem"><a href="/./java相关框架/spring family/SpringBoot/SpringBoot常见面试题.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot常见面试题
+</a></li></ul></li><li class="dropdown-item"><h4>JWT</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/JWT相关.html" class="nav-link"><i class="undefined"></i>
+  JWT总结
+</a></li></ul></li><li class="dropdown-item"><h4>Netty</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./java相关框架/Netty/Netty总结.html" class="nav-link"><i class="undefined"></i>
+  Netty总结
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./算法与数据结构/数据结构/线性表.html" class="nav-link"><i class="undefined"></i>
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/算法技巧/01数组.html" class="nav-link"><i class="undefined"></i>
+  算法技巧
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/codetop/codetop(21-40).html" class="nav-link"><i class="undefined"></i>
+  CodeTop
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/《剑指offer》总结.html" class="nav-link"><i class="undefined"></i>
+  剑指offer
+</a></li><li class="dropdown-item"><!----> <a href="/./算法与数据结构/真实面试算法题/好朋友的笔试题——1000个1-100随机数尽可能均匀分配区间的问题.html" class="nav-link"><i class="undefined"></i>
+  真实面试算法题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./sql/mysql/MySQL索引.html" class="nav-link"><i class="undefined"></i>
+  MySQL 详解
+</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/./sql/redis/Redis底层数据结构.html" class="nav-link"><i class="undefined"></i>
+  Redis 详解
+</a></li><li class="dropdown-subitem"><a href="/./doc/sql/es/ElasticSearch技术方案——使用场景.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch 详解
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./架构/微服务/微服务架构 总览.html" class="nav-link"><i class="undefined"></i>
+  微服务
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式ID/分布式ID方案.html" class="nav-link"><i class="undefined"></i>
+  分布式ID
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式锁/分布式锁.html" class="nav-link"><i class="undefined"></i>
+  分布式锁
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/分布式事务/分布式事务方案.html" class="nav-link"><i class="undefined"></i>
+  分布式事务
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/OAuth2.0/理解OAuth2.0.html" class="nav-link"><i class="undefined"></i>
+  OAuth2.0
+</a></li><li class="dropdown-item"><!----> <a href="/./架构/云原生/云原生架构和K8S.html" class="nav-link"><i class="undefined"></i>
+  云原生
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/./大数据/Hadoop/Hadoop概述.html" class="nav-link"><i class="undefined"></i>
+  Hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/Hive/Hive概述.html" class="nav-link"><i class="undefined"></i>
+  Hive
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/HBase/HBase.html" class="nav-link"><i class="undefined"></i>
+  HBase
+</a></li><li class="dropdown-item"><!----> <a href="/./大数据/Flink/flink.html" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li></ul></div></div><div class="nav-item"><a href="/./tool/emoji/我的常用emoji.html" class="nav-link"><i class="undefined"></i>
+  工具
+</a></div><div class="nav-item"><a href="/./aboutme.html" class="nav-link"><i class="iconfont reco-account"></i>
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关注我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://blog.csdn.net/qq_42937522?spm=1000.2115.3001.5343" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-csdn"></i>
+  CSDN
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.jianshu.com/u/421632ec0dc8" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-jianshu"></i>
+  简书
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.zhihu.com/people/zui-jing-de-zi-91/posts" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-zhihu"></i>
+  知乎
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://twitter.com/duktig666" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-twitter"></i>
+  Twitter
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <a href="https://github.com/duktig666/share-blog" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Mysql</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/./2022/01/21/mysql%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9C%89%E5%93%AA%E4%BA%9B-%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E7%9A%84%E5%AF%B9%E6%AF%94%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="sidebar-link">MySQL的存储引擎有哪些？以及它们的对比和使用场景</a></li><li><a href="/./2022/01/21/mysql%E7%B4%A2%E5%BC%95/" class="sidebar-link">MySQL索引</a></li><li><a href="/./2022/01/21/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A6%81%E7%94%A8b-%E6%A0%91%E5%AD%98%E5%82%A8%E7%B4%A2%E5%BC%95/" class="sidebar-link">MySQL 数据库要用B+树存储索引？</a></li><li><a href="/./2022/01/21/mysql%E7%9A%84%E4%BA%8B%E5%8A%A1%E3%80%81%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8Cmvcc%E5%8E%9F%E7%90%86/" class="sidebar-link">MySQL的事务、隔离级别和MVCC原理</a></li><li><a href="/./2022/01/21/mysql%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6/" class="sidebar-link">MySQL的锁机制</a></li><li><a href="/./2022/01/21/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%92%8C%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E5%8E%9F%E7%90%86/" class="sidebar-link">MySQL主从复制和分表分库原理</a></li><li><a href="/./2022/01/21/mysql%E7%9A%84%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/" class="sidebar-link">MySQL的慢查询和数据库优化</a></li><li><a href="/./2022/01/21/sql%E7%BC%96%E7%A8%8B%E9%A2%98/" class="sidebar-link">sql编程题</a></li><li><a href="/./2022/01/21/%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0/" class="sidebar-link">开窗函数</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/./2022/01/21/redis%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="sidebar-link">Redis的底层数据结构</a></li><li><a href="/./2021/12/14/redis%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" class="sidebar-link">Redis的发布订阅模式</a></li><li><a href="/./2022/01/21/redis%E9%9D%A2%E8%AF%95%E9%A2%98/" class="sidebar-link">Redis面试题</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>ElasticSearch</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/./2021/02/28/elasticsearch%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="sidebar-link">ElasticSearch技术方案——使用场景</a></li><li><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/" aria-current="page" class="active sidebar-link">ElasticSearch实现站内搜索</a></li><li><a href="/./2020/01/01/es%E9%87%8D%E7%82%B9/" class="sidebar-link">ES重点</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>ElasticSearch实现站内搜索</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>RenShiWei</span>
+          
+        <span data-v-59e6cb88>2018 - </span>
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">ElasticSearch实现站内搜索</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>RenShiWei</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2021/3/5</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>es</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="es实现站内搜索"><a href="#es实现站内搜索" class="header-anchor">#</a> ES实现站内搜索</h2> <h3 id="es实现站内搜索-2"><a href="#es实现站内搜索-2" class="header-anchor">#</a> ES实现站内搜索</h3> <h4 id="流程图"><a href="#流程图" class="header-anchor">#</a> 流程图</h4> <p><img src="https://gitee.com/koala010/typora/raw/master/img/ElasticSearch%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image-20210203092957723"></p> <h4 id="站内搜索实现分析"><a href="#站内搜索实现分析" class="header-anchor">#</a> 站内搜索实现分析</h4> <p>以小米手机搜索为例，来进行站内搜索的分析：</p> <p>①在前端搜索框输入搜索词，利用ES的ik分词器进行分词，到ES进行快速检索；</p> <p>②ES中存储关键信息，一般为一条记录的唯一标识信息和可进行分词检索的信息（例如小米手机可以根据手机名和价格进行检索，那么将id、手机名还有价格的手机信息存储到ES中）</p> <p>③检索到的信息返回给前端</p> <p>④前端点击手机信息，例如小米11，那么用ES检索出的手机ID去数据库查询小米11的详细信息。</p> <p>⑤可以利用搜索词的搜索频度存储到redis，用来实现热搜排行榜等功能（具体的业务引入具体的技术）</p> <p>⑥利用远程词典可以控制ik分词器不能分词的网络热词</p> <p><strong>⑦关键点在于数据库与ES的数据同步方案。</strong></p> <h3 id="springboot整合springdata-elasticsearch"><a href="#springboot整合springdata-elasticsearch" class="header-anchor">#</a> SpringBoot整合SpringData ElasticSearch</h3> <p>ElasticSearch的更新迭代比较快，目前已经迭代到了7.x版本。使用SpringBoot整合SpringData ElasticSearch对版本的要求比较高。这里我们使用SpringBoot 2.3.x（比如<code>2.3.8.RELEASE</code>）,对应可以使用ElasticSearch7.x。</p> <h4 id="_1-引入依赖"><a href="#_1-引入依赖" class="header-anchor">#</a> 1. 引入依赖：</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code>	<span class="token generics"><span class="token punctuation">&lt;</span>parent<span class="token punctuation">&gt;</span></span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>parent<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">3.3</span><span class="token number">.8</span><span class="token punctuation">.</span><span class="token constant">RELEASE</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>parent<span class="token operator">&gt;</span>
+        
+    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">&gt;</span></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> elasticsearch <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>data<span class="token operator">-</span>elasticsearch<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 其余依赖视情况引入 <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">&gt;</span>    
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h4 id="_2-配置application-yml"><a href="#_2-配置application-yml" class="header-anchor">#</a> 2.配置application.yml</h4> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<span class="token comment"># elasticsearch</span>
+  <span class="token key atrule">elasticsearch</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rest</span><span class="token punctuation">:</span>
+      <span class="token key atrule">uris</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">9200</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="_3-编写实体类"><a href="#_3-编写实体类" class="header-anchor">#</a> 3.编写实体类</h4> <p>可以将数据库的实体类抽离出来，依据上述站内搜索的分析，将一条记录的唯一标识和可分词检索的字段存储到ES中。ES实体的属性对应es存储的字段。</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">&quot;phone&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@Accessors</span><span class="token punctuation">(</span>chain <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MenuES</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Text</span><span class="token punctuation">,</span> analyzer <span class="token operator">=</span> <span class="token string">&quot;ik_max_word&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Text</span><span class="token punctuation">,</span> analyzer <span class="token operator">=</span> <span class="token string">&quot;ik_max_word&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h4 id="_4-编写repository类"><a href="#_4-编写repository类" class="header-anchor">#</a> 4.编写Repository类</h4> <p>SpringData Elasticsearch的Repository和SpringData JPA使用上极其类似。</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MenuRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">MenuES</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>泛型第一个类型对应ES实体类，第二个对应主键的类型。</p> <h4 id="_5-测试"><a href="#_5-测试" class="header-anchor">#</a> 5.测试</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> <span class="token class-name">AppRun</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span><span class="token class-name">SpringJUnit4ClassRunner</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestSpringDataElasticSearch</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">MenuRepository</span> menuRepository<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 添加索引和更新索引 id 存在更新 不存在添加
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSaveOrUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">MenuES</span> menu <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MenuES</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        menu<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">&quot;系统管理&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">&quot;系统管理&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        menuRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>menu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 查询所有
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFindAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Iterable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">MenuES</span><span class="token punctuation">&gt;</span></span> menuIterable <span class="token operator">=</span> menuRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">MenuES</span> menu <span class="token operator">:</span> menuIterable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>menu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/**
+     * 查询一个
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFindOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">MenuES</span><span class="token punctuation">&gt;</span></span> byId <span class="token operator">=</span> menuRepository<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>byId<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><p>这里只是举出了一个简单的例子，具体SpringBoot整合ElasticSearch实现站内搜索功能要看具体的业务逻辑。</p> <h3 id="mysql与es数据同步方案"><a href="#mysql与es数据同步方案" class="header-anchor">#</a> MySQL与ES数据同步方案</h3> <p>数据同步效果主要分为两种<strong>实时同步</strong>和<strong>最终同步</strong>。</p> <p>实时同步对同步频率要求较高。需要保证mysql数据发生增删改变更后，需要立马将变更后的数据同步给ES；保证ES检索到的数据近乎实时都是准确的。</p> <p>最终同步对同步频率要求不高，但需要保证最终数据库与ES的数据是一致的。至于“最终”这个时间段时多少，根据不同的业务场景，确定不同的时间。</p> <h4 id="方案一-业务逻辑实现"><a href="#方案一-业务逻辑实现" class="header-anchor">#</a> 方案一：业务逻辑实现</h4> <h5 id="实现方式"><a href="#实现方式" class="header-anchor">#</a> 实现方式</h5> <p>使用SpringData ElasticSearch可以快速进行ES相关的操作，在进行mysql增删改操作的同时，对ES所对应的索引库进行增删改操作，以保持数据的一致性。</p> <p>从实现角度考虑，这样的方式属于数据实时同步。但是可能在数据同步的时候会出现一些问题：</p> <ol><li>只有当mysql执行增删改成功之后，才可以进行ES操作的执行，在代码实现的角度考虑，会使业务变得更加复杂。这个问题在这个实现方式下，基本不可避免。</li> <li>如果mysql执行成功，但是ES执行失败，怎么处理？如果不处理会引起数据不一致的问题。</li></ol> <h5 id="问题及解决"><a href="#问题及解决" class="header-anchor">#</a> 问题及解决</h5> <p>首先，这样的问题没有必要从事务的角度考虑，即mysql执行成功，ES执行失败，mysql执行回退操作，没有必要让mysql重新执行。</p> <p>所以，可以考虑的点还是从ES数据补偿的角度出发，可以将ES同步失败的数据缓存到redis或者是消息中间件（例如RabbitMQ），等待服务器不忙碌的时候（例如凌晨2点），将redis/消息中间件中的数据同步到ES中，采用订阅消费模式，直至未同步的数据同步到ES，确保数据一致性。</p> <p>这样的解决方案，在一定的程度上降低了数据同步的实时性，但是也确保了数据的最终一致性。</p> <h5 id="分析"><a href="#分析" class="header-anchor">#</a> 分析</h5> <h6 id="优点"><a href="#优点" class="header-anchor">#</a> 优点：</h6> <ol><li>逻辑简单，代码实现容易。</li> <li>保证了数据的最终一致性，在一定程度上保证了数据同步的实时性（如果ES没有问题，即可保证数据的实时同步，但这是不现实的）。</li></ol> <h6 id="缺点"><a href="#缺点" class="header-anchor">#</a> 缺点：</h6> <ol><li>ES的数据同步与业务的耦合性太大，不方便维护和扩展。</li> <li>数据库数据变更一次，就要同步一次ES数据，数据同步过于频繁。</li> <li>从数据同步的实时性出发，但是并不能保证数据同步的实时性（虽然保证了数据同步的最终一致性）。</li></ol> <h4 id="方案二-消息中间件-redis-定时任务实现"><a href="#方案二-消息中间件-redis-定时任务实现" class="header-anchor">#</a> 方案二：消息中间件/redis+定时任务实现</h4> <p>为了解决数据同步频繁的问题，并主要实现数据最终同步的目的，故出现了这个方案。</p> <h5 id="实现方式-2"><a href="#实现方式-2" class="header-anchor">#</a> 实现方式</h5> <p>实现方式与上文的业务逻辑方式类似，只是在mysql数据发生增删改变更的时候，不直接将变更的数据同步到ES，而是先缓存到redis或者消息中间件，等到流量低（例如凌晨2点）的时间利用定时任务将数据同步给ES，采用订阅/消费模式直到数据同步成功为止。</p> <h5 id="分析-2"><a href="#分析-2" class="header-anchor">#</a> 分析</h5> <h6 id="优点-2"><a href="#优点-2" class="header-anchor">#</a> 优点</h6> <ol><li>实现了数据最终同步</li> <li>降低了服务器压力，不再频繁地进行数据同步</li></ol> <h6 id="缺点-2"><a href="#缺点-2" class="header-anchor">#</a> 缺点</h6> <ol><li>即使借助消息中间件和redis，数据同步也与业务耦合比较大</li> <li>数据同步内嵌在代码中</li></ol> <h4 id="方案三-借助插件实现数据同步"><a href="#方案三-借助插件实现数据同步" class="header-anchor">#</a> 方案三：借助插件实现数据同步</h4> <p>MySQL与ElasticSearch数据同步的插件有很多，在这里列出来常用的一些，例如 ：</p> <ul><li><a href="https://github.com/jprante/elasticsearch-jdbc" target="_blank" rel="noopener noreferrer">elasticsearch-jdbc<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/scharron/elasticsearch-river-mysql" target="_blank" rel="noopener noreferrer">elasticsearch-river-mysql<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/siddontang/go-mysql-elasticsearch" target="_blank" rel="noopener noreferrer">go-mysql-elasticsearch<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/logstash-plugins/logstash-input-jdbc" target="_blank" rel="noopener noreferrer">logstash-input-jdbc<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h5 id="插件优缺点对比"><a href="#插件优缺点对比" class="header-anchor">#</a> 插件优缺点对比</h5> <table><thead><tr><th>插件名称</th> <th>优点</th> <th>缺点</th></tr></thead> <tbody><tr><td>elasticsearch-jdbc</td> <td>1.相对通用<br>2.GitHub活跃度高，版本更新快</td> <td>不能实现同步删除操作mysql删除了，ES仍然存在</td></tr> <tr><td>elasticsearch-river-mysql</td> <td>版本太旧，不再考虑</td> <td>2012年12月13日后便不再更新</td></tr> <tr><td>go-mysql-elasticsearch</td> <td>1.国内作者开发<br>2.能实现同步增删改查操作</td> <td>1.仍处于开发阶段，相对不稳定<br>2.没有日志，不方便排查问题和查看同步结果</td></tr> <tr><td>logstash-input-jdbc</td> <td>1.能实现同步增、改操作的增量、全量数据同步<br>2.版本更新快、相对稳定<br>3.集成在LogStash，作为ES生态固有插件的一部分，易用</td> <td>不能实现同步删除操作mysql删除了，ES仍然存在</td></tr></tbody></table> <p><em>严格意义上elasticsearch-jdbc已经不是第三方插件，已经成为独立的第三方工具。</em></p> <h5 id="分析-3"><a href="#分析-3" class="header-anchor">#</a> 分析</h5> <p>插件比较多，经过对比分析选择<code>logstash-input-jdbc</code>较为合适，版本更新快、稳定，而且作为LogStash的一款插件，而且现在LogStash的版本已经默认集成了该插件，后来要使用日志可视化（ELK）也会用到LogStash。虽然有不能实现同步删除的操作，但是如果数据库字段采用的逻辑删除，则可以完美避免这个问题，逻辑删除刚好符合我们的场景。</p> <h4 id="方案四-canal-alibaba"><a href="#方案四-canal-alibaba" class="header-anchor">#</a> 方案四：canal(alibaba)</h4> <p><a href="https://github.com/alibaba/canal" target="_blank" rel="noopener noreferrer">canal<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>——mysql数据库binlog的增量订阅&amp;消费组件。</p> <h5 id="分析-4"><a href="#分析-4" class="header-anchor">#</a> 分析</h5> <p>推荐使用场景 canal适用于对于Mysql和Elasticsearch数据实时增、删、改要求高的业务场景。 实时场景要求不高的业务场景，logstash-input-jdbc也能满足。</p> <p>建议，做好选型甄别。</p> <h6 id="优点-3"><a href="#优点-3" class="header-anchor">#</a> 优点</h6> <ol><li>基于binlog实现，支持增删改同步实现</li> <li>阿里开源，网上有很多具体实现方案</li> <li>SpringBoot引入canal客户端，canal可监听数据变化，做相应的业务处理</li></ol> <h6 id="缺点-3"><a href="#缺点-3" class="header-anchor">#</a> 缺点</h6> <ol><li>不支持全量同步</li></ol> <h3 id="logstash-input-jdbc实现mysql与es的数据同步"><a href="#logstash-input-jdbc实现mysql与es的数据同步" class="header-anchor">#</a> logstash-input-jdbc实现mysql与ES的数据同步</h3> <p>LogStash在5.x版本已经默认集成logstash-input-jdbc插件，新版本的LogStash不用再单独下载插件，直接使用LogStash就可以完成mysql与ES的数据同步。</p> <p>下载完成LogStash，编写<code>jdbc.conf</code>文件（可以自定义命名）。<code>jdbc.conf</code>我放在了LogStash的<code>config</code>的目录下（可以更换）。</p> <p>LogStash官网下载速度比较慢，可以考虑从国内镜像下载： <a href="https://www.newbe.pro/Mirrors/Mirrors-Logstash/" target="_blank" rel="noopener noreferrer">https://www.newbe.pro/Mirrors/Mirrors-Logstash/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h4 id="全量同步"><a href="#全量同步" class="header-anchor">#</a> 全量同步</h4> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>input<span class="token punctuation">{</span>
+  jdbc<span class="token punctuation">{</span>
+    <span class="token comment"># mysql连接地址</span>
+    jdbc_connection_string <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;jdbc:mysql://localhost:3306/smpe?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&quot;</span>
+    <span class="token comment"># mysql账号</span>
+    jdbc_user <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;root&quot;</span>
+    <span class="token comment"># mysql密码</span>
+    jdbc_password <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;159357asd&quot;</span>
+    <span class="token comment"># Java连接mysql的驱动jar包（最好与数据库的版本对应）</span>
+    jdbc_driver_library <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;D:\javaweb<span class="token entity" title="\E">\E</span>lasticsearch\logstash-7.10.0\mysql\mysql-connector-java-8.0.12.jar&quot;</span>
+    <span class="token comment"># mysql连接驱动名</span>
+    jdbc_driver_class <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>
+    <span class="token comment"># 是否支持分页</span>
+    jdbc_paging_enabled <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;true&quot;</span>
+    <span class="token comment"># 每页显示的条数</span>
+    jdbc_page_size <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;100&quot;</span>
+	<span class="token comment"># 设置时区</span>
+	jdbc_default_timezone <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;Asia/Shanghai&quot;</span>
+	<span class="token comment"># 具体的sql，将哪些数据同步到es</span>
+    statement <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;select id,name,title from sys_menu&quot;</span>
+    <span class="token comment"># 可以将statement换成statement_filepath将sql语句写到额外的文件里</span>
+    <span class="token comment"># statement_filepath =&gt; &quot;D:\javaweb\Elasticsearch\logstash-7.10.0\config\jdbc.sql&quot;</span>
+    <span class="token comment"># 同步的频率/时间 第一位是分钟 不设置就是1分钟执行一次</span>
+    schedule <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;* * * * *&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+output<span class="token punctuation">{</span>
+  elasticsearch <span class="token punctuation">{</span>
+    <span class="token comment"># es的ip和端口</span>
+    hosts <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;127.0.0.1:9200&quot;</span>
+    <span class="token comment"># 同步的索引</span>
+    index <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;menu&quot;</span>
+    <span class="token comment"># id</span>
+    document_id <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;%{id}&quot;</span>
+  <span class="token punctuation">}</span>
+  stdout<span class="token punctuation">{</span>
+    codec <span class="token operator">=</span><span class="token operator">&gt;</span> json_lines
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><h4 id="增量同步"><a href="#增量同步" class="header-anchor">#</a> 增量同步</h4> <p>增量同步主要改动以下项</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># 如果使用更新时间来追踪增量，那么值设置为false；如果为其他字段追踪，如id，值设置为true</span>
+use_column_value <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean">true</span>
+<span class="token comment"># 追踪增量的字段</span>
+tracking_column <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">id</span>
+<span class="token comment"># 设置记录上一次的增量的值</span>
+record_last_run <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean">true</span>
+<span class="token comment"># 将上一次增量的值存储的文件</span>
+last_run_metadata_path <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;D:\javaweb<span class="token entity" title="\E">\E</span>lasticsearch\logstash-7.10.0<span class="token entity" title="\c">\c</span>onfig\.logstash_jdbc_last_run&quot;</span>
+<span class="token comment"># 增量同步，sql后跟where子句，即&quot;where 追踪字段 &gt; :sql_last_value&quot;</span>
+statement <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;select id,name,title from sys_menu where id &gt; :sql_last_value&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>增量同步完全文件<code>jdbc.conf</code></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>input<span class="token punctuation">{</span>
+  jdbc<span class="token punctuation">{</span>
+    <span class="token comment"># mysql连接地址</span>
+    jdbc_connection_string <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;jdbc:mysql://localhost:3306/smpe?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&quot;</span>
+    <span class="token comment"># mysql账号</span>
+    jdbc_user <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;root&quot;</span>
+    <span class="token comment"># mysql密码</span>
+    jdbc_password <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;159357asd&quot;</span>
+    <span class="token comment"># Java连接mysql的驱动jar包（最好与数据库的版本对应）</span>
+    jdbc_driver_library <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;D:\javaweb<span class="token entity" title="\E">\E</span>lasticsearch\logstash-7.10.0\mysql\mysql-connector-java-8.0.12.jar&quot;</span>
+    <span class="token comment"># mysql连接驱动名</span>
+    jdbc_driver_class <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>
+    <span class="token comment"># 是否支持分页</span>
+    jdbc_paging_enabled <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;true&quot;</span>
+    <span class="token comment"># 每页显示的条数</span>
+    jdbc_page_size <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;100&quot;</span>
+	<span class="token comment"># 设置时区</span>
+	jdbc_default_timezone <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;Asia/Shanghai&quot;</span>
+	<span class="token comment"># 如果使用更新时间来追踪增量，那么值设置为false；如果为其他字段追踪，如id，值设置为true</span>
+	use_column_value <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean">true</span>
+	<span class="token comment"># 追踪增量的字段</span>
+	tracking_column <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">id</span>
+	<span class="token comment"># 设置记录上一次的增量的值</span>
+	record_last_run <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean">true</span>
+	<span class="token comment"># 将上一次增量的值存储的文件</span>
+	last_run_metadata_path <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;D:\javaweb<span class="token entity" title="\E">\E</span>lasticsearch\logstash-7.10.0<span class="token entity" title="\c">\c</span>onfig\.logstash_jdbc_last_run&quot;</span>
+	<span class="token comment"># 增量同步，sql后跟where子句，即&quot;where 追踪字段 &gt; :sql_last_value&quot;</span>
+	statement <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;select id,name,title from sys_menu where id &gt; :sql_last_value&quot;</span>
+	<span class="token comment"># 同步的频率/时间 第一位是分钟 不设置就是1分钟执行一次</span>
+    schedule <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;* * * * *&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+output<span class="token punctuation">{</span>
+  elasticsearch <span class="token punctuation">{</span>
+    <span class="token comment"># es的ip和端口</span>
+    hosts <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;127.0.0.1:9200&quot;</span>
+    <span class="token comment"># 同步的索引</span>
+    index <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;menu&quot;</span>
+    <span class="token comment"># id</span>
+    document_id <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">&quot;%{id}&quot;</span>
+  <span class="token punctuation">}</span>
+  stdout<span class="token punctuation">{</span>
+    codec <span class="token operator">=</span><span class="token operator">&gt;</span> json_lines
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>配置完成<code>jdbc.conf</code>后，进入<code>bin</code>目录使用命令启动LogStash（启动前要先启动ES）</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code> logstash <span class="token parameter variable">-f</span> <span class="token punctuation">..</span>/config/jdbc.conf
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="canal实现mysql与es的数据同步"><a href="#canal实现mysql与es的数据同步" class="header-anchor">#</a> canal实现mysql与ES的数据同步</h3> <p>下载<code>canal.deployer</code></p> <p>修改<code>conf/example/instance.properties</code>文件，主要修改以下几处：</p> <ul><li><code>canal.instance.master.address</code>：数据库地址，例如127.0.0.1:3306</li> <li><code>canal.instance.dbUsername</code>：数据库用户</li> <li><code>canal.instance.dbPassword</code>：数据库密码</li></ul> <p>完整<code>conf/example/instance.properties</code>文件：</p> <div class="language-properties line-numbers-mode"><pre class="language-properties"><code><span class="token comment">#################################################</span>
+<span class="token comment">## mysql serverId , v1.0.26+ will autoGen</span>
+<span class="token comment"># canal.instance.mysql.slaveId=0</span>
+
+<span class="token comment"># enable gtid use true/false</span>
+<span class="token key attr-name">canal.instance.gtidon</span><span class="token punctuation">=</span><span class="token value attr-value">false</span>
+
+<span class="token comment"># position info</span>
+<span class="token key attr-name">canal.instance.master.address</span><span class="token punctuation">=</span><span class="token value attr-value">127.0.0.1:3306</span>
+<span class="token key attr-name">canal.instance.master.journal.name</span><span class="token punctuation">=</span>
+<span class="token key attr-name">canal.instance.master.position</span><span class="token punctuation">=</span>
+<span class="token key attr-name">canal.instance.master.timestamp</span><span class="token punctuation">=</span>
+<span class="token key attr-name">canal.instance.master.gtid</span><span class="token punctuation">=</span>
+
+<span class="token comment"># rds oss binlog</span>
+<span class="token key attr-name">canal.instance.rds.accesskey</span><span class="token punctuation">=</span>
+<span class="token key attr-name">canal.instance.rds.secretkey</span><span class="token punctuation">=</span>
+<span class="token key attr-name">canal.instance.rds.instanceId</span><span class="token punctuation">=</span>
+
+<span class="token comment"># table meta tsdb info</span>
+<span class="token key attr-name">canal.instance.tsdb.enable</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token comment">#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb</span>
+<span class="token comment">#canal.instance.tsdb.dbUsername=canal</span>
+<span class="token comment">#canal.instance.tsdb.dbPassword=canal</span>
+
+<span class="token comment">#canal.instance.standby.address =</span>
+<span class="token comment">#canal.instance.standby.journal.name =</span>
+<span class="token comment">#canal.instance.standby.position =</span>
+<span class="token comment">#canal.instance.standby.timestamp =</span>
+<span class="token comment">#canal.instance.standby.gtid=</span>
+
+<span class="token comment"># username/password</span>
+<span class="token key attr-name">canal.instance.dbUsername</span><span class="token punctuation">=</span><span class="token value attr-value">root</span>
+<span class="token key attr-name">canal.instance.dbPassword</span><span class="token punctuation">=</span><span class="token value attr-value">159357asd</span>
+<span class="token key attr-name">canal.instance.connectionCharset</span> <span class="token punctuation">=</span> <span class="token value attr-value">UTF-8</span>
+<span class="token comment"># enable druid Decrypt database password</span>
+<span class="token key attr-name">canal.instance.enableDruid</span><span class="token punctuation">=</span><span class="token value attr-value">false</span>
+<span class="token comment">#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==</span>
+
+<span class="token comment"># table regex</span>
+<span class="token key attr-name">canal.instance.filter.regex</span><span class="token punctuation">=</span><span class="token value attr-value">.*\\..*</span>
+<span class="token comment"># table black regex</span>
+<span class="token comment">#canal.instance.filter.black.regex=mysql\\.slave_.*</span>
+<span class="token key attr-name">canal.instance.filter.black.regex</span><span class="token punctuation">=</span>
+<span class="token comment"># table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)</span>
+<span class="token comment">#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch</span>
+<span class="token comment"># table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)</span>
+<span class="token comment">#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch</span>
+
+<span class="token comment"># mq config</span>
+<span class="token key attr-name">canal.mq.topic</span><span class="token punctuation">=</span><span class="token value attr-value">example</span>
+<span class="token comment"># dynamic topic route by schema or table regex</span>
+<span class="token comment">#canal.mq.dynamicTopic=mytest1.user,mytest2\\..*,.*\\..*</span>
+<span class="token key attr-name">canal.mq.partition</span><span class="token punctuation">=</span><span class="token value attr-value">0</span>
+<span class="token comment"># hash partition config</span>
+<span class="token comment">#canal.mq.partitionsNum=3</span>
+<span class="token comment">#canal.mq.partitionHash=test.table:id^name,.*\\..*</span>
+<span class="token comment">#canal.mq.dynamicTopicPartitionNum=test.*:4,mycanal:6</span>
+<span class="token comment">#################################################</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br></div></div><p>下载<code>canal.adapter</code></p> <p>修改<code>conf/application.yml</code>文件，主要修改</p> <ul><li>server.port:canal-adapter端口号</li> <li>canal.conf.canalServerHost:canal-server地址和ip</li> <li>canal.conf.srcDataSources.defaultDS.url:数据库地址</li> <li>canal.conf.srcDataSources.defaultDS.username:数据库用户名</li> <li>canal.conf.srcDataSources.defaultDS.password:数据库密码</li> <li>canal.conf.canalAdapters.groups.outerAdapters.hosts:es主机地址,tcp端口</li></ul> <p>完整文件如下：</p> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">jackson</span><span class="token punctuation">:</span>
+    <span class="token key atrule">date-format</span><span class="token punctuation">:</span> yyyy<span class="token punctuation">-</span>MM<span class="token punctuation">-</span>dd HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss
+    <span class="token key atrule">time-zone</span><span class="token punctuation">:</span> GMT+8
+    <span class="token key atrule">default-property-inclusion</span><span class="token punctuation">:</span> non_null
+
+<span class="token key atrule">canal.conf</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mode</span><span class="token punctuation">:</span> tcp <span class="token comment">#tcp kafka rocketMQ rabbitMQ</span>
+  <span class="token key atrule">flatMessage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">zookeeperHosts</span><span class="token punctuation">:</span>
+  <span class="token key atrule">syncBatchSize</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+  <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token key atrule">timeout</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessKey</span><span class="token punctuation">:</span>
+  <span class="token key atrule">secretKey</span><span class="token punctuation">:</span>
+  <span class="token key atrule">consumerProperties</span><span class="token punctuation">:</span>
+    <span class="token comment"># canal tcp consumer</span>
+    <span class="token key atrule">canal.tcp.server.host</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">11111</span>
+    <span class="token key atrule">canal.tcp.zookeeper.hosts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">canal.tcp.batch.size</span><span class="token punctuation">:</span> <span class="token number">500</span>
+    <span class="token key atrule">canal.tcp.username</span><span class="token punctuation">:</span>
+    <span class="token key atrule">canal.tcp.password</span><span class="token punctuation">:</span>
+    <span class="token comment"># kafka consumer</span>
+    <span class="token key atrule">kafka.bootstrap.servers</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">9092</span>
+    <span class="token key atrule">kafka.enable.auto.commit</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token key atrule">kafka.auto.commit.interval.ms</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+    <span class="token key atrule">kafka.auto.offset.reset</span><span class="token punctuation">:</span> latest
+    <span class="token key atrule">kafka.request.timeout.ms</span><span class="token punctuation">:</span> <span class="token number">40000</span>
+    <span class="token key atrule">kafka.session.timeout.ms</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">kafka.isolation.level</span><span class="token punctuation">:</span> read_committed
+    <span class="token key atrule">kafka.max.poll.records</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+    <span class="token comment"># rocketMQ consumer</span>
+    <span class="token key atrule">rocketmq.namespace</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rocketmq.namesrv.addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">9876</span>
+    <span class="token key atrule">rocketmq.batch.size</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+    <span class="token key atrule">rocketmq.enable.message.trace</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token key atrule">rocketmq.customized.trace.topic</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rocketmq.access.channel</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rocketmq.subscribe.filter</span><span class="token punctuation">:</span>
+    <span class="token comment"># rabbitMQ consumer</span>
+    <span class="token key atrule">rabbitmq.host</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq.virtual.host</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq.username</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq.password</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq.resource.ownerId</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">srcDataSources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">defaultDS</span><span class="token punctuation">:</span>
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/smpe<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+      <span class="token key atrule">password</span><span class="token punctuation">:</span> 159357asd
+  <span class="token key atrule">canalAdapters</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">instance</span><span class="token punctuation">:</span> example <span class="token comment"># canal instance Name or mq topic name</span>
+    <span class="token key atrule">groups</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">groupId</span><span class="token punctuation">:</span> g1
+      <span class="token key atrule">outerAdapters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> logger
+<span class="token comment">#      - name: rdb</span>
+<span class="token comment">#        key: mysql1</span>
+<span class="token comment">#        properties:</span>
+<span class="token comment">#          jdbc.driverClassName: com.mysql.jdbc.Driver</span>
+<span class="token comment">#          jdbc.url: jdbc:mysql://127.0.0.1:3306/mytest2?useUnicode=true</span>
+<span class="token comment">#          jdbc.username: root</span>
+<span class="token comment">#          jdbc.password: 121212</span>
+<span class="token comment">#      - name: rdb</span>
+<span class="token comment">#        key: oracle1</span>
+<span class="token comment">#        properties:</span>
+<span class="token comment">#          jdbc.driverClassName: oracle.jdbc.OracleDriver</span>
+<span class="token comment">#          jdbc.url: jdbc:oracle:thin:@localhost:49161:XE</span>
+<span class="token comment">#          jdbc.username: mytest</span>
+<span class="token comment">#          jdbc.password: m121212</span>
+<span class="token comment">#      - name: rdb</span>
+<span class="token comment">#        key: postgres1</span>
+<span class="token comment">#        properties:</span>
+<span class="token comment">#          jdbc.driverClassName: org.postgresql.Driver</span>
+<span class="token comment">#          jdbc.url: jdbc:postgresql://localhost:5432/postgres</span>
+<span class="token comment">#          jdbc.username: postgres</span>
+<span class="token comment">#          jdbc.password: 121212</span>
+<span class="token comment">#          threads: 1</span>
+<span class="token comment">#          commitSize: 3000</span>
+<span class="token comment">#      - name: hbase</span>
+<span class="token comment">#        properties:</span>
+<span class="token comment">#          hbase.zookeeper.quorum: 127.0.0.1</span>
+<span class="token comment">#          hbase.zookeeper.property.clientPort: 2181</span>
+<span class="token comment">#          zookeeper.znode.parent: /hbase</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> es7
+        <span class="token key atrule">key</span><span class="token punctuation">:</span> example
+        <span class="token key atrule">hosts</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">9200</span> <span class="token comment"># 127.0.0.1:9200 for rest mode</span>
+        <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+          <span class="token key atrule">mode</span><span class="token punctuation">:</span> rest <span class="token comment">#transport or rest</span>
+<span class="token comment">#          # security.auth: test:123456 #  only used for rest mode</span>
+          <span class="token key atrule">cluster.name</span><span class="token punctuation">:</span> elasticsearch
+<span class="token comment">#        - name: kudu</span>
+<span class="token comment">#          key: kudu</span>
+<span class="token comment">#          properties:</span>
+<span class="token comment">#            kudu.master.address: 127.0.0.1 # ',' split multi address</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br></div></div><p>另外需要配置<code>conf/es/*.yml</code>文件，adapter将会自动加载conf / es下的所有.yml结尾的配置文件。以<code>test.yml</code>为例：</p> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">dataSourceKey</span><span class="token punctuation">:</span> defaultDS
+<span class="token key atrule">destination</span><span class="token punctuation">:</span> example
+<span class="token key atrule">groupId</span><span class="token punctuation">:</span>
+<span class="token key atrule">esMapping</span><span class="token punctuation">:</span>
+  <span class="token key atrule">_index</span><span class="token punctuation">:</span> menu
+  <span class="token key atrule">_type</span><span class="token punctuation">:</span> _doc
+  <span class="token key atrule">_id</span><span class="token punctuation">:</span> _id
+<span class="token comment">#  upsert: true</span>
+  <span class="token key atrule">sql</span><span class="token punctuation">:</span> <span class="token string">&quot;select id as _id,name,title from sys_menu &quot;</span>
+<span class="token comment">#  etlCondition: &quot;where update_time&gt;='{0}'&quot; #etl的条件参数，可以将之前没能同步的数据同步，数据量大的话可以用logstash</span>
+  <span class="token key atrule">commitBatch</span><span class="token punctuation">:</span> <span class="token number">3000</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>然后分别在<code>canal.deployer</code>和<code>canal.adapter</code>的bin目录启动deployer和adapter</p> <p>测试增删改mysql数据，也可以同步数据到ES。</p> <h3 id="对比logstash和canal同步mysql和es的数据"><a href="#对比logstash和canal同步mysql和es的数据" class="header-anchor">#</a> 对比LogStash和Canal同步mysql和ES的数据</h3> <table><thead><tr><th></th> <th>LogStash</th> <th>Canal</th></tr></thead> <tbody><tr><td>全量同步</td> <td>支持</td> <td>不支持</td></tr> <tr><td>增量同步</td> <td>支持</td> <td>支持</td></tr> <tr><td>mysql删除同步</td> <td>不支持（可采用逻辑删除）</td> <td>支持</td></tr> <tr><td>ES7.x兼容性</td> <td>好</td> <td>目前不友好（mysql增删改可以监听到，但是数据不能同步到ES）</td></tr> <tr><td>实时性</td> <td>较低</td> <td>较高</td></tr></tbody></table> <p>如果选用ES6.x，那么这两种方案其实都可行。</p> <p>如果选用ES7.X，那么目前LogStash会合适一些，Canal对ES7.X的兼容性还并不好，如果canalv1.1.5版本发布稳定版了可以再考虑使用。</p></div></section> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/duktig666/share-blog/edit/main/docs/sql/es/ElasticSearch实现站内搜索.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2022/3/5 20:29:15</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#es实现站内搜索" class="sidebar-link reco-side-es实现站内搜索" data-v-b57cc07c>ES实现站内搜索</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#es实现站内搜索-2" class="sidebar-link reco-side-es实现站内搜索-2" data-v-b57cc07c>ES实现站内搜索</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#springboot整合springdata-elasticsearch" class="sidebar-link reco-side-springboot整合springdata-elasticsearch" data-v-b57cc07c>SpringBoot整合SpringData ElasticSearch</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#mysql与es数据同步方案" class="sidebar-link reco-side-mysql与es数据同步方案" data-v-b57cc07c>MySQL与ES数据同步方案</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#logstash-input-jdbc实现mysql与es的数据同步" class="sidebar-link reco-side-logstash-input-jdbc实现mysql与es的数据同步" data-v-b57cc07c>logstash-input-jdbc实现mysql与ES的数据同步</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#canal实现mysql与es的数据同步" class="sidebar-link reco-side-canal实现mysql与es的数据同步" data-v-b57cc07c>canal实现mysql与ES的数据同步</a></li><li class="level-3" data-v-b57cc07c><a href="/./2021/03/05/elasticsearch%E5%AE%9E%E7%8E%B0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/#对比logstash和canal同步mysql和es的数据" class="sidebar-link reco-side-对比logstash和canal同步mysql和es的数据" data-v-b57cc07c>对比LogStash和Canal同步mysql和ES的数据</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><!----></div></div>
+    <script src="./assets/js/app.7a1bd950.js" defer></script><script src="./assets/js/3.cb5ac92f.js" defer></script><script src="./assets/js/1.a307db49.js" defer></script><script src="./assets/js/114.41225bb2.js" defer></script><script src="./assets/js/10.6878b594.js" defer></script>
+  </body>
+</html>
